@@ -337,41 +337,26 @@ function triggerSpecialAction() {
 // ============================================================================
 function initComputerVisionTracking() {
   const reticle = document.getElementById('ar-tracking-reticle');
-  const confidenceBar = document.getElementById('ar-confidence-bar');
-  const confidenceText = document.getElementById('ar-confidence-text');
   const lockStatus = document.getElementById('ar-lock-status');
 
-  // 即時特徵掃描模擬器循環
   setInterval(() => {
-    // 計算模擬與實景中的置信度
-    let targetConf = 0;
     if (AR_STATE.simulatedMode) {
-      // 模擬器中，固定在極高穩定辨識度 (94% - 99%)
-      targetConf = 94 + Math.sin(Date.now() / 600) * 4;
-    } else if (AR_STATE.isCameraActive) {
-      // 真實鏡頭中，模擬真實追蹤浮動 (75% - 97%)
-      targetConf = 85 + Math.sin(Date.now() / 800) * 10;
-    } else {
-      targetConf = 0;
-    }
-
-    AR_STATE.trackingConfidence = Math.max(0, Math.min(100, targetConf));
-
-    if (confidenceBar) {
-      confidenceBar.style.width = `${AR_STATE.trackingConfidence}%`;
-    }
-    if (confidenceText) {
-      confidenceText.textContent = `${AR_STATE.trackingConfidence.toFixed(1)}%`;
-    }
-
-    if (AR_STATE.trackingConfidence > 70) {
       AR_STATE.isTracking = true;
       if (reticle) {
         reticle.classList.remove('border-amber-400/50', 'animate-pulse');
         reticle.classList.add('border-emerald-400', 'shadow-[0_0_25px_rgba(52,211,153,0.5)]');
       }
       if (lockStatus) {
-        lockStatus.innerHTML = `<span class="text-emerald-400 font-bold">● 標記已鎖定 (Tracking Locked)</span>`;
+        lockStatus.innerHTML = '<span class="text-emerald-400 font-bold">● 標記已鎖定 (Tracking Locked)</span>';
+      }
+    } else if (AR_STATE.isCameraActive) {
+      AR_STATE.isTracking = true;
+      if (reticle) {
+        reticle.classList.remove('border-amber-400/50', 'animate-pulse');
+        reticle.classList.add('border-emerald-400', 'shadow-[0_0_25px_rgba(52,211,153,0.5)]');
+      }
+      if (lockStatus) {
+        lockStatus.innerHTML = '<span class="text-emerald-400 font-bold">● 實景掃描鎖定中 (Live Tracking)</span>';
       }
     } else {
       AR_STATE.isTracking = false;
@@ -380,10 +365,10 @@ function initComputerVisionTracking() {
         reticle.classList.remove('border-emerald-400', 'shadow-[0_0_25px_rgba(52,211,153,0.5)]');
       }
       if (lockStatus) {
-        lockStatus.innerHTML = `<span class="text-amber-300">🔍 搜尋標記中 (Searching for Card)...</span>`;
+        lockStatus.innerHTML = '<span class="text-amber-300">🔍 搜尋標記中 (Searching for Card)...</span>';
       }
     }
-  }, 100);
+  }, 250);
 }
 
 function resetTrackingReticle(targetName) {
@@ -1002,7 +987,7 @@ function finishAndDownloadPostcard(canvas) {
 
   ctx.fillStyle = '#abc8fa';
   ctx.font = '22px "Noto Sans TC", sans-serif';
-  ctx.fillText(`標記識別信心度：${AR_STATE.trackingConfidence.toFixed(1)}% ｜ SDGs 11.4 保護文化遺產`, 95, 1260);
+  ctx.fillText('三峽藍染文化實境巡禮 ✕ 虛擬代言人柯山菁 ｜ SDGs 11.4 保護文化遺產', 95, 1260);
 
   const today = new Date().toLocaleString('zh-TW', { hour12: false });
   ctx.fillStyle = '#94a3b8';

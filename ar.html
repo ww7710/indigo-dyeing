@@ -161,44 +161,26 @@
           
           <!-- 頂部功能與狀態列 (Control Bar) -->
           <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-brand-lavender/40">
-            <!-- 左側：即時狀態徽章與辨識進度 -->
+            <!-- 左側：即時狀態徽章 -->
             <div class="flex items-center gap-3">
-              <div id="ar-cam-status" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-700 border border-indigo-400/30 flex items-center gap-1.5">
+              <div id="ar-cam-status" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/15 text-indigo-700 border border-indigo-400/30 flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                虛擬實景模擬器
-              </div>
-              <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500">
-                <span>特徵辨識度：</span>
-                <div class="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
-                  <div id="ar-confidence-bar" class="h-full bg-brand-deep transition-all duration-300 w-0"></div>
-                </div>
-                <span id="ar-confidence-text" class="font-bold text-brand-dark">0%</span>
+                <span id="ar-status-text">🎮 虛擬實景模擬器</span>
               </div>
             </div>
 
-            <!-- 右側：相機與設定快捷鈕 -->
+            <!-- 右側：相機與圖卡快捷鈕 -->
             <div class="flex flex-wrap items-center gap-2">
-              <!-- 核心按鈕：手動/直接選取載入 IP.vrm 模型 -->
-              <button
-                id="btn-load-vrm"
-                class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-md flex items-center gap-1.5 active:scale-95"
-                title="本機免伺服器直接手動載入 IP.vrm 3D 模型"
-              >
-                <i class="bi bi-box-fill"></i>
-                <span>📁 載入 IP.vrm 模型</span>
-              </button>
-              <input type="file" id="vrm-file-input" accept=".vrm,.glb" class="hidden" />
-
               <button
                 id="btn-toggle-cam"
-                class="px-3.5 py-1.5 rounded-xl bg-brand-deep hover:bg-blue-600 text-white text-xs font-bold transition shadow flex items-center gap-1.5"
+                class="px-3.5 py-1.5 rounded-xl bg-brand-deep hover:bg-blue-600 text-white text-xs font-bold transition shadow flex items-center gap-1.5 active:scale-95"
                 title="開啟裝置攝影機進行實物圖卡掃描"
               >
                 <span>📷 開啟實景相機</span>
               </button>
               <button
                 id="btn-flip-cam"
-                class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300 flex items-center gap-1"
+                class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300 flex items-center gap-1 active:scale-95"
                 title="切換前置/後置鏡頭"
               >
                 <i class="bi bi-arrow-repeat"></i>
@@ -206,32 +188,16 @@
               </button>
               <button
                 id="btn-open-markers-modal"
-                class="px-3 py-1.5 rounded-xl bg-brand-sky/30 hover:bg-brand-sky/60 text-brand-dark text-xs font-bold transition border border-brand-lavender flex items-center gap-1"
+                class="px-3.5 py-1.5 rounded-xl bg-brand-sky/30 hover:bg-brand-sky/60 text-brand-dark text-xs font-bold transition border border-brand-lavender flex items-center gap-1 active:scale-95"
               >
                 <i class="bi bi-qr-code-scan"></i>
                 <span>圖卡列印/下載</span>
-              </button>
-              <button
-                id="btn-open-guide"
-                class="px-3 py-1.5 rounded-xl bg-purple-100 hover:bg-purple-200 text-brand-primary text-xs font-bold transition border border-brand-lavender flex items-center gap-1"
-              >
-                <i class="bi bi-box-seam"></i>
-                <span>3D轉檔指引</span>
               </button>
             </div>
           </div>
 
           <!-- AR 舞台核心視窗 (The AR Stage) -->
           <div class="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-slate-950 flex items-center justify-center">
-            
-            <!-- 視訊圖層 0：本機 (file://) 瀏覽提示橫幅 -->
-            <div id="file-protocol-tip" class="hidden absolute top-3 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-md bg-slate-900/95 border border-brand-lavender text-white text-xs p-3 rounded-xl shadow-2xl z-40 flex items-center justify-between gap-3">
-              <div class="flex items-start gap-2">
-                <span class="text-base text-emerald-400 mt-0.5">💡</span>
-                <span class="leading-relaxed">已檢測到 <code>IP.vrm</code>！因瀏覽器安全限制 (file://)，請點擊上方<strong>「📁 載入 IP.vrm 模型」</strong>或直接將檔案拖入視窗，即可立即召喚 3D 柯山菁！</span>
-              </div>
-              <button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white font-bold px-1 text-sm shrink-0">✕</button>
-            </div>
             
             <!-- 視訊圖層 1：真實 WebRTC 相機影像 (預設隱藏，啟動時顯示) -->
             <video
@@ -580,94 +546,7 @@
       </div>
     </dialog>
 
-    <!-- ==========================================================================
-       彈出視窗 2：IP.vroid 3D 轉檔教學與素材指引 (arGuideModal)
-       ========================================================================== -->
-    <dialog
-      id="arGuideModal"
-      onclick="if (event.target === this) this.close();"
-      class="rounded-3xl p-0 max-w-3xl w-[94%] backdrop:bg-slate-900/70 border-none shadow-2xl"
-    >
-      <div class="p-6 sm:p-8 bg-white rounded-3xl space-y-6 max-h-[85vh] overflow-y-auto">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-          <div>
-            <h3 class="text-xl font-bold font-heading text-brand-dark flex items-center gap-2">
-              <span>💡</span> IP.vroid 轉檔指引與素材準備教學
-            </h3>
-            <p class="text-xs text-slate-500 mt-1">
-              如何將 VRoid Studio 角色工程檔轉為 WebAR 標準 3D 模型格式
-            </p>
-          </div>
-          <button
-            type="button"
-            onclick="document.getElementById('arGuideModal').close()"
-            class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center font-bold"
-          >
-            ✕
-          </button>
-        </div>
-
-        <!-- 說明文字 -->
-        <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
-          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 space-y-1">
-            <div class="font-bold flex items-center gap-1.5">
-              <span>⚠️</span> 為什麼瀏覽器無法直接載入「.vroid」檔案？
-            </div>
-            <p class="text-xs text-amber-800">
-              <code>IP.vroid</code> 是 VRoid Studio 專用的<strong>「工程專案封裝檔」</strong>（內含髮絲貝茲曲線、材質圖層、參數滑桿等未烘焙資料）。在網頁 3D（WebGL / Three.js / WebAR）中，國際通用的標準格式為 <strong><code>.vrm</code></strong> 或 <strong><code>.glb</code></strong>（已烘焙好頂點骨架與貼圖）。
-            </p>
-          </div>
-
-          <div class="space-y-3">
-            <h4 class="font-bold text-base text-brand-dark">
-              ⚡ 1 分鐘快速轉檔步驟（您電腦已安裝 VRoid Studio 2.14.0）：
-            </h4>
-            <ol class="list-decimal list-inside space-y-2.5 pl-2">
-              <li>
-                打開電腦中的 <strong>VRoid Studio</strong> 軟體。
-              </li>
-              <li>
-                點擊「開啟專案」，選取您專案資料夾內的 <code>AR素材/IP.vroid</code>。
-              </li>
-              <li>
-                點擊右上角相機旁的<strong>「導出（Export）」</strong>按鈕，選擇<strong>「導出為 VRM (Export as VRM)」</strong>。
-              </li>
-              <li>
-                在導出視窗輸入角色名稱「柯山菁」，點擊確認後將檔案儲存為 <strong><code>IP.vrm</code></strong> 或 <strong><code>xiaoran.vrm</code></strong>。
-              </li>
-              <li>
-                將匯出的檔案直接放置在專案的 <strong><code>AR素材/</code></strong> 資料夾內。
-              </li>
-              <li>
-                重新整理本網頁，Three.js AR 引擎將自動偵測並無縫渲染出完整的 3D 骨架與動態角色！
-              </li>
-            </ol>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-            <div class="font-bold text-brand-dark text-sm">
-              📋 團隊目前素材完整度檢核：
-            </div>
-            <ul class="space-y-1 text-xs">
-              <li>✅ <strong>3D 虛擬角色原始專案</strong>：<code>AR素材/IP.vroid</code>（就緒，隨時可導出 VRM）</li>
-              <li>✅ <strong>AR 圖像辨識標記圖卡</strong>：老街牌樓、百年古陶缸、三峽染工坊（三張高清圖卡就緒）</li>
-              <li>✅ <strong>高畫質角色形象圖</strong>：1024x1024 全像立體柯山菁材質（已自 vroid 提取並整合）</li>
-              <li>💡 <strong>可額外增添之素材建議</strong>：柯山菁台語/國語語音音訊檔（例如 <code>ar_voice_street.mp3</code>、<code>ar_voice_pot.mp3</code>），可進一步提升評審沉浸感！</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pt-2 text-right">
-          <button
-            type="button"
-            onclick="document.getElementById('arGuideModal').close()"
-            class="px-6 py-2.5 rounded-xl bg-brand-deep text-white text-xs font-bold shadow hover:bg-blue-600 transition"
-          >
-            我瞭解了，開始體驗 AR
-          </button>
-        </div>
-      </div>
-    </dialog>
+    
 
     <!-- ==========================================================================
        全站頁尾 (Footer - 與 index.html 完全相同)
