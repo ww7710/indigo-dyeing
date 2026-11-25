@@ -1,0 +1,574 @@
+/* ==========================================================================
+   三峽藍染 400 年：以原創 IP 與數位內容推廣傳統工藝
+   全站核心視覺與設計系統 (Design System & Color System)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+:root {
+  /* 品牌指定色彩系統 */
+  --primary-purple-blue: #9564ff; /* 夢幻靛紫 - 主按鈕、重點強調 */
+  --deep-blue-accent: #5170ff;    /* 寶藍靛青 - 文字標題、懸停 State */
+  --soft-lavender: #c4abfa;       /* 柔和紫羅蘭 - 卡片外框、標籤、Divider */
+  --sky-light-blue: #abc8fa;      /* 天青靛藍 - Hover 亮光點、區塊背景 */
+  
+  /* 衍生背景與文字色彩 */
+  --bg-page-base: #f8f9fe;
+  --bg-gradient: linear-gradient(135deg, #f8f5ff 0%, #f0f5ff 100%);
+  --dark-text: #1e1b4b;           /* 深靛紫灰，比純黑更具質感 */
+  --body-text: #3730a3;           /* 內文主要深藍紫 */
+  --body-accent: #4c1d95;         /* 內文強調深紫 */
+  
+  /* 全站字型定義 (與 index.html 完全相同) */
+  --body-font-family: 'DM Sans', "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-heading: 'DM Sans', "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-body: 'DM Sans', "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+
+  /* 頁首導覽列與頁尾色彩主題 (對齊 index.html) */
+  --navbar-bg-color: #5170ff;
+  --primary-color: #c4abfa;
+  --white-color: #ffffff;
+  --dark-color: #000000;
+  --section-bg-color: #f0f8ff;
+  --p-color: #717275;
+  --menu-font-size: 16px;
+  --copyright-text-font-size: 16px;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+
+/* 全站基礎設定 */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--body-font-family);
+  background-color: var(--bg-page-base);
+  color: var(--dark-text);
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  position: relative;
+  font-family: var(--body-font-family);
+  color: var(--dark-text);
+  line-height: 1.65;
+  margin: 0;
+  padding: 0;
+}
+
+/* 全站標題字型與 index.html 統一 */
+h1, h2, h3, h4, h5, h6, .font-heading, .nav-logo, .hero-title {
+  font-family: var(--body-font-family);
+}
+
+/* ==========================================================================
+   全站共用頁首導覽列與頁尾樣式 (完全對齊 index.html)
+   ========================================================================== */
+.sticky-wrapper {
+  background: #5170ff;
+}
+
+.navbar {
+  background: #5170ff;
+  z-index: 99;
+  right: 0;
+  left: 0;
+  transition: all 0.3s;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar .container,
+.site-footer .container {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  line-height: 1.2rem;
+  font-weight: 700;
+  color: #c4abfa;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+}
+
+.brand-logo {
+  font-size: 38px;
+  width: auto;
+  height: 42px;
+  max-height: 42px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.brand-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: var(--body-font-family);
+  text-align: left;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-family: var(--body-font-family);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #c4abfa;
+}
+
+.navbar-toggler {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  width: 30px;
+  height: 35px;
+  outline: none;
+  background: transparent;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background: #ffffff;
+  transition: background 10ms 300ms ease;
+  display: block;
+  width: 30px;
+  height: 2px;
+  position: relative;
+}
+
+.navbar-toggler .navbar-toggler-icon:before,
+.navbar-toggler .navbar-toggler-icon:after {
+  transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+  position: absolute;
+  right: 0;
+  left: 0;
+  background: #ffffff;
+  width: 30px;
+  height: 2px;
+  content: '';
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+  top: 8px;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* 確保 Bootstrap collapse 在 Tailwind 下正常運作 */
+.navbar-collapse.collapse {
+  visibility: visible !important;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse.collapse:not(.show) {
+    display: none !important;
+  }
+  .navbar-collapse.collapse.show {
+    display: block !important;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+}
+
+/* 頁尾樣式 (完全對齊 index.html) */
+.site-footer {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #abc8fa;
+  font-family: var(--body-font-family);
+}
+
+.site-footer .navbar-brand {
+  color: #c4abfa;
+}
+
+.site-footer .border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.site-footer .social-icon {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-footer .social-icon li {
+  list-style: none;
+  display: inline-block;
+}
+
+.site-footer .social-icon-link {
+  background: #ffffff;
+  border-radius: 100px;
+  font-size: 22px;
+  color: #000000;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 2px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.site-footer .social-icon-link:hover {
+  background: #c4abfa;
+  color: #ffffff;
+}
+
+.site-footer .footer-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.site-footer .footer-menu-item {
+  list-style: none;
+}
+
+.site-footer .footer-menu-link,
+.site-footer button.footer-menu-link,
+.site-footer a.footer-menu-link {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #717275;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: inherit;
+  transition: all 0.3s;
+}
+
+.site-footer .footer-menu-link:hover,
+.site-footer button.footer-menu-link:hover,
+.site-footer a.footer-menu-link:hover {
+  color: #c4abfa;
+}
+
+.site-footer .copyright-text {
+  font-size: 16px;
+  color: #717275;
+  line-height: 1.6;
+}
+
+.site-footer .arrow-icon {
+  background: #f0f8ff;
+  border-radius: 100px;
+  color: #000000;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.site-footer .arrow-icon:hover {
+  background: #c4abfa;
+  color: #ffffff;
+}
+
+/* 玻璃擬態卡片 (Glassmorphism Cards) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--soft-lavender);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px -5px rgba(81, 112, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-purple-blue);
+  box-shadow: 0 16px 36px -8px rgba(149, 100, 255, 0.18);
+}
+
+/* 品牌按鈕規範 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-purple-blue) 0%, var(--deep-blue-accent) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px 0 rgba(81, 112, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px 0 rgba(149, 100, 255, 0.45);
+  color: #ffffff;
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--deep-blue-accent);
+  border: 1.5px solid var(--soft-lavender);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(196, 171, 250, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #f0f5ff;
+  border-color: var(--deep-blue-accent);
+  color: var(--primary-purple-blue);
+  transform: translateY(-2px);
+}
+
+/* 圖片佔位框預設樣式 (Image Placeholder Framework) */
+.img-placeholder-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  border: 1.5px dashed var(--soft-lavender);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+.img-placeholder-wrapper:hover {
+  border-color: var(--primary-purple-blue);
+}
+
+/* 水墨暈染裝飾背景 */
+.ink-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatSlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-20px) scale(1.05); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* 懸浮小染 Widget (Floating Xiao Ran Widget) */
+#xiaoran-floating-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+.widget-avatar-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9564ff 0%, #5170ff 100%);
+  border: 3px solid #ffffff;
+  box-shadow: 0 10px 25px -3px rgba(81, 112, 255, 0.45);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.widget-avatar-btn:hover {
+  transform: scale(1.1) rotate(4deg);
+  box-shadow: 0 14px 30px rgba(149, 100, 255, 0.55);
+}
+
+.widget-dialog-bubble {
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--soft-lavender);
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 12px;
+  box-shadow: 0 12px 32px rgba(30, 27, 75, 0.12);
+  transform-origin: bottom right;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.widget-dialog-bubble.hidden-dialog {
+  opacity: 0;
+  transform: scale(0.8) translateY(15px);
+  pointer-events: none;
+}
+
+/* 標籤小標記 Badge */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(196, 171, 250, 0.25);
+  color: var(--deep-blue-accent);
+  border: 1px solid rgba(196, 171, 250, 0.6);
+}
+
+/* 響應式微調 */
+@media (max-width: 768px) {
+  #xiaoran-floating-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+  .widget-avatar-btn {
+    width: 54px;
+    height: 54px;
+  }
+  .widget-dialog-bubble {
+    max-width: 260px;
+    font-size: 0.875rem;
+  }
+}
+
+/* ==========================================================================
+   資料來源與參考文獻彈出視窗樣式 (sourceModal)
+   ========================================================================== */
+#sourceModal::backdrop {
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.source-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.source-modal-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+.source-modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.source-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   小染形象IP區塊與角色的誕生與應用區塊 - 移除水平框線
+   ========================================================================== */
+#section_2 .avatar-group,
+.about .avatar-group {
+  border: none !important;
+  border-top: none !important;
+}
+
+#section_4 .row.border-bottom,
+#section_4 .border-bottom,
+.schedule .row.border-bottom,
+.schedule .border-bottom {
+  border: none !important;
+  border-bottom: none !important;
+}

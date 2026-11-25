@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <!-- 3-blade rounded grass cluster -->
+    <g id="grass3">
+      <path d="M -10,0 C -10,-8 -5,-14 0,-18 C -3,-12 -5,-6 -5,0 Z" fill="#dce0a8"/>
+      <path d="M -3,0 C -2,-11 2,-18 6,-23 C 4,-14 2,-7 1,0 Z" fill="#c9cf93"/>
+      <path d="M 3,0 C 6,-8 12,-13 18,-16 C 13,-11 9,-5 6,0 Z" fill="#dce0a8"/>
+      <circle cx="-1" cy="-2" r="1.5" fill="#dce0a8"/>
+    </g>
+    <!-- 2-blade gentle grass tuft -->
+    <g id="grass2">
+      <path d="M -7,0 C -7,-8 -2,-13 3,-16 C 0,-11 -2,-5 -2,0 Z" fill="#dce0a8"/>
+      <path d="M 1,0 C 4,-7 10,-12 16,-14 C 11,-10 7,-4 4,0 Z" fill="#c9cf93"/>
+    </g>
+    <!-- Pebble cluster A (3 stones) -->
+    <g id="pebbles-a">
+      <ellipse cx="0" cy="0" rx="14" ry="9" transform="rotate(-15)" fill="#d6cfc7"/>
+      <ellipse cx="16" cy="5" rx="9" ry="6" transform="rotate(25 16 5)" fill="#e3ddd6"/>
+      <ellipse cx="-10" cy="7" rx="5" ry="3.5" transform="rotate(10 -10 7)" fill="#d6cfc7"/>
+    </g>
+    <!-- Pebble cluster B (2 stones) -->
+    <g id="pebbles-b">
+      <ellipse cx="0" cy="0" rx="12" ry="8" transform="rotate(20)" fill="#e3ddd6"/>
+      <ellipse cx="-12" cy="4" rx="8" ry="5.5" transform="rotate(-10 -12 4)" fill="#d6cfc7"/>
+    </g>
+    <!-- Single flat smooth pebble -->
+    <g id="pebble-single">
+      <ellipse cx="0" cy="0" rx="10" ry="6.5" transform="rotate(-8)" fill="#d6cfc7"/>
+      <ellipse cx="2" cy="-1" rx="6" ry="3.5" fill="#e3ddd6" opacity="0.6"/>
+    </g>
+  </defs>
+
+  <!-- 1. 底色：溫暖的淺米黃色 -->
+  <rect width="1200" height="800" fill="#fbe9cf"/>
+
+  <!-- 2. 無限連貫 S 型小路 (100% 垂直對稱與連續無縫銜接) -->
+  <path d="M 600,-10 L 600,0 C 600,140 780,260 600,400 C 420,540 600,660 600,800 L 600,810" 
+        fill="none" stroke="#d5bca2" stroke-width="160" stroke-linecap="butt" stroke-linejoin="round"/>
+
+  <!-- 3. 手繪感小草與石頭點綴 (低飽和度、避開小路、分佈自然) -->
+  <!-- 左側區域點綴群 -->
+  <g transform="translate(240, 90)">
+    <use href="#pebbles-a"/>
+    <use href="#grass3" x="35" y="8"/>
+  </g>
+  <g transform="translate(410, 220)">
+    <use href="#grass2"/>
+    <use href="#pebbles-b" x="-25" y="10"/>
+  </g>
+  <g transform="translate(190, 340)">
+    <use href="#grass3"/>
+    <use href="#pebble-single" x="22" y="5"/>
+  </g>
+  <g transform="translate(370, 430)">
+    <use href="#pebble-single"/>
+    <use href="#grass2" x="18" y="-2"/>
+  </g>
+  <g transform="translate(250, 560)">
+    <use href="#pebbles-b"/>
+    <use href="#grass3" x="-28" y="4"/>
+  </g>
+  <g transform="translate(420, 690)">
+    <use href="#grass2"/>
+    <use href="#pebbles-a" x="32" y="6"/>
+  </g>
+
+  <!-- 右側區域點綴群 -->
+  <g transform="translate(930, 110)">
+    <use href="#pebbles-b"/>
+    <use href="#grass3" x="-30" y="5"/>
+  </g>
+  <g transform="translate(800, 270)">
+    <use href="#pebble-single"/>
+    <use href="#grass2" x="20" y="4"/>
+  </g>
+  <g transform="translate(1010, 410)">
+    <use href="#pebbles-a"/>
+    <use href="#grass3" x="32" y="-4"/>
+  </g>
+  <g transform="translate(770, 520)">
+    <use href="#grass3"/>
+    <use href="#pebbles-b" x="-25" y="8"/>
+  </g>
+  <g transform="translate(940, 650)">
+    <use href="#pebbles-a"/>
+    <use href="#grass2" x="28" y="2"/>
+  </g>
+  <g transform="translate(790, 740)">
+    <use href="#pebble-single"/>
+    <use href="#grass2" x="-18" y="3"/>
+  </g>
+</svg>

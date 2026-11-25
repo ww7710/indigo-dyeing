@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="zh-TW" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小染帶你遊三峽 — 空間錨定 AR 實境導覽 ｜ 一抹藍</title>
+
+    <!-- CSS FILES (與 index.html 相同) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/templatemo-leadership-event.css" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                primary: "#9564ff", // 夢幻粉紫
+                deep: "#5170ff",    // 寶藍靛青
+                lavender: "#c4abfa",// 柔和紫羅蘭
+                sky: "#abc8fa",     // 天青靛藍
+                dark: "#1e1b4b",    // 深靛紫灰
+                body: "#3730a3",    // 內文主要
+                pageBg: "#f8f9fe",  // 紙質感底色
+              },
+            },
+            fontFamily: {
+              heading: ["DM Sans", "Noto Sans TC", "Microsoft JhengHei", "system-ui", "sans-serif"],
+              sans: ["DM Sans", "Noto Sans TC", "Microsoft JhengHei", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Three.js 3D WebGL 引擎與 GLTF 載入器 (支援 VRM / GLB 3D 空間渲染，多重 CDN 備援) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      if (typeof THREE === 'undefined') {
+        document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\\/script>');
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+      if (typeof THREE !== 'undefined' && typeof THREE.GLTFLoader === 'undefined') {
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.min.js"><\\/script>');
+      }
+    </script>
+
+    <!-- 全站統整視覺樣式表 -->
+    <link rel="stylesheet" href="assets_A/css/A_style.css" />
+
+    <style>
+      /* AR 專用動態效果 */
+      @keyframes scanBeam {
+        0% { top: 0%; opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { top: 96%; opacity: 0.8; }
+      }
+      .ar-scan-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #5170ff, #abc8fa, #5170ff, transparent);
+        box-shadow: 0 0 15px #5170ff, 0 0 25px #abc8fa;
+        animation: scanBeam 2.5s ease-in-out infinite alternate;
+        pointer-events: none;
+      }
+      .hud-bracket {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-color: #5170ff;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+
+  <body
+    id="top"
+    class="text-brand-dark selection:bg-brand-lavender selection:text-brand-dark relative min-h-screen"
+  >
+    <!-- 頁首導覽列 (與 index.html 完全相同) -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
+          <img src="images/logo.png" class="brand-logo" alt="Logo" />
+          <span class="brand-text"
+            >一抹藍 <br />
+            染出傳統新潮流</span
+          >
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#know">認識藍染</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#section_2">小染的誕生</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#game">遊戲天地</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#indigo-about">關於我們</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- AR 主舞台內容區 -->
+    <main id="section_1" class="pt-8 sm:pt-12 pb-20 px-3 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto space-y-8">
+        
+        <!-- 1. AR 頁面頂部大標與系統簡介 -->
+        <section class="text-center space-y-3 pt-2">
+          <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-brand-sky/30 border border-brand-lavender text-xs font-bold text-brand-deep tracking-wider">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-deep animate-ping"></span>
+            WebAR 空間錨定技術 ✕ 三峽藍染 400 年
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black font-heading text-brand-dark">
+            小染帶你遊三峽 —
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-deep to-brand-primary">
+              AR 實境導覽
+            </span>
+          </h1>
+
+          <p class="text-sm sm:text-base font-medium text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            透過電腦視覺圖像特徵比對（Marker-based Image Tracking）與 WebGL 3D 空間渲染，對準專屬圖卡即可召喚虛擬主理人「小染」與互動歷史古蹟！
+          </p>
+        </section>
+
+        <!-- 2. AR 主視窗與控制中樞 (AR Viewport & Control Deck) -->
+        <section class="glass-card p-4 sm:p-6 border-2 border-brand-lavender bg-white/95 space-y-5 shadow-2xl">
+          
+          <!-- 頂部功能與狀態列 (Control Bar) -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-brand-lavender/40">
+            <!-- 左側：即時狀態徽章與辨識進度 -->
+            <div class="flex items-center gap-3">
+              <div id="ar-cam-status" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-700 border border-indigo-400/30 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                虛擬實景模擬器
+              </div>
+              <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500">
+                <span>特徵辨識度：</span>
+                <div class="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div id="ar-confidence-bar" class="h-full bg-brand-deep transition-all duration-300 w-0"></div>
+                </div>
+                <span id="ar-confidence-text" class="font-bold text-brand-dark">0%</span>
+              </div>
+            </div>
+
+            <!-- 右側：相機與設定快捷鈕 -->
+            <div class="flex flex-wrap items-center gap-2">
+              <!-- 核心按鈕：手動/直接選取載入 IP.vrm 模型 -->
+              <button
+                id="btn-load-vrm"
+                class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-md flex items-center gap-1.5 active:scale-95"
+                title="本機免伺服器直接手動載入 IP.vrm 3D 模型"
+              >
+                <i class="bi bi-box-fill"></i>
+                <span>📁 載入 IP.vrm 模型</span>
+              </button>
+              <input type="file" id="vrm-file-input" accept=".vrm,.glb" class="hidden" />
+
+              <button
+                id="btn-toggle-cam"
+                class="px-3.5 py-1.5 rounded-xl bg-brand-deep hover:bg-blue-600 text-white text-xs font-bold transition shadow flex items-center gap-1.5"
+                title="開啟裝置攝影機進行實物圖卡掃描"
+              >
+                <span>📷 開啟實景相機</span>
+              </button>
+              <button
+                id="btn-flip-cam"
+                class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300 flex items-center gap-1"
+                title="切換前置/後置鏡頭"
+              >
+                <i class="bi bi-arrow-repeat"></i>
+                <span class="hidden sm:inline">翻轉鏡頭</span>
+              </button>
+              <button
+                id="btn-open-markers-modal"
+                class="px-3 py-1.5 rounded-xl bg-brand-sky/30 hover:bg-brand-sky/60 text-brand-dark text-xs font-bold transition border border-brand-lavender flex items-center gap-1"
+              >
+                <i class="bi bi-qr-code-scan"></i>
+                <span>圖卡列印/下載</span>
+              </button>
+              <button
+                id="btn-open-guide"
+                class="px-3 py-1.5 rounded-xl bg-purple-100 hover:bg-purple-200 text-brand-primary text-xs font-bold transition border border-brand-lavender flex items-center gap-1"
+              >
+                <i class="bi bi-box-seam"></i>
+                <span>3D轉檔指引</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- AR 舞台核心視窗 (The AR Stage) -->
+          <div class="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-slate-950 flex items-center justify-center">
+            
+            <!-- 視訊圖層 0：本機 (file://) 瀏覽提示橫幅 -->
+            <div id="file-protocol-tip" class="hidden absolute top-3 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-md bg-slate-900/95 border border-brand-lavender text-white text-xs p-3 rounded-xl shadow-2xl z-40 flex items-center justify-between gap-3">
+              <div class="flex items-start gap-2">
+                <span class="text-base text-emerald-400 mt-0.5">💡</span>
+                <span class="leading-relaxed">已檢測到 <code>IP.vrm</code>！因瀏覽器安全限制 (file://)，請點擊上方<strong>「📁 載入 IP.vrm 模型」</strong>或直接將檔案拖入視窗，即可立即召喚 3D 小染！</span>
+              </div>
+              <button type="button" onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white font-bold px-1 text-sm shrink-0">✕</button>
+            </div>
+            
+            <!-- 視訊圖層 1：真實 WebRTC 相機影像 (預設隱藏，啟動時顯示) -->
+            <video
+              id="ar-video"
+              autoplay
+              playsinline
+              muted
+              class="hidden absolute inset-0 w-full h-full object-cover"
+            ></video>
+
+            <!-- 視訊圖層 2：老街模擬實景背景 (未開鏡頭或離線時展示) -->
+            <div
+              id="ar-sim-bg"
+              class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700"
+              style="background-image: radial-gradient(circle at center, rgba(30, 27, 75, 0.25), rgba(15, 23, 42, 0.85)), url('images/Street Scenes in Sanxia.jpg');"
+            >
+              <!-- 模擬相機環境中放置的目標標記圖卡 (Target Marker in Simulated Room) -->
+              <div class="absolute inset-0 flex items-center justify-center p-6 pointer-events-none">
+                <div class="relative w-44 sm:w-56 md:w-64 aspect-[3/4] bg-white p-2.5 rounded-xl shadow-[0_0_35px_rgba(81,112,255,0.4)] border-2 border-brand-lavender rotate-[-3deg] transition-all duration-500">
+                  <img
+                    id="sim-target-img"
+                    src="images/ar/marker_street.jpg"
+                    alt="當前掃描目標圖卡"
+                    class="w-full h-full object-cover rounded-lg"
+                  />
+                  <div class="absolute -top-3 -right-3 px-2 py-0.5 rounded-full bg-brand-deep text-white text-[10px] font-bold shadow">
+                    實體 AR 標記卡
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 視訊圖層 3：Three.js 3D WebGL Canvas 實境空間疊加層 -->
+            <div id="ar-three-container" class="absolute inset-0 w-full h-full pointer-events-none z-10"></div>
+
+            <!-- 視訊圖層 4：電腦視覺 HUD 鎖定器與光學瞄準線 (CV Tracking Reticle) -->
+            <div id="ar-tracking-reticle" class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-2xl border-2 border-dashed border-emerald-400 pointer-events-none z-20 transition-all duration-300 flex items-center justify-center">
+              <!-- 瞄準框四角托架 -->
+              <div class="hud-bracket -top-1 -left-1 border-t-4 border-l-4"></div>
+              <div class="hud-bracket -top-1 -right-1 border-t-4 border-r-4"></div>
+              <div class="hud-bracket -bottom-1 -left-1 border-b-4 border-l-4"></div>
+              <div class="hud-bracket -bottom-1 -right-1 border-b-4 border-r-4"></div>
+              
+              <!-- 激光掃描線 -->
+              <div class="ar-scan-line"></div>
+
+              <!-- 中心十字準星 -->
+              <div class="w-4 h-4 border border-brand-sky rounded-full opacity-60"></div>
+            </div>
+
+            <!-- 視訊圖層 5：小染 3D 即時語音導覽對白框 (Floating AR Xiao Ran Dialog) -->
+            <div id="ar-dialog-box" class="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-auto sm:max-w-md bg-white/95 backdrop-blur-md rounded-2xl p-4 border-2 border-brand-lavender shadow-xl z-30 transition-all duration-300">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span class="text-xs font-bold text-brand-deep">✨ 虛擬主理人 小染 空間導覽中</span>
+                </div>
+                <div id="ar-lock-status" class="text-[11px] font-bold">
+                  <span class="text-emerald-600">● 標記已鎖定</span>
+                </div>
+              </div>
+              <p
+                id="ar-dialog-text"
+                class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium"
+              >
+                歡迎來到三峽民權老街！看看兩旁的紅磚圓拱廊，當年每一棟巴洛克與閩南揉合的山牆下，都是名震北台灣的染布世家喔！✨
+              </p>
+            </div>
+
+            <!-- 視訊圖層 6：底部專屬互動與快門控制盤 -->
+            <div class="absolute bottom-4 left-4 right-4 z-30 flex flex-wrap items-center justify-between gap-2">
+              <!-- 地標專屬功能鍵 -->
+              <div class="flex items-center gap-2">
+                <button
+                  id="btn-ar-action"
+                  class="px-4 py-2 rounded-xl bg-brand-deep hover:bg-blue-600 text-white text-xs font-bold shadow-lg transition flex items-center gap-1.5 active:scale-95"
+                >
+                  <span>🏛️ 探索老街山牆立面特色</span>
+                </button>
+              </div>
+
+              <!-- AR 拍貼合影快門 -->
+              <div class="flex items-center gap-2">
+                <button
+                  id="btn-capture-ar"
+                  class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-xl transition flex items-center gap-2 active:scale-95"
+                  title="將當前畫面與小染合成官方認證拍貼明信片"
+                >
+                  <i class="bi bi-camera-fill"></i>
+                  <span>AR 拍照留念並存檔</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. 當前鎖定標記之歷史文化解說卡 (Active Marker Cultural Dossier) -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-brand-sky/20 border border-brand-sky/60 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span id="ar-spot-tag" class="px-3 py-0.5 rounded-full text-xs font-bold bg-brand-deep text-white">
+                百年歷史風華 · 建築巡禮
+              </span>
+              <span id="ar-target-notes" class="text-xs text-slate-500">
+                特色特徵：巴洛克風立面山牆、紅磚牌樓拱門、老街石板路
+              </span>
+            </div>
+
+            <h3 id="ar-spot-title" class="text-lg sm:text-xl font-bold font-heading text-brand-dark pt-1">
+              三峽民權老街牌樓與紅磚拱廊
+            </h3>
+
+            <p id="ar-spot-desc" class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
+              清代三峽染業極盛時期，民權街上匯聚數十家染坊，立面山牆至今仍完好保留著「染」、「布」等精美商號刻字泥塑，是全台保存最完整的商業染坊老街！
+            </p>
+          </div>
+        </section>
+
+        <!-- 4. 三大 AR 標記圖卡互動切換區 (Marker Selection Deck) -->
+        <section class="space-y-4">
+          <div class="text-center space-y-1">
+            <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-brand-dark">
+              選擇 AR 探索地標與標記圖卡
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600">
+              點擊下方卡片可切換模擬器視野，或以實體相機對準對應圖卡即可自動識別！
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 標記卡 1：民權老街 -->
+            <div
+              class="marker-tab-btn group p-4 sm:p-5 rounded-2xl bg-white border-2 border-brand-deep ring-2 ring-brand-deep bg-brand-sky/20 cursor-pointer transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between space-y-4"
+              data-marker="street"
+            >
+              <div class="space-y-3">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                  <img
+                    src="images/ar/marker_street.jpg"
+                    alt="民權老街標記圖卡"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-brand-deep text-white text-[11px] font-bold shadow">
+                    標記一 · 街景
+                  </span>
+                </div>
+                <h4 class="font-bold text-base text-brand-dark">1. 民權老街歷史牌樓</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  對準老街標記卡，小染將親自為您解密紅磚拱廊山牆上的「染」、「布」商號刻字泥塑！
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-deep">
+                <span>切換至此標記</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- 標記卡 2：百年古染缸 -->
+            <div
+              class="marker-tab-btn group p-4 sm:p-5 rounded-2xl bg-white border-2 border-slate-200 cursor-pointer transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between space-y-4"
+              data-marker="pot"
+            >
+              <div class="space-y-3">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                  <img
+                    src="images/ar/marker_pot.jpg"
+                    alt="古染缸遺跡標記圖卡"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[11px] font-bold shadow">
+                    標記二 · 染缸
+                  </span>
+                </div>
+                <h4 class="font-bold text-base text-brand-dark">2. 百年染缸生化發酵</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  對準陶缸標記卡，召喚 3D 傳統染缸與氧化發酵粒子，見證黃綠色白靛分子轉為湛藍的化學魔法！
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-deep">
+                <span>切換至此標記</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- 標記卡 3：三峽染工坊 -->
+            <div
+              class="marker-tab-btn group p-4 sm:p-5 rounded-2xl bg-white border-2 border-slate-200 cursor-pointer transition-all duration-300 shadow-md hover:-translate-y-1 flex flex-col justify-between space-y-4"
+              data-marker="workshop"
+            >
+              <div class="space-y-3">
+                <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
+                  <img
+                    src="images/ar/marker_workshop.jpg"
+                    alt="三峽染工坊體驗館標記圖卡"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-brand-primary text-white text-[11px] font-bold shadow">
+                    標記三 · 工坊
+                  </span>
+                </div>
+                <h4 class="font-bold text-base text-brand-dark">3. 三峽染工坊文化基地</h4>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  對準工坊標記卡，展開扎染、夾染等五大技法 3D 飄揚布幔，了解現代文化復育與手作體驗！
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-deep">
+                <span>切換至此標記</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. 專題 AR 核心架構與素材準備指引專區 (Spec & Asset Documentation) -->
+        <section class="glass-card p-6 sm:p-8 rounded-2xl border border-brand-lavender bg-white space-y-6">
+          <div class="flex items-center gap-3 border-b border-brand-lavender/40 pb-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-deep/10 text-brand-deep flex items-center justify-center text-xl font-bold">
+              🛠️
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-bold font-heading text-brand-dark">
+                專案 AR 核心技術實現與素材整合檢核
+              </h3>
+              <p class="text-xs text-slate-500">
+                符合全國高級中等學校專業群科專題競賽「擴增實境（AR）應用」之規範要求
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
+            <!-- 特性 1 -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <div class="font-bold text-brand-dark text-sm flex items-center gap-1.5">
+                <span class="text-emerald-500">✓</span> 實境相機與虛實疊加 (Augmentation)
+              </div>
+              <p class="leading-relaxed">
+                透過 WebRTC 即時調用使用端相機畫面，克服單純靜態貼圖的偽 AR 缺陷，將虛擬 3D 物件、歷史導覽 HUD 與動態發酵粒子精準註冊至真實空間。
+              </p>
+            </div>
+
+            <!-- 特性 2 -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <div class="font-bold text-brand-dark text-sm flex items-center gap-1.5">
+                <span class="text-emerald-500">✓</span> 圖像特徵識別 (Marker-based CV)
+              </div>
+              <p class="leading-relaxed">
+                以三峽老街牌樓、百年古陶缸、三峽染工坊三大在地實景為識別標記（Target Markers），提供即時光學瞄準準心、信心指數分析與鎖定音效。
+              </p>
+            </div>
+
+            <!-- 特性 3 -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+              <div class="font-bold text-brand-dark text-sm flex items-center gap-1.5">
+                <span class="text-emerald-500">✓</span> 3D 模型與生化互動 (Interaction)
+              </div>
+              <p class="leading-relaxed">
+                支援 VRoid 3D 骨架模型（VRM/GLB）即時載入，搭配 Web Audio API 音效合成、陶缸氧化變色模擬器與高畫質 1080x1440 實境打卡拍貼生成。
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+       彈出視窗 1：AR 標記圖卡下載與列印中心 (arMarkersModal)
+       ========================================================================== -->
+    <dialog
+      id="arMarkersModal"
+      onclick="if (event.target === this) this.close();"
+      class="rounded-3xl p-0 max-w-4xl w-[94%] backdrop:bg-slate-900/70 border-none shadow-2xl"
+    >
+      <div class="p-6 sm:p-8 bg-white rounded-3xl space-y-6 max-h-[85vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="text-xl font-bold font-heading text-brand-dark flex items-center gap-2">
+              <span>🖨️</span> AR 標記圖卡展示與一鍵下載
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">
+              您可以將以下圖卡列印成紙本，或在第二台手機／平板螢幕上展示，再開啟相機掃描！
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="document.getElementById('arMarkersModal').close()"
+            class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center font-bold"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <!-- 圖卡 1 -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-center">
+            <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-inner">
+              <img src="images/ar/marker_street.jpg" alt="老街圖卡" class="w-full h-full object-cover" />
+            </div>
+            <div class="font-bold text-sm text-brand-dark">1. 民權老街歷史牌樓</div>
+            <a
+              href="images/ar/marker_street.jpg"
+              download="三峽藍染AR標記卡_民權老街牌樓.jpg"
+              class="inline-block w-full py-2 rounded-xl bg-brand-deep text-white text-xs font-bold shadow hover:bg-blue-600 transition"
+            >
+              下載此圖卡 (JPG)
+            </a>
+          </div>
+
+          <!-- 圖卡 2 -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-center">
+            <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-inner">
+              <img src="images/ar/marker_pot.jpg" alt="古陶缸圖卡" class="w-full h-full object-cover" />
+            </div>
+            <div class="font-bold text-sm text-brand-dark">2. 百年染缸遺跡</div>
+            <a
+              href="images/ar/marker_pot.jpg"
+              download="三峽藍染AR標記卡_古染缸遺跡.jpg"
+              class="inline-block w-full py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow hover:bg-emerald-500 transition"
+            >
+              下載此圖卡 (JPG)
+            </a>
+          </div>
+
+          <!-- 圖卡 3 -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-center">
+            <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-inner">
+              <img src="images/ar/marker_workshop.jpg" alt="染工坊圖卡" class="w-full h-full object-cover" />
+            </div>
+            <div class="font-bold text-sm text-brand-dark">3. 三峽染工坊體驗館</div>
+            <a
+              href="images/ar/marker_workshop.jpg"
+              download="三峽藍染AR標記卡_三峽染工坊.jpg"
+              class="inline-block w-full py-2 rounded-xl bg-brand-primary text-white text-xs font-bold shadow hover:bg-purple-600 transition"
+            >
+              下載此圖卡 (JPG)
+            </a>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-brand-sky/20 border border-brand-sky/40 text-xs text-brand-dark flex items-start gap-3">
+          <span class="text-xl">💡</span>
+          <div class="space-y-1">
+            <div class="font-bold">掃描小技巧：</div>
+            <p>確保環境光線充足、避免強烈反光，將圖卡完整置於畫面中央之綠色鎖定框內即可達到 95% 以上之最高辨識穩定度！</p>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ==========================================================================
+       彈出視窗 2：IP.vroid 3D 轉檔教學與素材指引 (arGuideModal)
+       ========================================================================== -->
+    <dialog
+      id="arGuideModal"
+      onclick="if (event.target === this) this.close();"
+      class="rounded-3xl p-0 max-w-3xl w-[94%] backdrop:bg-slate-900/70 border-none shadow-2xl"
+    >
+      <div class="p-6 sm:p-8 bg-white rounded-3xl space-y-6 max-h-[85vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="text-xl font-bold font-heading text-brand-dark flex items-center gap-2">
+              <span>💡</span> IP.vroid 轉檔指引與素材準備教學
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">
+              如何將 VRoid Studio 角色工程檔轉為 WebAR 標準 3D 模型格式
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="document.getElementById('arGuideModal').close()"
+            class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center font-bold"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- 說明文字 -->
+        <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 space-y-1">
+            <div class="font-bold flex items-center gap-1.5">
+              <span>⚠️</span> 為什麼瀏覽器無法直接載入「.vroid」檔案？
+            </div>
+            <p class="text-xs text-amber-800">
+              <code>IP.vroid</code> 是 VRoid Studio 專用的<strong>「工程專案封裝檔」</strong>（內含髮絲貝茲曲線、材質圖層、參數滑桿等未烘焙資料）。在網頁 3D（WebGL / Three.js / WebAR）中，國際通用的標準格式為 <strong><code>.vrm</code></strong> 或 <strong><code>.glb</code></strong>（已烘焙好頂點骨架與貼圖）。
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <h4 class="font-bold text-base text-brand-dark">
+              ⚡ 1 分鐘快速轉檔步驟（您電腦已安裝 VRoid Studio 2.14.0）：
+            </h4>
+            <ol class="list-decimal list-inside space-y-2.5 pl-2">
+              <li>
+                打開電腦中的 <strong>VRoid Studio</strong> 軟體。
+              </li>
+              <li>
+                點擊「開啟專案」，選取您專案資料夾內的 <code>AR素材/IP.vroid</code>。
+              </li>
+              <li>
+                點擊右上角相機旁的<strong>「導出（Export）」</strong>按鈕，選擇<strong>「導出為 VRM (Export as VRM)」</strong>。
+              </li>
+              <li>
+                在導出視窗輸入角色名稱「小染」，點擊確認後將檔案儲存為 <strong><code>IP.vrm</code></strong> 或 <strong><code>xiaoran.vrm</code></strong>。
+              </li>
+              <li>
+                將匯出的檔案直接放置在專案的 <strong><code>AR素材/</code></strong> 資料夾內。
+              </li>
+              <li>
+                重新整理本網頁，Three.js AR 引擎將自動偵測並無縫渲染出完整的 3D 骨架與動態角色！
+              </li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div class="font-bold text-brand-dark text-sm">
+              📋 團隊目前素材完整度檢核：
+            </div>
+            <ul class="space-y-1 text-xs">
+              <li>✅ <strong>3D 虛擬角色原始專案</strong>：<code>AR素材/IP.vroid</code>（就緒，隨時可導出 VRM）</li>
+              <li>✅ <strong>AR 圖像辨識標記圖卡</strong>：老街牌樓、百年古陶缸、三峽染工坊（三張高清圖卡就緒）</li>
+              <li>✅ <strong>高畫質角色形象圖</strong>：1024x1024 全像立體小染材質（已自 vroid 提取並整合）</li>
+              <li>💡 <strong>可額外增添之素材建議</strong>：小染台語/國語語音音訊檔（例如 <code>ar_voice_street.mp3</code>、<code>ar_voice_pot.mp3</code>），可進一步提升評審沉浸感！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-2 text-right">
+          <button
+            type="button"
+            onclick="document.getElementById('arGuideModal').close()"
+            class="px-6 py-2.5 rounded-xl bg-brand-deep text-white text-xs font-bold shadow hover:bg-blue-600 transition"
+          >
+            我瞭解了，開始體驗 AR
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ==========================================================================
+       全站頁尾 (Footer - 與 index.html 完全相同)
+       ========================================================================== -->
+    <footer class="site-footer" style="background-color: #abc8fa">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
+            <div class="d-flex">
+              <a href="index.html" class="navbar-brand">
+                <img src="images/logo.png" class="brand-logo" alt="Logo" />
+                <span class="brand-text" style="color: #9564ff"
+                  >一抹藍 <br />
+                  染出傳統新潮流</span
+                >
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-7 col-12">
+            <ul class="footer-menu d-flex flex-wrap">
+              <li class="footer-menu-item">
+                <a href="index.html#indigo-about" class="footer-menu-link">關於我們</a>
+              </li>
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">聯絡方式</a>
+              </li>
+              <li class="footer-menu-item">
+                <button
+                  type="button"
+                  class="footer-menu-link"
+                  onclick="document.getElementById('sourceModal').showModal()"
+                >
+                  參考資料
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-5 col-12 ms-lg-auto">
+            <div class="copyright-text-wrap d-flex align-items-center">
+              <p class="copyright-text ms-lg-auto me-4 mb-0">
+                版權所有 © 中壢高商專題小組 <br />保留所有解釋權利。
+                <br /><br />網頁設計者:
+                <a
+                  title="CSS Templates"
+                  rel="sponsored"
+                  href="https://templatemo.com"
+                  target="_blank"
+                  >TemplateMo</a
+                >／製作者：中壢高商專題小組
+              </p>
+              <a href="#top" class="bi-arrow-up arrow-icon custom-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 資料來源彈出式視窗 (sourceModal) -->
+    <dialog
+      id="sourceModal"
+      onclick="if (event.target === this) this.close();"
+      style="
+        border: none;
+        border-radius: 20px;
+        padding: 0;
+        max-width: 800px;
+        width: 92%;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        font-family: var(--body-font-family);
+        color: #1e293b;
+      "
+    >
+      <div style="padding: 28px 32px; background: #ffffff; border-radius: 20px">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+          "
+        >
+          <div>
+            <h3
+              style="
+                margin: 0 0 6px 0;
+                font-size: 22px;
+                font-weight: 800;
+                color: #1e1b4b;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <span>※</span> 資料來源與參考文獻
+            </h3>
+            <p style="margin: 0; font-size: 13px; color: #64748b">
+              本專案研究報告、文史資料彙整與圖片素材之公開引用來源
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="document.getElementById('sourceModal').close()"
+            style="
+              background: #f1f5f9;
+              border: none;
+              width: 34px;
+              height: 34px;
+              border-radius: 50%;
+              font-size: 16px;
+              color: #64748b;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s;
+            "
+            aria-label="關閉視窗"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div
+          class="source-modal-body"
+          style="
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 12px;
+            line-height: 1.75;
+            font-size: 14px;
+            color: #334155;
+          "
+        >
+          <div style="margin-bottom: 28px">
+            <h4
+              style="
+                margin: 0 0 14px 0;
+                font-size: 16px;
+                font-weight: 700;
+                color: #5170ff;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              一、 參考文獻與學術引註
+            </h4>
+            <ol style="margin: 0; padding-left: 22px">
+              <li style="margin-bottom: 14px">
+                呂兆倉、林卿慧、林青玫（2026年5月）。看見環境永續發展新契機：臺灣藍染工序量化研究。全球客家研究，26，163-190。
+              </li>
+              <li style="margin-bottom: 14px">
+                陳景林、馬毓秀（2012）。大地之色：台灣天然染色文化與實務。台北：文化部文化資產局。
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div style="text-align: right; margin-top: 24px; padding-top: 16px; border-top: 1px solid #f1f5f9">
+          <button
+            type="button"
+            onclick="document.getElementById('sourceModal').close()"
+            style="
+              background-color: #5170ff;
+              color: #ffffff;
+              border: none;
+              border-radius: 12px;
+              padding: 10px 24px;
+              font-size: 14px;
+              font-weight: 600;
+              cursor: pointer;
+            "
+          >
+            我瞭解了
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 懸浮小染 Widget -->
+    <aside id="xiaoran-floating-widget" aria-label="VTuber 小染互動小助手">
+      <div id="widget-dialog-bubble" class="widget-dialog-bubble hidden-dialog">
+        <div class="flex items-start justify-between gap-2 mb-2">
+          <span class="text-xs font-bold text-brand-deep flex items-center gap-1">
+            <span>✨</span> 小染小叮嚀
+          </span>
+          <button
+            id="widget-dialog-close"
+            class="text-slate-400 hover:text-slate-600 text-xs px-1"
+            title="暫時收起"
+          >
+            ✕
+          </button>
+        </div>
+
+        <p id="widget-dialog-text" class="text-xs text-slate-700 leading-relaxed mb-3">
+          對準三張 AR 標記圖卡，我就能從圖卡裡跳出來為你解說喔！點擊右下角相機來跟我合照一張吧！📸
+        </p>
+
+        <div class="grid grid-cols-2 gap-1.5 pt-1 border-t border-brand-lavender/40 text-[11px]">
+          <a
+            href="index.html"
+            class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-center transition"
+          >
+            回到首頁
+          </a>
+          <a
+            href="quiz.html"
+            class="p-1.5 rounded-lg bg-brand-sky/20 hover:bg-brand-sky/40 text-brand-deep text-center transition"
+          >
+            花紋心測
+          </a>
+        </div>
+      </div>
+
+      <button
+        id="widget-avatar-btn"
+        class="widget-avatar-btn"
+        title="點擊與小染對話"
+      >
+        <img
+          src="images/ar/xiaoran_ar_avatar.jpg"
+          onerror="this.onerror = null; this.src = 'assets_A/images/xiaoran_avatar.png';"
+          alt="小染頭像"
+          class="w-full h-full object-cover"
+        />
+        <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-400 border-2 border-white rounded-full"></span>
+      </button>
+    </aside>
+
+    <!-- JAVASCRIPT FILES (與 index.html 相同) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- 全站共用與頁面專屬 JavaScript 腳本 -->
+    <script src="assets_A/js/A_common.js"></script>
+    <script src="assets_A/js/A_ar.js"></script>
+  </body>
+</html>

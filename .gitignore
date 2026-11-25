@@ -1,0 +1,28 @@
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# Temporary & Backup Files
+*.bak
+*.bak*
+*.tmp
+*.temp
+*.swp
+*~
+工坊介紹區段.txt
+
+# IDE & Editor Folders
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Node modules (if any)
+node_modules/

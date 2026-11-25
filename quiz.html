@@ -1,0 +1,1288 @@
+﻿<!doctype html>
+<html lang="zh-TW" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>花紋心理學 ✕ 測出你的本命花紋 ｜ 三峽藍染 400 年</title>
+
+    <!-- CSS FILES (與 index.html 相同) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/templatemo-leadership-event.css" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                primary: "#9564ff", // 夢幻靛紫
+                deep: "#5170ff", // 寶藍靛青
+                lavender: "#c4abfa", // 柔和紫羅蘭
+                sky: "#abc8fa", // 天青靛藍
+                dark: "#1e1b4b", // 深靛紫灰
+                body: "#3730a3", // 內文主要
+                pageBg: "#f8f9fe", // 紙質感背景底色
+              },
+            },
+            fontFamily: {
+              heading: [
+                "DM Sans",
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                "system-ui",
+                "sans-serif",
+              ],
+              sans: [
+                "DM Sans",
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                "system-ui",
+                "sans-serif",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- 全站統整視覺樣式表 -->
+    <link rel="stylesheet" href="assets_A/css/A_style.css" />
+  </head>
+
+  <body
+    id="top"
+    class="text-brand-dark selection:bg-brand-lavender selection:text-brand-dark relative min-h-screen"
+  >
+    <!-- 頁首導覽列 (與 index.html 完全相同) -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
+          <img src="images/logo.png" class="brand-logo" alt="Logo" />
+          <span class="brand-text"
+            >一抹藍 <br />
+            染出傳統新潮流</span
+          >
+        </a>
+
+        <!-- <a class="nav-link custom-btn btn d-lg-none" href="#">Buy Tickets</a> -->
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#know"
+                >認識藍染</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#section_2"
+                >小染的誕生</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#game"
+                >遊戲天地</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link click-scroll" href="index.html#indigo-about"
+                >關於我們</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="section_1" class="pt-10 sm:pt-14 pb-20 px-4 sm:px-8">
+      <div class="max-w-4xl mx-auto space-y-10">
+        <!-- ==========================================================================
+           一、 頁面 Hero 標題與導言 (簡化、無模擬器冗餘)
+           ========================================================================== -->
+        <section class="text-center space-y-4 pt-2">
+          <h1
+            class="text-3xl sm:text-5xl font-black font-heading text-brand-dark"
+          >
+            花紋心理學
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-deep to-brand-primary"
+              style="color: #9564ff"
+            >
+              測出你的本命花紋</span
+            >
+          </h1>
+
+          <p
+            class="text-base sm:text-lg font-medium text-brand-body max-w-2xl mx-auto"
+          >
+            每一條紋樣，都是靈魂的映射！跟著小染調配專屬藍染，測出你的本命性格與防染圖騰。
+          </p>
+
+          <p
+            class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed bg-white/60 p-4 rounded-2xl border border-brand-lavender/60 text-justify sm:text-center"
+          >
+            走進靜謐的三峽靛藍森林，眼前擺著一缸發酵中的藍染缸與純白布料。<br
+              class="hidden sm:inline"
+            />
+            憑著你的第一直覺回答 4 道情境題，小染將為你動態繪製出專屬的 9:16 IG
+            限動卡片！
+          </p>
+        </section>
+
+        <!-- ==========================================================================
+           畫面 1: 測驗導言畫面 (Quiz Intro Section)
+           ========================================================================== -->
+        <section
+          id="quiz-intro-section"
+          class="glass-card p-6 sm:p-10 text-center space-y-6 border-2 border-brand-lavender bg-white/95 shadow-xl"
+        >
+          <div
+            class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-brand-deep to-brand-primary flex items-center justify-center text-3xl shadow-lg text-white"
+          >
+            <img src="assets_A/images/Crystal Ball.png" alt="水晶球" />
+          </div>
+
+          <div class="space-y-2 max-w-lg mx-auto">
+            <h2
+              class="text-2xl sm:text-3xl font-extrabold font-heading text-brand-dark"
+            >
+              準備好探索你的靈魂花紋了嗎？
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              透過 4
+              個浸染情境題，小染將根據你的防染工具、調缸養分、浸染感受與氧化見證，為你解鎖獨一無二的本命花紋與專屬特質！
+            </p>
+          </div>
+
+          <div>
+            <button
+              id="btn-start-quiz"
+              class="btn-primary text-base px-8 py-3.5 shadow-lg"
+            >
+              <span>開始探索靈魂花紋</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ==========================================================================
+           畫面 2: 4 關切換題目畫面 (Quiz Questions Section)
+           ========================================================================== -->
+        <section
+          id="quiz-questions-section"
+          class="hidden glass-card p-6 sm:p-10 border-2 border-brand-lavender bg-white/95 space-y-6 shadow-xl"
+        >
+          <!-- 頂部進度條與關卡指示 -->
+          <div class="space-y-2">
+            <div
+              class="flex items-center justify-between text-xs sm:text-sm font-bold"
+            >
+              <span id="quiz-step-indicator" class="text-brand-deep"
+                >第 1 關 / 共 4 關</span
+              >
+              <span
+                id="quiz-question-category"
+                class="px-2.5 py-0.5 rounded-full bg-brand-lavender/30 text-brand-primary"
+                >防染設計</span
+              >
+            </div>
+            <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div
+                id="quiz-progress-inner"
+                class="h-full bg-gradient-to-r from-brand-deep to-brand-primary transition-all duration-300 w-1/4"
+              ></div>
+            </div>
+          </div>
+
+          <!-- 題目與情境描述 -->
+          <div class="space-y-3 pt-2">
+            <h3
+              id="quiz-question-title"
+              class="text-xl sm:text-2xl font-bold font-heading text-brand-dark"
+            >
+              關卡 1：防染設計（選擇你的綁紮工具）
+            </h3>
+            <p
+              id="quiz-scenario-text"
+              class="text-xs sm:text-sm text-slate-500 italic bg-slate-50 p-3 rounded-xl border border-slate-200"
+            >
+              面對眼前的純白布料，你打算如何處理布料以阻擋染液？
+            </p>
+            <p
+              id="quiz-question-text"
+              class="text-sm sm:text-base font-semibold text-slate-800"
+            >
+              當你要為白布進行「防染設計」時，你最直覺會拿起什麼工具？
+            </p>
+          </div>
+
+          <!-- 選項按鈕容器 -->
+          <div id="quiz-options-container" class="space-y-3 pt-2">
+            <!-- 由 assets/js/quiz.js 動態渲染 -->
+          </div>
+        </section>
+
+        <!-- ==========================================================================
+           畫面 3: 測驗結果畫面 ✕ 動態生成的 IG 9:16 限動視覺卡片容器
+           ========================================================================== -->
+        <section
+          id="quiz-result-section"
+          class="hidden space-y-8 animate-fade-in"
+        >
+          <div
+            class="glass-card p-6 sm:p-10 border-2 border-brand-lavender bg-white/95 space-y-8 shadow-2xl"
+          >
+            <!-- 頂部結果大標題 -->
+            <div class="text-center space-y-3">
+              <div class="tag-badge">測驗結果出爐</div>
+              <h2
+                id="res-title"
+                class="text-2xl sm:text-4xl font-black font-heading text-brand-dark"
+              >
+                隨性優雅的「扎染 (絞染) 靈魂」
+              </h2>
+              <div
+                class="inline-block px-4 py-1 rounded-full bg-brand-deep text-white font-bold text-xs"
+                id="res-pattern-badge"
+              >
+                扎染靈魂
+              </div>
+            </div>
+
+            <!-- 核心展示區：左側動態生成的 IG 9:16 限動卡片 ✕ 右側詳細深度解析 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <!-- 左側：動態繪製的 IG 9:16 卡片畫布容器 (純 Canvas 動態生成，不載入任何靜態圖) -->
+              <div
+                class="lg:col-span-5 flex flex-col items-center justify-center space-y-4"
+              >
+                <!-- 9:16 視覺卡片預覽框架 -->
+                <div
+                  class="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-3xl p-2 bg-gradient-to-tr from-brand-deep via-brand-primary to-brand-lavender shadow-2xl border-4 border-white flex items-center justify-center overflow-hidden group"
+                >
+                  <!-- 真正的 1080x1920 高解析度 Canvas 畫布 -->
+                  <canvas
+                    id="ig-story-canvas"
+                    width="1080"
+                    height="1920"
+                    class="w-full h-full rounded-2xl object-cover shadow-inner bg-slate-950 transition-transform duration-300 group-hover:scale-[1.01]"
+                  ></canvas>
+
+                  <!-- 浮水印徽章 -->
+                  <div
+                    class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-white text-[10px] font-bold flex items-center gap-1 shadow pointer-events-none"
+                  >
+                    <span
+                      class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"
+                    ></span>
+                    <span>9:16 IG 限動動態渲染</span>
+                  </div>
+                </div>
+
+                <!-- 卡片專屬主要操作按鈕 (下載與複製圖片) -->
+                <div
+                  class="w-full max-w-[320px] sm:max-w-[340px] space-y-2 pt-1"
+                >
+                  <button
+                    id="btn-download-ig-card"
+                    class="btn-primary w-full text-xs sm:text-sm py-3 justify-center shadow-md"
+                  >
+                    <span>下載卡片圖片 (PNG)</span>
+                  </button>
+                  <button
+                    id="btn-copy-card-img"
+                    class="btn-secondary w-full text-xs sm:text-sm py-2.5 justify-center"
+                  >
+                    <span>複製卡片圖片 (免存圖直接貼)</span>
+                  </button>
+                  <p class="text-[11px] text-slate-500 text-center">
+                    ✨ 純代碼動態渲染，點擊即可存圖或複製貼上至 IG 限動！
+                  </p>
+                </div>
+              </div>
+
+              <!-- 右側：靈魂花紋詳細深度解析 -->
+              <div class="lg:col-span-7 space-y-5">
+                <!-- 命定花紋名稱與關鍵字標籤卡片 -->
+                <div
+                  class="p-5 rounded-2xl bg-gradient-to-br from-brand-sky/20 via-white to-brand-lavender/20 border border-brand-lavender space-y-3"
+                >
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-brand-deep"
+                      >命定防染圖騰</span
+                    >
+                    <span
+                      id="res-pattern-name"
+                      class="text-base sm:text-lg font-bold font-heading text-brand-dark"
+                    >
+                      自由奔放的水波同心圓
+                    </span>
+                  </div>
+                  <!-- 關鍵字標籤容器 -->
+                  <div
+                    id="res-keywords-container"
+                    class="flex flex-wrap gap-2 pt-1"
+                  >
+                    <!-- 由 JS 動態注入 -->
+                  </div>
+                </div>
+
+                <!-- 屬性指標 (本命植物 ✕ 幸運色) -->
+                <div class="grid grid-cols-2 gap-3">
+                  <div
+                    class="p-3.5 rounded-xl bg-brand-sky/20 border border-brand-sky/60"
+                  >
+                    <span class="text-[11px] text-slate-500 block mb-0.5"
+                      >🌿 本命植物</span
+                    >
+                    <span
+                      id="res-plant"
+                      class="text-sm font-bold text-brand-dark"
+                      >活力充沛的馬藍</span
+                    >
+                  </div>
+                  <div
+                    class="p-3.5 rounded-xl bg-brand-lavender/20 border border-brand-lavender/60"
+                  >
+                    <span class="text-[11px] text-slate-500 block mb-0.5"
+                      >命定幸運色</span
+                    >
+                    <span
+                      id="res-lucky-color"
+                      class="text-sm font-bold text-brand-dark"
+                      >湛藍色 (Deep Indigo)</span
+                    >
+                  </div>
+                </div>
+
+                <!-- 性格深度解析 -->
+                <div class="space-y-2">
+                  <h4
+                    class="text-sm font-bold text-brand-deep flex items-center gap-1.5"
+                  >
+                    <span>✦</span> 性格深度解析：
+                  </h4>
+                  <p
+                    id="res-personality"
+                    class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify bg-white/80 p-4 rounded-xl border border-slate-100"
+                  >
+                    你就像扎染一樣，隨性自由、不受拘束，且充滿創造力！你擁有極強的適應力與熱情，不喜歡被固定框架限制。在你身上總是能看見驚喜，朋友眼中的你就像開盲盒一樣，永遠充滿獨特魅力與新鮮感。
+                  </p>
+                </div>
+
+                <!-- 小染心靈寄語 -->
+                <div
+                  class="p-4 rounded-2xl bg-gradient-to-r from-brand-lavender/30 to-brand-sky/30 border border-brand-lavender"
+                >
+                  <span class="text-xs font-bold text-brand-primary block mb-1"
+                    >✨ 小染給你的心靈寄語：</span
+                  >
+                  <p
+                    id="res-quote"
+                    class="text-sm sm:text-base font-bold font-heading text-brand-dark italic"
+                  >
+                    「解開繩圈的那一刻，就是你綻放獨一無二光的瞬間！」
+                  </p>
+                </div>
+
+                <!-- 小染悄悄話 -->
+                <div
+                  class="p-3.5 rounded-xl bg-brand-sky/15 border border-brand-sky/50 text-xs text-slate-600 flex items-start gap-2.5"
+                >
+                  <span class="text-base flex-shrink-0">💬</span>
+                  <div>
+                    <strong class="text-brand-deep font-semibold block mb-0.5"
+                      >小染悄悄話：</strong
+                    >
+                    <span id="res-tip"
+                      >你的靈魂像三峽山嵐一樣無拘無束，勇敢活出屬於自己的專屬色澤吧！</span
+                    >
+                  </div>
+                </div>
+
+                <!-- 社群擴散與重新測驗按鈕 -->
+                <div
+                  class="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-3"
+                >
+                  <button
+                    id="btn-web-share"
+                    class="btn-secondary text-xs sm:text-sm py-2.5 px-4 flex-1 justify-center"
+                  >
+                    <span>一鍵分享至社群</span>
+                  </button>
+                  <button
+                    id="btn-copy-link"
+                    class="btn-secondary text-xs sm:text-sm py-2.5 px-4 flex-1 justify-center"
+                  >
+                    <span>複製測驗連結</span>
+                  </button>
+                  <button
+                    id="btn-retake-quiz"
+                    class="text-xs text-slate-500 hover:text-brand-deep underline px-3 py-2 transition"
+                  >
+                    重新測驗
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ==========================================================================
+       全站頁尾 (Footer - 與 index.html 完全相同)
+       ========================================================================== -->
+    <footer class="site-footer" style="background-color: #abc8fa">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
+            <div class="d-flex">
+              <a href="index.html" class="navbar-brand">
+                <img src="images/logo.png" class="brand-logo" alt="Logo" />
+                <span class="brand-text" style="color: #9564ff"
+                  >一抹藍 <br />
+                  染出傳統新潮流</span
+                >
+              </a>
+
+              <!-- <ul class="social-icon ms-auto">
+                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
+                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
+                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
+                <li><a href="#" class="social-icon-link bi-youtube"></a></li>
+              </ul> -->
+            </div>
+          </div>
+
+          <div class="col-lg-7 col-12">
+            <ul class="footer-menu d-flex flex-wrap">
+              <li class="footer-menu-item">
+                <a href="index.html#indigo-about" class="footer-menu-link"
+                  >關於我們</a
+                >
+              </li>
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">聯絡方式</a>
+              </li>
+              <li class="footer-menu-item">
+                <button
+                  type="button"
+                  class="footer-menu-link"
+                  onclick="document.getElementById('sourceModal').showModal()"
+                >
+                  參考資料
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-5 col-12 ms-lg-auto">
+            <div class="copyright-text-wrap d-flex align-items-center">
+              <p class="copyright-text ms-lg-auto me-4 mb-0">
+                版權所有 © 中壢高商專題小組 <br />保留所有解釋權利。
+                <br /><br />網頁設計者:
+                <a
+                  title="CSS Templates"
+                  rel="sponsored"
+                  href="https://templatemo.com"
+                  target="_blank"
+                  >TemplateMo</a
+                >／製作者：中壢高商專題小組
+              </p>
+              <a
+                href="#section_1"
+                class="bi-arrow-up arrow-icon custom-link"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 資料來源彈出式視窗 -->
+    <dialog
+      id="sourceModal"
+      onclick="if (event.target === this) this.close();"
+      style="
+        border: none;
+        border-radius: 20px;
+        padding: 0;
+        max-width: 800px;
+        width: 92%;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        font-family: var(--body-font-family);
+        color: #1e293b;
+      "
+    >
+      <div style="padding: 28px 32px; background: #ffffff; border-radius: 20px">
+        <!-- 標題與右上角關閉鈕 -->
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+          "
+        >
+          <div>
+            <h3
+              style="
+                margin: 0 0 6px 0;
+                font-size: 22px;
+                font-weight: 800;
+                color: #1e1b4b;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <span>※</span> 資料來源與參考文獻
+            </h3>
+            <p style="margin: 0; font-size: 13px; color: #64748b">
+              本專案研究報告、文史資料彙整與圖片素材之公開引用來源
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="document.getElementById('sourceModal').close()"
+            style="
+              background: #f1f5f9;
+              border: none;
+              width: 34px;
+              height: 34px;
+              border-radius: 50%;
+              font-size: 16px;
+              color: #64748b;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s;
+            "
+            onmouseover="
+              this.style.background = '#e2e8f0';
+              this.style.color = '#0f172a';
+            "
+            onmouseout="
+              this.style.background = '#f1f5f9';
+              this.style.color = '#64748b';
+            "
+            aria-label="關閉視窗"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- 內容清單 -->
+        <div
+          class="source-modal-body"
+          style="
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 12px;
+            line-height: 1.75;
+            font-size: 14px;
+            color: #334155;
+          "
+        >
+          <!-- 區塊一：參考文獻 -->
+          <div style="margin-bottom: 28px">
+            <h4
+              style="
+                margin: 0 0 14px 0;
+                font-size: 16px;
+                font-weight: 700;
+                color: #5170ff;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              一、 參考文獻
+            </h4>
+            <ol style="margin: 0; padding-left: 22px">
+              <li style="margin-bottom: 14px">
+                呂兆倉、林卿慧、林青玫（2026年5月）。看見環境永續發展新契機：臺灣藍染工序量化研究。全球客家研究，26，163-190。<br />
+                <a
+                  href="https://www.airitilibrary.com/Article/Detail/P20140114001-N202606260002-00004"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.airitilibrary.com/Article/Detail/P20140114001-N202606260002-00004</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                Tnet全球紡織資訊網（2011年7月26日）。台灣藍染與服飾設計之探討。<br />
+                <a
+                  href="https://www.tnet.org.tw/Article/Detail/6936"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.tnet.org.tw/Article/Detail/6936</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                關鍵評論網（2019年10月23日）。三峽藍染：從傳統工藝走向生活美學與在地文化創新。<br />
+                <a
+                  href="https://www.thenewslens.com/article/126249"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.thenewslens.com/article/126249</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                文化內容策進院（2021年）。臺灣文化內容產業調查報告。<br />
+                <a
+                  href="https://www.taicca.tw/intelligence/industry_research/detail/55"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.taicca.tw/intelligence/industry_research/detail/55</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                李海娟（2025年7月2日）。虛擬人、虛擬IP與虛擬品牌：數位時代的生存之道與未來趨勢?部落格文章?。<br />
+                <a
+                  href="https://vocus.cc/article/68651302fd89780001edcd8c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://vocus.cc/article/68651302fd89780001edcd8c</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                帕豆設計（無日期）。Logic Bear 邏輯熊 IP 品牌網站設計案例。<br />
+                <a
+                  href="https://puddle.com.tw/portfolio/logicbear-ip-website/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://puddle.com.tw/portfolio/logicbear-ip-website/</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                明志科技大學經營管理系（2011年）。傳統工藝文化創意產業發展研究。<br />
+                <a
+                  href="https://bm.mcut.edu.tw/var/file/46/1046/img/464/100groupC.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://bm.mcut.edu.tw/var/file/46/1046/img/464/100groupC.pdf</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                ESG Times
+                編輯中心（2025年7月17日）。打造永續城市的關鍵行動：SDGs目標11詳解與成功案例分享。ESG
+                Times。<br />
+                <a
+                  href="https://esgtimes.com.tw/1804-2/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://esgtimes.com.tw/1804-2/</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                文化部（2019年）。藍染文化推廣與工藝產業扶植計畫。<br />
+                <a
+                  href="https://www.moc.gov.tw/News_Content.aspx?n=178&s=4034"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.moc.gov.tw/News_Content.aspx?n=178&s=4034</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                陳思雅（2023年4月19日）。《市場趨勢篇》將本土原創推向國際
+                角色IP全面進擊 引爆新經濟效益。經貿透視雙周刊，616。<br />
+                <a
+                  href="https://www.trademag.org.tw/page/itemsd/?id=7880204&no=21"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.trademag.org.tw/page/itemsd/?id=7880204&no=21</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                許維寧（2023年11月16日）。台師大調查：逾5成國人不了解自己所屬族群文化。聯合新聞網。<br />
+                <a
+                  href="https://udn.com/news/story/6885/7577888"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://udn.com/news/story/6885/7577888</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                LINE Corporation（2020年7月13日）。貼圖創作生態圈蓬勃發展 「LINE
+                CREATORS創作者商品館」將角色實體化
+                台灣人貼圖喜好首度大公開！平均一年下載18組。<br />
+                <a
+                  href="https://www.linecorp.com/tw/pr/news/tw/2020/3307"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.linecorp.com/tw/pr/news/tw/2020/3307</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                霍鵬程（2012年7月）。如何運用文創資源開發文創產業－以發展臺灣手染產業為例。設計研究學報，5，14-24。<br />
+                <a
+                  href="https://www.airitilibrary.com/Article/Detail?DocID=19964250-201207-201302050018-201302050018-14-24"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.airitilibrary.com/Article/Detail?DocID=19964250-201207-201302050018-201302050018-14-24</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                Kemp, S. (2024, February 23). Digital 2024: Taiwan.
+                DataReportal.<br />
+                <a
+                  href="https://datareportal.com/reports/digital-2024-taiwan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://datareportal.com/reports/digital-2024-taiwan</a
+                >
+              </li>
+              <li style="margin-bottom: 14px">
+                霍鵬程（2012年7月）。如何運用文創資源開發文創產業－以發展臺灣手染產業為例。設計研究學報，5，14-24。<br />
+                <a
+                  href="https://www.airitilibrary.com/Article/Detail/19964250-201207-201302050018-201302050018-14-24"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.airitilibrary.com/Article/Detail/19964250-201207-201302050018-201302050018-14-24</a
+                >
+                <span style="color: #94a3b8; font-size: 12px"
+                  >（註：第15筆與第13筆為同篇文獻）</span
+                >
+              </li>
+            </ol>
+          </div>
+
+          <!-- 區塊二：圖片引用 -->
+          <div style="border-top: 1px dashed #cbd5e1; padding-top: 20px">
+            <h4
+              style="
+                margin: 0 0 14px 0;
+                font-size: 16px;
+                font-weight: 700;
+                color: #5170ff;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              二、 圖片引用
+            </h4>
+            <ol style="margin: 0; padding-left: 22px">
+              <li style="margin-bottom: 10px">
+                甘樂文創：<a
+                  href="https://www.thecan.com.tw/tw/tour/detail/421?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.thecan.com.tw/tw/tour/detail/421</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                旅人誌 Traveler Luxe：<a
+                  href="https://www.travelerluxe.com/article/desc/220007790"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.travelerluxe.com/article/desc/220007790</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                ACCUPASS 活動通：<a
+                  href="https://www.accupass.com/event/2002120631071080754655?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.accupass.com/event/2002120631071080754655</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                ISTANI Studio：<a
+                  href="https://www.istanistudio.com/blogs/news/the-indigo-plant-from-history-to-commercialization?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.istanistudio.com/blogs/news/the-indigo-plant-from-history-to-commercialization</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                維基百科 Wikipedia：<a
+                  href="https://en.wikipedia.org/wiki/Fashion_in_Taiwan?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://en.wikipedia.org/wiki/Fashion_in_Taiwan</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Activity Japan：<a
+                  href="https://activityjapan.com/publish/plan/62435?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://activityjapan.com/publish/plan/62435</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                琉球藍研究所 Ryukyu Indigo Labo：<a
+                  href="https://ryukyu-indigo-labo.jp/pages/%E6%B2%88%E6%AE%BF%E8%97%8D?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://ryukyu-indigo-labo.jp/pages/沈殿藍</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                石徹白洋品店 Itoshiro：<a
+                  href="https://itoshiro.org/en/blogs/reading/aidate?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://itoshiro.org/en/blogs/reading/aidate</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Chiangdao Blue：<a
+                  href="https://www.chiangdaoblue.com/workshops.html?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.chiangdaoblue.com/workshops.html</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Okaeri：<a
+                  href="https://okaeri.au/products/kamawanu-tenugui-katsuo-jima-gradation?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://okaeri.au/products/kamawanu-tenugui-katsuo-jima-gradation</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                The Printed Fabric Bee：<a
+                  href="https://theprintedfabricbee.blogspot.com/2016/08/exploring-hand-stitched-shibori-ori-nui.html?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://theprintedfabricbee.blogspot.com/2016/08/exploring-hand-stitched-shibori-ori-nui.html</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Fabric Megastore：<a
+                  href="https://fabricmegastore.com/products/indigo-shibori-tie-dye-pattern-30-quilting-cotton-fabric?utm_source=chatgpt.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://fabricmegastore.com/products/indigo-shibori-tie-dye-pattern-30-quilting-cotton-fabric</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                日本國家旅遊局 Japan Travel：<a
+                  href="https://www.japan.travel/tw/tw/japan-magazine/exploring-the-origins-of-aizome-traditional-indigo-dyeing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.japan.travel/tw/tw/japan-magazine/exploring-the-origins-of-aizome-traditional-indigo-dyeing/</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                萌芽悠遊網 MNYA：<a
+                  href="https://blog.mnya.tw/jodyhsieh/word/1741"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://blog.mnya.tw/jodyhsieh/word/1741</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                PictureThis：<a
+                  href="https://www.picturethisai.com/zh-tw/wiki/Indigofera_tinctoria.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.picturethisai.com/zh-tw/wiki/Indigofera_tinctoria.html</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Facebook：<a
+                  href="https://www.facebook.com/photo/?fbid=1075936231387615&set=pcb.2292714161206899"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://www.facebook.com/photo/?fbid=1075936231387615&set=pcb.2292714161206899</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                痞客邦 PIXNET：<a
+                  href="https://jolbru0424.pixnet.net/blog/posts/10352328785"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://jolbru0424.pixnet.net/blog/posts/10352328785</a
+                >
+              </li>
+              <li style="margin-bottom: 10px">
+                Impact Hub Taipei：<a
+                  href="https://taipei.impacthub.net/sdg-11/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    color: #5170ff;
+                    text-decoration: underline;
+                    text-underline-offset: 3px;
+                    word-break: break-all;
+                    font-size: 13px;
+                  "
+                  >https://taipei.impacthub.net/sdg-11/</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 底部確認鈕 -->
+        <div
+          style="
+            margin-top: 24px;
+            text-align: right;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 16px;
+          "
+        >
+          <button
+            type="button"
+            onclick="document.getElementById('sourceModal').close()"
+            style="
+              background-color: #5170ff;
+              color: #ffffff;
+              border: none;
+              padding: 10px 28px;
+              border-radius: 9999px;
+              font-size: 14px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.25s ease;
+              box-shadow: 0 4px 12px rgba(81, 112, 255, 0.35);
+            "
+            onmouseover="
+              this.style.backgroundColor = '#9564ff';
+              this.style.transform = 'translateY(-1px)';
+              this.style.boxShadow = '0 6px 16px rgba(149, 100, 255, 0.45)';
+            "
+            onmouseout="
+              this.style.backgroundColor = '#5170ff';
+              this.style.transform = 'none';
+              this.style.boxShadow = '0 4px 12px rgba(81, 112, 255, 0.35)';
+            "
+          >
+            我瞭解了
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ==========================================================================
+       懸浮小染 Widget
+       ========================================================================== -->
+    <aside id="xiaoran-floating-widget" aria-label="VTuber 小染互動小助手">
+      <div id="widget-dialog-bubble" class="widget-dialog-bubble hidden-dialog">
+        <div class="flex items-start justify-between gap-2 mb-2">
+          <span
+            class="text-xs font-bold text-brand-deep flex items-center gap-1"
+          >
+            <span>✨</span> 小染小叮嚀
+          </span>
+          <button
+            id="widget-dialog-close"
+            class="text-slate-400 hover:text-slate-600 text-xs px-1"
+            title="暫時收起"
+          >
+            ✕
+          </button>
+        </div>
+
+        <p
+          id="widget-dialog-text"
+          class="text-xs text-slate-700 leading-relaxed mb-3"
+        >
+          憑著你的第一直覺回答問題，最能反映出你潛在的藍染花紋特質喔！
+        </p>
+
+        <div
+          class="grid grid-cols-2 gap-1.5 pt-1 border-t border-brand-lavender/40 text-[11px]"
+        >
+          <a
+            href="index.html"
+            class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-center transition"
+          >
+            回到首頁
+          </a>
+          <a
+            href="infographic.html"
+            class="p-1.5 rounded-lg bg-brand-lavender/20 hover:bg-brand-lavender/40 text-brand-primary text-center transition"
+          >
+            400年懶人包
+          </a>
+        </div>
+      </div>
+
+      <button
+        id="widget-avatar-btn"
+        class="widget-avatar-btn"
+        title="點擊與小染對話"
+      >
+        <!-- TODO: 替換為小染頭像去背檔 (建議尺寸: 200x200) -->
+        <img
+          src="assets_A/images/xiaoran_avatar.png"
+          onerror="
+            this.onerror = null;
+            this.src = 'https://placehold.co/200x200/9564ff/ffffff?text=小染';
+          "
+          alt="小染頭像"
+          class="w-full h-full object-cover"
+        />
+        <span
+          class="absolute top-0 right-0 w-3.5 h-3.5 bg-green-400 border-2 border-white rounded-full"
+        ></span>
+      </button>
+    </aside>
+
+    <!-- JAVASCRIPT FILES (與 index.html 相同) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- 全站共用與頁面專屬 JavaScript 腳本 -->
+    <script src="assets_A/js/A_common.js"></script>
+    <script src="assets_A/js/A_quiz.js"></script>
+  </body>
+</html>
