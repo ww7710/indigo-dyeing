@@ -84,6 +84,26 @@
         border-color: #5170ff;
         pointer-events: none;
       }
+          /* 攪缸氧化變色模擬器動畫 */
+      @keyframes vatStirSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .stirring-active {
+        animation: vatStirSpin 1s linear infinite;
+      }
+      @keyframes floatBubble {
+        0% { transform: translateY(0) scale(0.6); opacity: 0; }
+        40% { opacity: 0.9; }
+        100% { transform: translateY(-70px) scale(1.3); opacity: 0; }
+      }
+      .vat-bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(171,200,250,0.4));
+        pointer-events: none;
+        animation: floatBubble 1.2s ease-out forwards;
+      }
     </style>
   </head>
 
@@ -289,6 +309,86 @@
                   <i class="bi bi-camera-fill"></i>
                   <span>AR 拍照留念並存檔</span>
                 </button>
+              </div>
+            </div>
+
+            <!-- 視訊圖層 7：百年染缸「攪缸氧化變色模擬器」專屬互動視窗 (Oxidation & Stirring Simulator HUD) -->
+            <div id="vat-simulator-overlay" class="hidden absolute inset-0 z-40 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 transition-all duration-500 opacity-0 pointer-events-none">
+              <div class="relative w-full max-w-lg bg-gradient-to-b from-slate-900 to-indigo-950 border-2 border-brand-sky rounded-3xl p-4 sm:p-6 shadow-2xl text-white space-y-4 overflow-hidden">
+                
+                <!-- 頂部標題與關閉按鈕 -->
+                <div class="flex items-center justify-between border-b border-indigo-800/60 pb-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+                    <h4 class="font-bold font-heading text-sm sm:text-base text-brand-sky flex items-center gap-1.5">
+                      <span>🧪</span> 三峽天然發酵陶缸 · 攪缸氧化變色模擬器
+                    </h4>
+                  </div>
+                  <button id="btn-close-vat-sim" type="button" class="text-slate-400 hover:text-white text-base font-bold w-8 h-8 rounded-full bg-slate-800/80 flex items-center justify-center transition active:scale-95" title="關閉模擬器">✕</button>
+                </div>
+
+                <!-- 中央核心：動態染缸俯視圖與攪動渦流 -->
+                <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center bg-slate-950/70 rounded-2xl border border-indigo-900/50 overflow-hidden">
+                  <!-- 陶缸外壁 (陶製古樸質感) -->
+                  <div class="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full border-[10px] border-stone-700 shadow-[inset_0_0_25px_rgba(0,0,0,0.95),0_0_35px_rgba(0,0,0,0.85)] flex items-center justify-center bg-stone-900">
+                    <!-- 缸口陶圈 -->
+                    <div class="w-full h-full rounded-full border-4 border-stone-600/70 p-1 flex items-center justify-center">
+                      <!-- 染液表面 (顏色隨氧化進度平滑漸變) -->
+                      <div id="vat-liquid-surface" class="relative w-full h-full rounded-full transition-colors duration-700 overflow-hidden shadow-inner flex items-center justify-center" style="background-color: #84cc16;">
+                        
+                        <!-- 渦流漣漪層 (同心旋轉動畫) -->
+                        <div id="vat-vortex-ring" class="absolute inset-2 rounded-full border-2 border-white/20 border-t-white/70 animate-spin" style="animation-duration: 1.4s;"></div>
+                        <div class="absolute inset-7 rounded-full border border-dashed border-white/30 animate-spin" style="animation-duration: 2.2s; animation-direction: reverse;"></div>
+
+                        <!-- 藍染之花（發酵結晶藍沫浮游） -->
+                        <div id="vat-indigo-froth" class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-1000 z-20 pointer-events-none">
+                          <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-blue-950/85 text-blue-200 border border-blue-400/60 shadow-xl animate-pulse">✨ 藍染之花（藍沫凝結）</span>
+                        </div>
+
+                        <!-- 旋轉中的木製攪拌棒 -->
+                        <div id="vat-stirring-rod" class="absolute w-3.5 h-24 sm:h-32 bg-gradient-to-t from-amber-900 via-amber-700 to-amber-500 rounded-full shadow-2xl origin-bottom transition-transform z-10" style="bottom: 50%; transform: rotate(0deg);">
+                          <div class="w-full h-full border-r border-amber-950/60 rounded-full"></div>
+                        </div>
+                        
+                        <!-- 中心攪拌旋鈕軸心 -->
+                        <div class="w-6 h-6 rounded-full bg-amber-950 border-2 border-amber-500 shadow-lg z-20"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 浮動溶氧上升氣泡容器 -->
+                  <div id="vat-bubbles-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+                </div>
+
+                <!-- 狀態即時數據與化學解說 -->
+                <div class="space-y-3">
+                  <!-- 溶氧與氧化進度條 -->
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-xs font-semibold">
+                      <span class="text-slate-300">攪動溶氧率 (DO)：<span id="vat-oxygen-val" class="text-emerald-400 font-mono">12%</span></span>
+                      <span id="vat-stage-label" class="text-amber-400 font-bold">🌿 階段一：厭氧還原態（黃綠色白靛）</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                      <div id="vat-progress-bar" class="h-full bg-gradient-to-r from-lime-500 via-teal-500 to-indigo-600 transition-all duration-300 w-[12%]"></div>
+                    </div>
+                  </div>
+
+                  <!-- 說明文案與操作按鈕 -->
+                  <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                    <p id="vat-instruction-text" class="text-xs text-slate-300 leading-relaxed max-w-xs">
+                      木棒翻攪注入氧氣，白靛分子正在迅速氧化凝聚！
+                    </p>
+                    <div class="flex items-center gap-2">
+                      <button id="btn-restart-vat" type="button" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1 active:scale-95 shadow">
+                        <span>🔄 再次攪缸</span>
+                      </button>
+                      <button id="btn-finish-vat" type="button" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1 active:scale-95 shadow">
+                        <span>✓ 完成並返回</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 

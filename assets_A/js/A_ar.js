@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initComputerVisionTracking();
   initSnapshotFeature();
   initAudioInteractions();
+  initVatSimulator();
   initGuideModals();
 
   // 預設加載老街標記
@@ -295,7 +296,7 @@ function switchMarker(markerId) {
     if (markerId === 'street') {
       actionBtn.innerHTML = `<span>🏛️ 探索老街山牆立面特色</span>`;
     } else if (markerId === 'pot') {
-      actionBtn.innerHTML = `<span>🧪 啟動攪缸氧化變色模擬</span>`;
+      actionBtn.innerHTML = `<span>🧪 啟動攪缸氧化變色模擬器</span>`;
     } else {
       actionBtn.innerHTML = `<span>🧵 飄揚三峽藍染五大技法</span>`;
     }
@@ -306,6 +307,16 @@ function switchMarker(markerId) {
   if (window.playIndigoChime) window.playIndigoChime(587.33); // D5
 }
 
+function highlightDialogueBox() {
+  const box = document.getElementById('ar-dialog-box');
+  if (box) {
+    box.classList.add('ring-4', 'ring-brand-sky', 'scale-[1.02]');
+    setTimeout(() => {
+      box.classList.remove('ring-4', 'ring-brand-sky', 'scale-[1.02]');
+    }, 1200);
+  }
+}
+
 function triggerSpecialAction() {
   const markerId = AR_STATE.activeMarker;
   const dialogEl = document.getElementById('ar-dialog-text');
@@ -314,20 +325,16 @@ function triggerSpecialAction() {
     if (dialogEl) {
       dialogEl.textContent = '【老街建築小知識】看到牌樓頂端的山牆泥塑嗎？「染」字代表染布作坊，「布」字代表匹布商行，這可是百年前最潮的實體招牌喔！🏛️';
     }
+    highlightDialogueBox();
     if (window.playIndigoChime) window.playIndigoChime(784); // G5
   } else if (markerId === 'pot') {
-    // 觸發染缸氧化翻攪特效
-    AR_STATE.fermentationActive = !AR_STATE.fermentationActive;
-    if (dialogEl) {
-      dialogEl.textContent = '【氧化魔法啟動】攪動染液將空氣溶入！缸底的黃綠色白靛分子迅速與氧氣結合，凝聚出燦爛純粹的靛青深藍（Indigo Blue）！✨';
-    }
-    // 觸發 3D 染缸液體翻騰變色
-    triggerVatColorShift();
-    if (window.playIndigoChime) window.playIndigoChime(659.25); // E5
+    // 啟動專屬攪缸氧化變色模擬器
+    openVatSimulator();
   } else {
     if (dialogEl) {
       dialogEl.textContent = '【五大防染工法】扎染（自由波紋）、夾染（幾何對稱）、縫染（細緻花草）、段染（漸變墨韻）、型染（精緻版畫）！你最喜歡哪一種呢？🌸';
     }
+    highlightDialogueBox();
     if (window.playIndigoChime) window.playIndigoChime(880); // A5
   }
 }
@@ -1004,6 +1011,170 @@ function finishAndDownloadPostcard(canvas) {
 // ============================================================================
 // 8. 音效與彈窗控制
 // ============================================================================
+
+// ============================================================================
+// 攪缸氧化變色模擬器邏輯 (Vat Agitation & Oxidation Simulator)
+// ============================================================================
+let vatOxidationTimer = null;
+let vatBubbleTimer = null;
+
+function initVatSimulator() {
+  const closeBtn = document.getElementById('btn-close-vat-sim');
+  const finishBtn = document.getElementById('btn-finish-vat');
+  const restartBtn = document.getElementById('btn-restart-vat');
+
+  if (closeBtn) closeBtn.addEventListener('click', closeVatSimulator);
+  if (finishBtn) finishBtn.addEventListener('click', () => {
+    closeVatSimulator();
+    const dialogEl = document.getElementById('ar-dialog-text');
+    if (dialogEl) {
+      dialogEl.textContent = '太棒了！你剛剛成功完成了三峽傳統「攪缸」！經由木棒劇烈翻攪注入氧氣，黃綠色的白靛液迅速氧化凝聚為燦爛純粹的深邃靛藍，表面的「藍染之花」就是發酵大成功的最佳象徵！✨';
+    }
+    highlightDialogueBox();
+  });
+  if (restartBtn) restartBtn.addEventListener('click', startVatOxidationAnimation);
+}
+
+function openVatSimulator() {
+  const overlay = document.getElementById('vat-simulator-overlay');
+  if (!overlay) return;
+
+  overlay.classList.remove('hidden');
+  setTimeout(() => {
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    overlay.classList.add('opacity-100');
+  }, 20);
+
+  if (window.playIndigoChime) window.playIndigoChime(587.33);
+  startVatOxidationAnimation();
+}
+
+function closeVatSimulator() {
+  const overlay = document.getElementById('vat-simulator-overlay');
+  if (!overlay) return;
+
+  if (vatOxidationTimer) clearInterval(vatOxidationTimer);
+  if (vatBubbleTimer) clearInterval(vatBubbleTimer);
+
+  overlay.classList.remove('opacity-100');
+  overlay.classList.add('opacity-0', 'pointer-events-none');
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+  }, 500);
+}
+
+function startVatOxidationAnimation() {
+  if (vatOxidationTimer) clearInterval(vatOxidationTimer);
+  if (vatBubbleTimer) clearInterval(vatBubbleTimer);
+
+  const surface = document.getElementById('vat-liquid-surface');
+  const rod = document.getElementById('vat-stirring-rod');
+  const froth = document.getElementById('vat-indigo-froth');
+  const oxygenVal = document.getElementById('vat-oxygen-val');
+  const stageLabel = document.getElementById('vat-stage-label');
+  const progressBar = document.getElementById('vat-progress-bar');
+  const instructionText = document.getElementById('vat-instruction-text');
+  const bubblesContainer = document.getElementById('vat-bubbles-container');
+
+  if (bubblesContainer) bubblesContainer.innerHTML = '';
+
+  // 1. 重設初始狀態（還原態白靛：嫩黃綠色）
+  if (surface) surface.style.backgroundColor = '#84cc16';
+  if (froth) froth.style.opacity = '0';
+  if (progressBar) progressBar.style.width = '10%';
+  if (oxygenVal) oxygenVal.textContent = '10%';
+  if (stageLabel) {
+    stageLabel.textContent = '🌿 階段一：厭氧還原態（黃綠色白靛）';
+    stageLabel.className = 'text-amber-400 font-bold';
+  }
+  if (instructionText) {
+    instructionText.textContent = '木棒劇烈攪拌中！正在將空氣強力注入發酵染液...';
+  }
+  if (rod) rod.classList.add('stirring-active');
+
+  // 同步重置 3D 染缸液面
+  if (liquidMesh) liquidMesh.material.color.setHex(0x84cc16);
+
+  // 2. 氣泡持續產生循環
+  vatBubbleTimer = setInterval(() => {
+    if (!bubblesContainer) return;
+    const b = document.createElement('div');
+    b.className = 'vat-bubble';
+    const sz = 8 + Math.random() * 14;
+    b.style.width = sz + 'px';
+    b.style.height = sz + 'px';
+    b.style.left = (35 + Math.random() * 30) + '%';
+    b.style.top = (45 + Math.random() * 20) + '%';
+    bubblesContainer.appendChild(b);
+    setTimeout(() => b.remove(), 1200);
+  }, 160);
+
+  // 3. 氧化變色進程 (0 ~ 4500ms)
+  let elapsed = 0;
+  const duration = 4500;
+  const step = 80;
+
+  vatOxidationTimer = setInterval(() => {
+    elapsed += step;
+    const progress = Math.min(1, elapsed / duration);
+    const oxygen = Math.round(10 + progress * 88);
+
+    if (oxygenVal) oxygenVal.textContent = oxygen + '%';
+    if (progressBar) progressBar.style.width = Math.round(10 + progress * 90) + '%';
+
+    // 顏色平滑過渡：黃綠 (#84cc16) ➔ 翡翠綠 (#10b981) ➔ 湖藍 (#0284c7) ➔ 深邃湛藍 (#1e3a8a)
+    if (surface) {
+      if (progress < 0.3) {
+        surface.style.backgroundColor = '#65a30d'; // 黃綠轉深綠
+      } else if (progress < 0.65) {
+        surface.style.backgroundColor = '#0d9488'; // 綠轉藍綠
+        if (stageLabel) {
+          stageLabel.textContent = '🌀 階段二：溶氧劇烈翻騰（白靛分子氧化中）';
+          stageLabel.className = 'text-cyan-400 font-bold';
+        }
+      } else if (progress < 0.9) {
+        surface.style.backgroundColor = '#0284c7'; // 轉為湖水藍
+      } else {
+        surface.style.backgroundColor = '#1e3a8a'; // 深邃三峽靛藍
+        if (stageLabel) {
+          stageLabel.textContent = '✨ 階段三：氧化完成！生成純粹三峽深靛藍';
+          stageLabel.className = 'text-indigo-300 font-bold';
+        }
+      }
+    }
+
+    // 3D Three.js 場景液面同步變色
+    if (liquidMesh) {
+      if (progress < 0.5) {
+        liquidMesh.material.color.lerp(new THREE.Color(0x0d9488), 0.1);
+      } else {
+        liquidMesh.material.color.lerp(new THREE.Color(0x1e3a8a), 0.1);
+      }
+    }
+
+    // 完成氧化
+    if (progress >= 1) {
+      clearInterval(vatOxidationTimer);
+      clearInterval(vatBubbleTimer);
+      vatOxidationTimer = null;
+      vatBubbleTimer = null;
+
+      if (rod) rod.classList.remove('stirring-active');
+      if (froth) froth.style.opacity = '1';
+      if (instructionText) {
+        instructionText.textContent = '🎉 氧化變色大成功！染液已凝聚為璀璨靛青，表面盛開藍染之花！';
+      }
+
+      // 播放慶祝音效
+      if (window.playIndigoChime) {
+        window.playIndigoChime(587.33);
+        setTimeout(() => window.playIndigoChime(784), 150);
+        setTimeout(() => window.playIndigoChime(987.77), 300);
+      }
+    }
+  }, step);
+}
+
 function initAudioInteractions() {
   // 點擊音效綁定
   document.querySelectorAll('button').forEach(btn => {
