@@ -213,6 +213,92 @@
         letter-spacing: 1px;
       }
 
+      /* ==========================================================================
+         卡片手指點擊提示小動畫 (Card Tap Hint Animation)
+         ========================================================================== */
+      .card-tap-hint {
+        position: absolute;
+        bottom: 14px;
+        right: 16px;
+        z-index: 20;
+        pointer-events: none;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .card-tap-hint.is-hidden {
+        opacity: 0;
+        transform: scale(0.75);
+        pointer-events: none;
+      }
+
+      .tap-hint-svg {
+        width: 48px;
+        height: 48px;
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+      }
+
+      /* 群組 A：點擊手勢 */
+      .tap-hand {
+        transform-origin: 38% 28%;
+        animation: tapHandAnim 1.8s ease-in-out infinite;
+      }
+
+      /* 群組 B：放射狀線條 */
+      .tap-rays {
+        transform-origin: 38% 28%;
+        animation: tapRaysAnim 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      }
+
+      @keyframes tapHandAnim {
+        0%, 40% {
+          transform: scale(1) translate(0, 0);
+        }
+        50%, 70% {
+          transform: scale(0.86) translate(-2px, -2px);
+        }
+        85%, 100% {
+          transform: scale(1) translate(0, 0);
+        }
+      }
+
+      @keyframes tapRaysAnim {
+        0%, 40% {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+        50%, 70% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        85%, 100% {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+      }
+
+      @media (max-width: 550px) {
+        .tap-hint-svg {
+          width: 42px;
+          height: 42px;
+        }
+        .card-tap-hint {
+          bottom: 10px;
+          right: 12px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tap-hand,
+        .tap-rays {
+          animation: none !important;
+        }
+        .tap-rays {
+          opacity: 0.9;
+          transform: scale(1);
+        }
+      }
+
       @media (max-width: 900px) {
         .intro-container {
           flex-direction: column;
@@ -928,6 +1014,42 @@ https://templatemo.com/tm-575-leadership-event
               >
                 <img src="images/green to blue_card.png" alt="藍染工藝圖片3" />
               </div>
+                          <!-- 手指點擊提示小動畫 -->
+              <div class="card-tap-hint" id="cardTapHint" aria-hidden="true">
+                <svg class="tap-hint-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- 群組 B：圍繞在食指指尖周圍的 4 條短放射狀點擊線條 -->
+                  <g class="tap-rays" stroke="#C77E63" stroke-width="4.5" stroke-linecap="round">
+                    <line x1="16" y1="36" x2="26" y2="33" />
+                    <line x1="24" y1="20" x2="31" y2="28" />
+                    <line x1="38" y1="13" x2="39" y2="23" />
+                    <line x1="53" y1="17" x2="47" y2="26" />
+                  </g>
+                  <!-- 群組 A：斜向左上方點擊手勢輪廓 -->
+                  <g class="tap-hand">
+                    <path d="M 35 34
+                             C 31.5 27 38 23.5 42.5 28
+                             L 51.5 43.5
+                             C 54 41 58 40.2 61 43
+                             C 63 45 62.5 47.5 62 49.5
+                             C 65 48 69.5 49 71 52
+                             C 72.5 55 71.5 57.5 70.5 59.5
+                             C 73 59 77 60.5 78 64.5
+                             C 79.5 70 73.5 77 67.5 82
+                             C 59.5 88.5 46.5 88.5 37.5 80
+                             C 31.5 74.5 28.5 67 34.5 59.5
+                             L 39.5 55.5
+                             L 35 34 Z"
+                          fill="#FFFFFF"
+                          stroke="#C77E63"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round" />
+                    <path d="M 51.5 43.5 L 57.5 53" stroke="#C77E63" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 62 49.5 L 66.5 57.5" stroke="#C77E63" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 70.5 59.5 L 73.5 65.5" stroke="#C77E63" stroke-width="4" stroke-linecap="round"/>
+                  </g>
+                </svg>
+              </div>
             </div>
             <div class="card-hint">點擊圖片可切換下一張</div>
           </div>
@@ -940,6 +1062,12 @@ https://templatemo.com/tm-575-leadership-event
           const stack = document.getElementById("cardStack");
           const cards = stack.querySelectorAll(".stack-card");
 
+          // 使用者點擊過一次卡片後，淡出結束手指提示小動畫
+          const tapHint = document.getElementById("cardTapHint");
+          if (tapHint) {
+            tapHint.classList.add("is-hidden");
+          }
+
           const topCard = cards[0];
           topCard.style.transform =
             "translate(-50px, -50px) rotate(-15deg) scale(0.9)";
@@ -948,6 +1076,9 @@ https://templatemo.com/tm-575-leadership-event
           setTimeout(() => {
             topCard.style.opacity = "1";
             stack.appendChild(topCard);
+            if (tapHint) {
+              stack.appendChild(tapHint);
+            }
             updateCardPositions();
           }, 400);
         }
