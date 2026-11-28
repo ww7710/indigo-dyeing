@@ -282,11 +282,11 @@ function switchMarker(markerId) {
   // 依地標切換模擬老街底圖
   if (simBg) {
     if (markerId === 'street') {
-      simBg.style.backgroundImage = 'radial-gradient(circle at center, rgba(30, 27, 75, 0.25), rgba(15, 23, 42, 0.85)), url("images/Street Scenes in Sanxia.jpg")';
+      simBg.style.backgroundImage = 'url("images/Street Scenes in Sanxia.jpg")';
     } else if (markerId === 'pot') {
-      simBg.style.backgroundImage = 'radial-gradient(circle at center, rgba(30, 27, 75, 0.25), rgba(15, 23, 42, 0.85)), url("assets_A/images/indigo_craft.jpg")';
+      simBg.style.backgroundImage = 'url("assets_A/images/indigo_craft.jpg")';
     } else {
-      simBg.style.backgroundImage = 'radial-gradient(circle at center, rgba(30, 27, 75, 0.25), rgba(15, 23, 42, 0.85)), url("images/Studio Photos.jpg")';
+      simBg.style.backgroundImage = 'url("images/Studio Photos.jpg")';
     }
   }
 
@@ -912,27 +912,17 @@ function initSnapshotFeature() {
       // 繪製視訊影像
       ctx.drawImage(video, 0, 0, 1080, 1440);
     } else {
-      // 繪製老街模擬底色背景
-      const grad = ctx.createLinearGradient(0, 0, 1080, 1440);
-      grad.addColorStop(0, '#1e1b4b');
-      grad.addColorStop(0.5, '#312e81');
-      grad.addColorStop(1, '#0f172a');
-      ctx.fillStyle = grad;
+      // 繪製老街模擬底色背景（純色植物靛藍）
+      ctx.fillStyle = '#254A64';
       ctx.fillRect(0, 0, 1080, 1440);
-
-      // 裝飾性光環
-      ctx.fillStyle = 'rgba(81, 112, 255, 0.15)';
-      ctx.beginPath();
-      ctx.arc(540, 720, 480, 0, Math.PI * 2);
-      ctx.fill();
     }
 
     // 2. 繪製精緻的文化拍貼外框
-    ctx.strokeStyle = '#c4abfa';
+    ctx.strokeStyle = '#D5BDA0';
     ctx.lineWidth = 14;
     ctx.strokeRect(36, 36, 1008, 1368);
 
-    ctx.strokeStyle = '#5170ff';
+    ctx.strokeStyle = '#254A64';
     ctx.lineWidth = 2;
     ctx.strokeRect(48, 48, 984, 1344);
 
@@ -942,7 +932,7 @@ function initSnapshotFeature() {
     ctx.textAlign = 'center';
     ctx.fillText('📱 小染帶你遊三峽 · AR 實境打卡紀實', 540, 125);
 
-    ctx.fillStyle = '#abc8fa';
+    ctx.fillStyle = '#D5BDA0';
     ctx.font = '500 28px "Noto Sans TC", sans-serif';
     ctx.fillText(`空間錨定地標：【 ${marker.name} 】`, 540, 185);
 
@@ -960,7 +950,7 @@ function initSnapshotFeature() {
       ctx.drawImage(avatarImg, 640, 900, 360, 360);
       ctx.restore();
 
-      ctx.strokeStyle = '#c4abfa';
+      ctx.strokeStyle = '#D5BDA0';
       ctx.lineWidth = 8;
       ctx.beginPath();
       ctx.arc(820, 1080, 180, 0, Math.PI * 2);
@@ -980,10 +970,9 @@ function finishAndDownloadPostcard(canvas) {
   const marker = MARKERS_DB[AR_STATE.activeMarker];
 
   // 底部文案卡片
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+  ctx.fillStyle = '#254A64';
   ctx.fillRect(60, 1160, 960, 210);
-
-  ctx.strokeStyle = '#5170ff';
+  ctx.strokeStyle = '#D5BDA0';
   ctx.lineWidth = 3;
   ctx.strokeRect(60, 1160, 960, 210);
 
@@ -992,7 +981,7 @@ function finishAndDownloadPostcard(canvas) {
   ctx.textAlign = 'left';
   ctx.fillText('三峽藍染 400 年 ✕ 虛擬代言人小染 AR 導覽', 95, 1215);
 
-  ctx.fillStyle = '#abc8fa';
+  ctx.fillStyle = '#D5BDA0';
   ctx.font = '22px "Noto Sans TC", sans-serif';
   ctx.fillText('三峽藍染文化實境巡禮 ✕ 虛擬代言人柯山菁 ｜ SDGs 11.4 保護文化遺產', 95, 1260);
 

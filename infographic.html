@@ -25,30 +25,21 @@
           extend: {
             colors: {
               brand: {
-                primary: "#9564ff", // 夢幻靛紫
-                deep: "#5170ff", // 寶藍靛青
-                lavender: "#c4abfa", // 柔和紫羅蘭
-                sky: "#abc8fa", // 天青靛藍
-                dark: "#1e1b4b", // 深靛紫灰
-                body: "#3730a3", // 內文主要
-                pageBg: "#f8f9fe", // 紙質感背景底色
+                cream: "#F7F1E7",        /* 奶油白（50% 全站底色） */
+                primary: "#254A64",      /* 植物靛藍（主要品牌色 25%） */
+                navy: "#254A64",         /* 植物靛藍 */
+                deep: "#254A64",         /* 植物靛藍 */
+                secondary: "#668B83",    /* 草木綠（天然植物與次要品牌色 12%） */
+                green: "#668B83",        /* 草木綠 */
+                cloth: "#D5BDA0",        /* 染布原色（8% 卡片、裝飾） */
+                natural: "#D5BDA0",      /* 染布原色 */
+                terracotta: "#C77E63",   /* 陶土橘（5% 重點點綴與Hover） */
+                orange: "#C77E63",       /* 陶土橘 */
+                lavender: "#D5BDA0",     /* 染布原色相容 */
+                light: "#D5BDA0",        /* 染布原色相容 */
+                dark: "#1E2D3B",         /* 深靛灰（文字高對比） */
+                muted: "#52606D",        /* 次要灰 */
               },
-            },
-            fontFamily: {
-              heading: [
-                "DM Sans",
-                "Noto Sans TC",
-                "Microsoft JhengHei",
-                "system-ui",
-                "sans-serif",
-              ],
-              sans: [
-                "DM Sans",
-                "Noto Sans TC",
-                "Microsoft JhengHei",
-                "system-ui",
-                "sans-serif",
-              ],
             },
           },
         },
@@ -67,7 +58,7 @@
       }
       .vat-interactive-layer:hover,
       .vat-interactive-layer.vat-active-glow {
-        filter: brightness(1.15) drop-shadow(0 0 12px rgba(149, 100, 255, 0.6));
+        filter: brightness(1.15) drop-shadow(0 0 12px rgba(37, 74, 100, 0.45));
         transform: scale(1.02);
         z-index: 20;
       }
@@ -143,8 +134,8 @@
             class="text-3xl sm:text-5xl font-black font-heading text-brand-dark"
           >
             一分鐘秒懂！<span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-deep to-brand-primary"
-              style="color: #5170ff"
+              class="text-brand-deep"
+              style="color: #254A64"
               >三峽藍染 400 年與湛藍魔法</span
             >
           </h1>
@@ -285,7 +276,7 @@
               ></div>
 
               <div
-                class="glass-card p-6 border-2 border-brand-primary bg-gradient-to-br from-white via-white to-brand-sky/20 space-y-3"
+                class="glass-card p-6 border-2 border-brand-primary bg-white space-y-3"
               >
                 <div
                   class="flex flex-wrap items-center justify-between gap-2 border-b border-brand-lavender/40 pb-2"
@@ -613,7 +604,7 @@
 
               <!-- 氧化魔法醒目標記 -->
               <div
-                class="p-4 rounded-2xl bg-gradient-to-r from-brand-sky/30 to-brand-lavender/30 border border-brand-lavender text-xs sm:text-sm text-brand-dark flex items-start gap-3"
+                class="p-4 rounded-2xl bg-[#F7F1E7] border border-brand-lavender text-xs sm:text-sm text-brand-dark flex items-start gap-3"
               >
                 <span class="text-2xl flex-shrink-0">✨</span>
                 <p class="leading-relaxed">
@@ -810,7 +801,7 @@
 
         <!-- 導流卡片 -->
         <section
-          class="glass-card p-6 sm:p-8 bg-gradient-to-r from-brand-sky/20 via-white to-brand-lavender/20 border-2 border-brand-lavender text-center space-y-4"
+          class="glass-card p-6 sm:p-8 bg-white border-2 border-brand-lavender text-center space-y-4"
         >
           <h3
             class="text-xl sm:text-2xl font-bold font-heading text-brand-dark"
@@ -834,14 +825,14 @@
     <!-- ==========================================================================
        全站頁尾 (Footer - 與 index.html 完全相同)
        ========================================================================== -->
-    <footer class="site-footer" style="background-color: #abc8fa">
+    <footer class="site-footer" style="background-color: #254A64">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
             <div class="d-flex">
               <a href="index.html" class="navbar-brand">
                 <img src="images/logo.png" class="brand-logo" alt="Logo" />
-                <span class="brand-text" style="color: #9564ff"
+                <span class="brand-text" style="color: #F7F1E7"
                   >一抹藍 <br />
                   染出傳統新潮流</span
                 >
@@ -996,7 +987,7 @@
                 margin: 0 0 14px 0;
                 font-size: 16px;
                 font-weight: 700;
-                color: #5170ff;
+                color: #254A64;
                 display: flex;
                 align-items: center;
                 gap: 6px;
@@ -1012,7 +1003,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1028,7 +1019,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1044,7 +1035,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1060,7 +1051,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1076,7 +1067,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1092,7 +1083,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1108,7 +1099,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1126,7 +1117,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1142,7 +1133,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1159,7 +1150,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1175,7 +1166,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1193,7 +1184,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1209,7 +1200,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1226,7 +1217,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1242,7 +1233,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1264,7 +1255,7 @@
                 margin: 0 0 14px 0;
                 font-size: 16px;
                 font-weight: 700;
-                color: #5170ff;
+                color: #254A64;
                 display: flex;
                 align-items: center;
                 gap: 6px;
@@ -1279,7 +1270,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1294,7 +1285,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1309,7 +1300,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1324,7 +1315,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1339,7 +1330,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1354,7 +1345,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1369,7 +1360,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1384,7 +1375,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1399,7 +1390,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1414,7 +1405,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1429,7 +1420,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1444,7 +1435,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1459,7 +1450,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1474,7 +1465,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1489,7 +1480,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1504,7 +1495,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1519,7 +1510,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1534,7 +1525,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1560,7 +1551,7 @@
             type="button"
             onclick="document.getElementById('sourceModal').close()"
             style="
-              background-color: #5170ff;
+              background-color: #254A64;
               color: #ffffff;
               border: none;
               padding: 10px 28px;
@@ -1569,17 +1560,17 @@
               font-weight: 600;
               cursor: pointer;
               transition: all 0.25s ease;
-              box-shadow: 0 4px 12px rgba(81, 112, 255, 0.35);
+              box-shadow: 0 4px 12px rgba(37, 74, 100, 0.25);
             "
             onmouseover="
-              this.style.backgroundColor = '#9564ff';
+              this.style.backgroundColor = '#C77E63';
               this.style.transform = 'translateY(-1px)';
-              this.style.boxShadow = '0 6px 16px rgba(149, 100, 255, 0.45)';
+              this.style.boxShadow = '0 6px 16px rgba(199, 126, 99, 0.35)';
             "
             onmouseout="
-              this.style.backgroundColor = '#5170ff';
+              this.style.backgroundColor = '#254A64';
               this.style.transform = 'none';
-              this.style.boxShadow = '0 4px 12px rgba(81, 112, 255, 0.35)';
+              this.style.boxShadow = '0 4px 12px rgba(37, 74, 100, 0.25)';
             "
           >
             我瞭解了

@@ -25,30 +25,21 @@
           extend: {
             colors: {
               brand: {
-                primary: "#9564ff", // 夢幻靛紫
-                deep: "#5170ff", // 寶藍靛青
-                lavender: "#c4abfa", // 柔和紫羅蘭
-                sky: "#abc8fa", // 天青靛藍
-                dark: "#1e1b4b", // 深靛紫灰
-                body: "#3730a3", // 內文主要
-                pageBg: "#f8f9fe", // 紙質感背景底色
+                cream: "#F7F1E7",        /* 奶油白（50% 全站底色） */
+                primary: "#254A64",      /* 植物靛藍（主要品牌色 25%） */
+                navy: "#254A64",         /* 植物靛藍 */
+                deep: "#254A64",         /* 植物靛藍 */
+                secondary: "#668B83",    /* 草木綠（天然植物與次要品牌色 12%） */
+                green: "#668B83",        /* 草木綠 */
+                cloth: "#D5BDA0",        /* 染布原色（8% 卡片、裝飾） */
+                natural: "#D5BDA0",      /* 染布原色 */
+                terracotta: "#C77E63",   /* 陶土橘（5% 重點點綴與Hover） */
+                orange: "#C77E63",       /* 陶土橘 */
+                lavender: "#D5BDA0",     /* 染布原色相容 */
+                light: "#D5BDA0",        /* 染布原色相容 */
+                dark: "#1E2D3B",         /* 深靛灰（文字高對比） */
+                muted: "#52606D",        /* 次要灰 */
               },
-            },
-            fontFamily: {
-              heading: [
-                "DM Sans",
-                "Noto Sans TC",
-                "Microsoft JhengHei",
-                "system-ui",
-                "sans-serif",
-              ],
-              sans: [
-                "DM Sans",
-                "Noto Sans TC",
-                "Microsoft JhengHei",
-                "system-ui",
-                "sans-serif",
-              ],
             },
           },
         },
@@ -129,8 +120,8 @@
           >
             花紋心理學
             <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-deep to-brand-primary"
-              style="color: #9564ff"
+              class="text-brand-deep"
+              style="color: #668B83"
             >
               測出你的本命花紋</span
             >
@@ -161,7 +152,7 @@
           class="glass-card p-6 sm:p-10 text-center space-y-6 border-2 border-brand-lavender bg-white/95 shadow-xl"
         >
           <div
-            class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-brand-deep to-brand-primary flex items-center justify-center text-3xl shadow-lg text-white"
+            class="w-20 h-20 mx-auto rounded-3xl bg-brand-primary flex items-center justify-center text-3xl shadow-lg text-white"
           >
             <img src="assets_A/images/Crystal Ball.png" alt="水晶球" />
           </div>
@@ -212,7 +203,7 @@
             <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
               <div
                 id="quiz-progress-inner"
-                class="h-full bg-gradient-to-r from-brand-deep to-brand-primary transition-all duration-300 w-1/4"
+                class="h-full bg-brand-primary transition-all duration-300 w-1/4"
               ></div>
             </div>
           </div>
@@ -280,7 +271,7 @@
               >
                 <!-- 9:16 視覺卡片預覽框架 -->
                 <div
-                  class="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-3xl p-2 bg-gradient-to-tr from-brand-deep via-brand-primary to-brand-lavender shadow-2xl border-4 border-white flex items-center justify-center overflow-hidden group"
+                  class="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-3xl p-2 bg-brand-primary shadow-2xl border-4 border-white flex items-center justify-center overflow-hidden group"
                 >
                   <!-- 真正的 1080x1920 高解析度 Canvas 畫布 -->
                   <canvas
@@ -327,7 +318,7 @@
               <div class="lg:col-span-7 space-y-5">
                 <!-- 命定花紋名稱與關鍵字標籤卡片 -->
                 <div
-                  class="p-5 rounded-2xl bg-gradient-to-br from-brand-sky/20 via-white to-brand-lavender/20 border border-brand-lavender space-y-3"
+                  class="p-5 rounded-2xl bg-white border border-brand-lavender space-y-3"
                 >
                   <div class="flex items-center justify-between">
                     <span class="text-xs font-bold text-brand-deep"
@@ -394,7 +385,7 @@
 
                 <!-- 小染心靈寄語 -->
                 <div
-                  class="p-4 rounded-2xl bg-gradient-to-r from-brand-lavender/30 to-brand-sky/30 border border-brand-lavender"
+                  class="p-4 rounded-2xl bg-[#F7F1E7] border border-brand-lavender"
                 >
                   <span class="text-xs font-bold text-brand-primary block mb-1"
                     >✨ 小染給你的心靈寄語：</span
@@ -455,14 +446,14 @@
     <!-- ==========================================================================
        全站頁尾 (Footer - 與 index.html 完全相同)
        ========================================================================== -->
-    <footer class="site-footer" style="background-color: #abc8fa">
+    <footer class="site-footer" style="background-color: #254A64">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
             <div class="d-flex">
               <a href="index.html" class="navbar-brand">
                 <img src="images/logo.png" class="brand-logo" alt="Logo" />
-                <span class="brand-text" style="color: #9564ff"
+                <span class="brand-text" style="color: #F7F1E7"
                   >一抹藍 <br />
                   染出傳統新潮流</span
                 >
@@ -617,7 +608,7 @@
                 margin: 0 0 14px 0;
                 font-size: 16px;
                 font-weight: 700;
-                color: #5170ff;
+                color: #254A64;
                 display: flex;
                 align-items: center;
                 gap: 6px;
@@ -633,7 +624,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -649,7 +640,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -665,7 +656,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -681,7 +672,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -697,7 +688,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -713,7 +704,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -729,7 +720,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -747,7 +738,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -763,7 +754,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -780,7 +771,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -796,7 +787,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -814,7 +805,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -830,7 +821,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -847,7 +838,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -863,7 +854,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -885,7 +876,7 @@
                 margin: 0 0 14px 0;
                 font-size: 16px;
                 font-weight: 700;
-                color: #5170ff;
+                color: #254A64;
                 display: flex;
                 align-items: center;
                 gap: 6px;
@@ -900,7 +891,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -915,7 +906,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -930,7 +921,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -945,7 +936,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -960,7 +951,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -975,7 +966,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -990,7 +981,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1005,7 +996,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1020,7 +1011,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1035,7 +1026,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1050,7 +1041,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1065,7 +1056,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1080,7 +1071,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1095,7 +1086,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1110,7 +1101,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1125,7 +1116,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1140,7 +1131,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1155,7 +1146,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   style="
-                    color: #5170ff;
+                    color: #254A64;
                     text-decoration: underline;
                     text-underline-offset: 3px;
                     word-break: break-all;
@@ -1181,7 +1172,7 @@
             type="button"
             onclick="document.getElementById('sourceModal').close()"
             style="
-              background-color: #5170ff;
+              background-color: #254A64;
               color: #ffffff;
               border: none;
               padding: 10px 28px;
@@ -1190,17 +1181,17 @@
               font-weight: 600;
               cursor: pointer;
               transition: all 0.25s ease;
-              box-shadow: 0 4px 12px rgba(81, 112, 255, 0.35);
+              box-shadow: 0 4px 12px rgba(37, 74, 100, 0.25);
             "
             onmouseover="
-              this.style.backgroundColor = '#9564ff';
+              this.style.backgroundColor = '#C77E63';
               this.style.transform = 'translateY(-1px)';
-              this.style.boxShadow = '0 6px 16px rgba(149, 100, 255, 0.45)';
+              this.style.boxShadow = '0 6px 16px rgba(199, 126, 99, 0.35)';
             "
             onmouseout="
-              this.style.backgroundColor = '#5170ff';
+              this.style.backgroundColor = '#254A64';
               this.style.transform = 'none';
-              this.style.boxShadow = '0 4px 12px rgba(81, 112, 255, 0.35)';
+              this.style.boxShadow = '0 4px 12px rgba(37, 74, 100, 0.25)';
             "
           >
             我瞭解了

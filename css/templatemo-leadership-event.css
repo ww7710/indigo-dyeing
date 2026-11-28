@@ -10,14 +10,23 @@ https://templatemo.com/tm-575-leadership-event
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
+  /* 品牌五大核心純色色彩系統 */
+  --color-cream-white: #F7F1E7;    /* 奶油白 50% 全站主要背景 */
+  --color-indigo-navy: #254A64;    /* 植物靛藍 25% 主要品牌色 */
+  --color-plant-green: #668B83;    /* 草木綠 12% 天然原料與次要品牌色 */
+  --color-cloth-natural: #D5BDA0;  /* 染布原色 8% 卡片、插圖、區塊裝飾 */
+  --color-terracotta: #C77E63;     /* 陶土橘 5% 重點按鈕、活動標籤、小面積強調 */
+  --color-dark-text: #1E2D3B;      /* 深靛灰 內文主要深色文字 */
+  --color-text-muted: #52606D;     /* 次要文字灰 */
+
   --white-color: #ffffff;
-  --primary-color: #c4abfa;
-  --secondary-color: #0d6efd;
-  --section-bg-color: #f0f8ff;
-  --dark-color: #000000;
-  --navbar-bg-color: #5170ff;
-  --p-color: #717275;
-  --highlight-icon-color: #ff0100;
+  --primary-color: var(--color-terracotta);
+  --secondary-color: var(--color-plant-green);
+  --section-bg-color: transparent;
+  --dark-color: var(--color-dark-text);
+  --navbar-bg-color: var(--color-indigo-navy);
+  --p-color: var(--color-dark-text);
+  --highlight-icon-color: var(--color-terracotta);
 
   --body-font-family: "DM Sans", sans-serif;
 
@@ -37,7 +46,8 @@ https://templatemo.com/tm-575-leadership-event
 }
 
 body {
-  background: var(--white-color);
+  background-color: var(--color-cream-white);
+  color: var(--color-dark-text);
   font-family: var(--body-font-family);
 }
 
@@ -271,7 +281,8 @@ strong {
 .custom-btn:hover,
 .navbar-expand-lg .navbar-nav .nav-link.custom-btn:hover,
 .navbar-nav .nav-link.custom-btn:hover {
-  background: var(--primary-color);
+  background: var(--color-terracotta);
+  color: #ffffff;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
   color: var(--white-color);
 }
@@ -297,7 +308,7 @@ strong {
   font-size: 20px;
   line-height: 1.2rem;
   font-weight: var(--font-weight-bold);
-  color: var(--primary-color);
+  color: var(--color-cream-white);
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
@@ -506,8 +517,7 @@ strong {
 .hero::after {
   content: "";
   background: rgba(0, 0, 0, 0)
-    linear-gradient(rgba(39, 48, 83, 0.1) 0%, rgb(39, 48, 83) 100%) repeat
-    scroll 0% 0%;
+    rgba(37, 74, 100, 0.45);
   position: absolute;
   top: 0;
   right: 0;
@@ -917,10 +927,12 @@ strong {
 .site-footer {
   padding-top: 100px;
   padding-bottom: 100px;
+  background-color: var(--color-indigo-navy);
+  color: var(--color-cream-white);
 }
 
 .site-footer .navbar-brand {
-  color: var(--primary-color);
+  color: var(--color-cream-white);
 }
 
 .site-footer .social-icon-link {
@@ -1139,4 +1151,13 @@ a.footer-menu-link:hover {
 .schedule .border-bottom {
   border: none !important;
   border-bottom: none !important;
+}
+
+
+/* 標題純色規範 */
+.titleA,
+.hero .titleA {
+  color: var(--color-indigo-navy, #254A64) !important;
+  text-decoration: none;
+  font-weight: 700;
 }

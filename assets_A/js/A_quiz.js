@@ -278,13 +278,8 @@ function renderDynamicIGCard(canvas, res) {
 
   ctx.clearRect(0, 0, W, H);
 
-  // 1. 底色：和紙手揉水墨漸層
-  const bgGrad = ctx.createLinearGradient(0, 0, W, H);
-  bgGrad.addColorStop(0, '#0a1128');
-  bgGrad.addColorStop(0.3, '#101d42');
-  bgGrad.addColorStop(0.7, '#1c2541');
-  bgGrad.addColorStop(1, '#0b132b');
-  ctx.fillStyle = bgGrad;
+  // 1. 底色：純色植物靛藍（手作胚布沉穩底蘊）
+  ctx.fillStyle = '#254A64';
   ctx.fillRect(0, 0, W, H);
 
   // 2. 依測驗結果動態繪製專屬「藍染防染圖騰水墨背景」
@@ -299,7 +294,7 @@ function renderDynamicIGCard(canvas, res) {
   }
 
   // 4. 外圍雙層精緻邊框
-  ctx.strokeStyle = '#c4abfa';
+  ctx.strokeStyle = '#D5BDA0';
   ctx.lineWidth = 14;
   ctx.strokeRect(40, 40, W - 80, H - 80);
 
@@ -311,12 +306,12 @@ function renderDynamicIGCard(canvas, res) {
   ctx.textAlign = 'center';
 
   // 頂部小標
-  ctx.fillStyle = '#abc8fa';
+  ctx.fillStyle = '#D5BDA0';
   ctx.font = 'bold 30px "Noto Sans TC", sans-serif';
   ctx.fillText('🌿 三峽藍染 400 年 ✕ 虛擬代言人小染', W / 2, 130);
 
   // 主標題
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = '#F7F1E7';
   ctx.font = '900 56px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText('🌸 我的命定藍染花紋測驗結果', W / 2, 210);
 
@@ -327,23 +322,23 @@ function renderDynamicIGCard(canvas, res) {
   const cardH = 1360;
 
   ctx.save();
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
-  ctx.shadowColor = 'rgba(81, 112, 255, 0.35)';
+  ctx.fillStyle = '#F7F1E7';
+  ctx.shadowColor = 'rgba(30, 45, 59, 0.2)';
   ctx.shadowBlur = 45;
   ctx.roundRect(cardX, cardY, cardW, cardH, 40);
   ctx.fill();
   ctx.restore();
 
-  ctx.strokeStyle = '#c4abfa';
+  ctx.strokeStyle = '#D5BDA0';
   ctx.lineWidth = 4;
   ctx.stroke();
 
   // 7. 卡片內圖騰徽章與大字
-  ctx.fillStyle = '#5170ff';
+  ctx.fillStyle = '#C77E63';
   ctx.font = 'bold 36px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText(`【 我是 ${res.badge} 】`, W / 2, 360);
 
-  ctx.fillStyle = '#1e1b4b';
+  ctx.fillStyle = '#254A64';
   ctx.font = '900 52px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText(res.patternName, W / 2, 435);
 
@@ -354,12 +349,8 @@ function renderDynamicIGCard(canvas, res) {
   ctx.arc(W / 2, sealY, 190, 0, Math.PI * 2);
   ctx.clip();
   
-  // 圓章底色
-  const sealGrad = ctx.createRadialGradient(W / 2, sealY, 10, W / 2, sealY, 190);
-  sealGrad.addColorStop(0, '#5170ff');
-  sealGrad.addColorStop(0.5, '#1e3a8a');
-  sealGrad.addColorStop(1, '#0f172a');
-  ctx.fillStyle = sealGrad;
+  // 圓章底色（純色植物靛藍）
+  ctx.fillStyle = '#254A64';
   ctx.fillRect(W / 2 - 190, sealY - 190, 380, 380);
 
   // 依題型在圓章內繪製專屬紋樣細節
@@ -367,60 +358,60 @@ function renderDynamicIGCard(canvas, res) {
   ctx.restore();
 
   // 圓章外框線
-  ctx.strokeStyle = '#c4abfa';
+  ctx.strokeStyle = '#D5BDA0';
   ctx.lineWidth = 8;
   ctx.beginPath();
   ctx.arc(W / 2, sealY, 195, 0, Math.PI * 2);
   ctx.stroke();
 
   // 9. 關鍵字標籤 (Hashtags)
-  ctx.fillStyle = '#5170ff';
+  ctx.fillStyle = '#668B83';
   ctx.font = 'bold 32px "Noto Sans TC", sans-serif';
   ctx.fillText(res.keywords.join('    '), W / 2, 920);
 
   // 10. 屬性標記 (本命植物 ✕ 幸運色)
-  ctx.fillStyle = '#3730a3';
+  ctx.fillStyle = '#254A64';
   ctx.font = '600 32px "Noto Sans TC", sans-serif';
   ctx.fillText(`🌿 本命植物：${res.plant}    |    🎨 幸運色：${res.colorName}`, W / 2, 990);
 
   // 11. 心靈寄語與小染悄悄話 (重點醒目區塊)
-  ctx.fillStyle = '#9564ff';
+  ctx.fillStyle = '#C77E63';
   ctx.font = 'italic bold 36px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText(res.quote, W / 2, 1070);
 
   // 12. 性格特質詳解文字 (自動換行)
-  ctx.fillStyle = '#334155';
+  ctx.fillStyle = '#1E2D3B';
   ctx.font = '400 28px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   wrapText(ctx, res.personality, W / 2, 1140, 780, 44);
 
   // 13. 小染叮嚀小氣泡
   ctx.save();
-  ctx.fillStyle = 'rgba(149, 100, 255, 0.12)';
+  ctx.fillStyle = 'rgba(213, 189, 160, 0.25)';
   ctx.roundRect(140, 1420, 800, 160, 24);
   ctx.fill();
-  ctx.strokeStyle = '#c4abfa';
+  ctx.strokeStyle = '#D5BDA0';
   ctx.lineWidth = 2;
   ctx.stroke();
   ctx.restore();
 
-  ctx.fillStyle = '#5170ff';
+  ctx.fillStyle = '#254A64';
   ctx.font = 'bold 28px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText('✨ 小染悄悄話：', W / 2, 1465);
 
-  ctx.fillStyle = '#1e1b4b';
+  ctx.fillStyle = '#1E2D3B';
   ctx.font = '500 25px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   wrapText(ctx, res.tip, W / 2, 1515, 740, 36);
 
   // 14. 底部引流與驗證資訊
-  ctx.fillStyle = '#abc8fa';
+  ctx.fillStyle = '#D5BDA0';
   ctx.font = 'bold 26px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText('#三峽藍染  #花紋心理學  #小染的湛藍魔法  #綠色工藝  #SDGs11_4', W / 2, 1720);
 
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = '#F7F1E7';
   ctx.font = 'bold 30px "DM Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif';
   ctx.fillText('一抹藍，染出新潮流 ── 立即搜尋體驗', W / 2, 1780);
 
-  ctx.fillStyle = '#94a3b8';
+  ctx.fillStyle = 'rgba(247, 241, 231, 0.7)';
   ctx.font = '400 22px "Noto Sans TC", sans-serif';
   const todayStr = new Date().toLocaleDateString('zh-TW');
   ctx.fillText(`新北市三峽染工坊 ✕ 全國專題競賽商業與管理群 ｜ 測驗證號 #AIZOME-${Date.now().toString().slice(-6)} ｜ ${todayStr}`, W / 2, 1835);
@@ -431,7 +422,7 @@ function drawProceduralDyePattern(ctx, type, W, H) {
   ctx.save();
   if (type === 'A') {
     // 扎染：多重水波同心圓與放射狀防染線
-    ctx.strokeStyle = 'rgba(171, 200, 250, 0.15)';
+    ctx.strokeStyle = 'rgba(213, 189, 160, 0.25)';
     ctx.lineWidth = 18;
     for (let r = 100; r < 1400; r += 90) {
       ctx.beginPath();
@@ -448,7 +439,7 @@ function drawProceduralDyePattern(ctx, type, W, H) {
     }
   } else if (type === 'B') {
     // 夾染：嚴謹對稱菱形摺紙幾何
-    ctx.strokeStyle = 'rgba(196, 171, 250, 0.14)';
+    ctx.strokeStyle = 'rgba(102, 139, 131, 0.2)';
     ctx.lineWidth = 8;
     const step = 120;
     for (let x = -W; x < W * 2; x += step) {
@@ -464,7 +455,7 @@ function drawProceduralDyePattern(ctx, type, W, H) {
     }
   } else if (type === 'C') {
     // 縫染：細緻針線點線與蔓藤花枝
-    ctx.strokeStyle = 'rgba(171, 200, 250, 0.2)';
+    ctx.strokeStyle = 'rgba(213, 189, 160, 0.25)';
     ctx.lineWidth = 6;
     ctx.setLineDash([16, 14]);
     for (let y = 150; y < H; y += 220) {
@@ -477,7 +468,7 @@ function drawProceduralDyePattern(ctx, type, W, H) {
   } else {
     // 段染：流動水墨層次橫向波紋
     for (let i = 0; i < 8; i++) {
-      ctx.fillStyle = `rgba(81, 112, 255, ${0.05 + i * 0.02})`;
+      ctx.fillStyle = `rgba(37, 74, 100, ${0.05 + i * 0.02})`;
       ctx.beginPath();
       const y = (H / 8) * i;
       ctx.moveTo(0, y);
@@ -531,14 +522,11 @@ function drawSealPatternDetail(ctx, type, cx, cy) {
     ctx.arc(cx, cy, 25, 0, Math.PI * 2);
     ctx.stroke();
   } else {
-    // 段染多層水墨漸變
-    const grad = ctx.createLinearGradient(cx, cy - 180, cx, cy + 180);
-    grad.addColorStop(0, '#abc8fa');
-    grad.addColorStop(0.3, '#38bdf8');
-    grad.addColorStop(0.6, '#1d4ed8');
-    grad.addColorStop(1, '#0f172a');
-    ctx.fillStyle = grad;
+    // 段染純色條帶墨韻
+    ctx.fillStyle = '#254A64';
     ctx.fillRect(cx - 190, cy - 190, 380, 380);
+    ctx.fillStyle = '#668B83';
+    ctx.fillRect(cx - 190, cy - 80, 380, 120);
 
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
     ctx.lineWidth = 6;
