@@ -8,9 +8,10 @@
 :root {
   /* 品牌五大核心純色色彩系統 */
   --color-cream-white: #F7F1E7;    /* 奶油白 50% 全站主要背景 */
-  --color-indigo-navy: #254A64;    /* 植物靛藍 25% 主要品牌色 */
-  --color-plant-green: #668B83;    /* 草木綠 12% 天然原料與次要品牌色 */
+  --color-indigo-navy: #055c9d;    /* 植物靛藍 25% 主要品牌色 */
+  --color-plant-green: #7a9a76;    /* 草木綠 12% 天然原料與次要品牌色 */
   --color-cloth-natural: #D5BDA0;  /* 染布原色 8% 卡片、插圖、區塊裝飾 */
+  --color-dirt-path: #bda07b;      /* S型泥土小路專用色（避免與卡片裝飾撞色） */
   --color-terracotta: #C77E63;     /* 陶土橘 5% 重點按鈕、活動標籤、小面積強調 */
   --color-dark-text: #1E2D3B;      /* 深靛灰 內文主要深色文字 */
   --color-text-muted: #52606D;     /* 次要灰 */
@@ -586,7 +587,7 @@ h1, h2, h3, h4, h5, h6, .font-heading, .nav-logo, .hero-title {
 /* 標題純色規範 */
 .titleA,
 .hero .titleA {
-  color: var(--color-indigo-navy, #254A64) !important;
+  color: var(--color-indigo-navy, #055c9d) !important;
   text-decoration: none;
   font-weight: 700;
 }

@@ -33,9 +33,9 @@
   <!-- 1. 底色：奶油白（#F7F1E7） -->
   <rect width="1200" height="800" fill="#F7F1E7"/>
 
-  <!-- 2. 無限連貫 S 型小路 (染布原色 #D5BDA0) -->
+  <!-- 2. 無限連貫 S 型小路 (泥土小路 #bda07b) -->
   <path d="M 600,-10 L 600,0 C 600,140 780,260 600,400 C 420,540 600,660 600,800 L 600,810" 
-        fill="none" stroke="#D5BDA0" stroke-width="160" stroke-linecap="butt" stroke-linejoin="round"/>
+        fill="none" stroke="#bda07b" stroke-width="160" stroke-linecap="butt" stroke-linejoin="round"/>
 
   <!-- 3. 手繪感小草與石頭點綴 -->
   <!-- 左側區域點綴群 -->
