@@ -2993,18 +2993,30 @@ https://templatemo.com/tm-575-leadership-event
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-12 mx-auto">
-              <!-- 修改收件信箱請直接更改下方 action 網址中的 Email：414328@clvsc.tyc.edu.tw -->
+              <!-- 修改收件信箱/隨機碼請直接更改下方 action 網址中的 Hash：https://formsubmit.co/fb79e1e8354e4c1a2af5a07b1ea0bbdb -->
               <form
                 class="custom-form contact-form bg-white shadow-lg"
-                action="https://formsubmit.co/414328@clvsc.tyc.edu.tw"
+                action="https://formsubmit.co/fb79e1e8354e4c1a2af5a07b1ea0bbdb"
                 method="POST"
                 role="form"
               >
-                <!-- FormSubmit 輔助設定 -->
+                <!-- FormSubmit 輔助設定與動態精準返回網址 -->
                 <input type="hidden" name="_subject" value="三峽藍染網站 - 新的意見與回饋！" />
                 <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" id="form-next-url" value="" />
 
                 <h2>收納意見與回饋！</h2>
+
+                <!-- 送出成功提示訊息 (帶有 ?submitted=true 時由 JS 自動顯示) -->
+                <div id="form-success-alert" class="d-none" style="margin: 0 50px 20px 50px; background-color: #FAF8F5; border: 1.5px solid #7a9a76; border-radius: 10px; padding: 14px 20px;">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="bi-check-circle-fill" style="color: #7a9a76; font-size: 1.4rem; flex-shrink: 0;"></i>
+                    <div>
+                      <div style="color: #7a9a76; font-weight: 700; font-size: 1.05rem;">感謝您的回饋！</div>
+                      <div style="color: #52606D; font-size: 0.95rem; margin-top: 2px;">我們已順利收到您的寶貴建議，由衷感謝您對三峽藍染文化的支持！</div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-12">
@@ -3051,7 +3063,7 @@ https://templatemo.com/tm-575-leadership-event
                       required
                     ></textarea>
 
-                    <button type="submit" class="form-control">傳送回饋</button>
+                    <button type="submit" id="contact-submit-btn" class="form-control">傳送回饋</button>
                   </div>
                 </div>
               </form>
@@ -3871,5 +3883,48 @@ https://templatemo.com/tm-575-leadership-event
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
+    <!-- FormSubmit 返回跳轉與提交狀態管理 -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 自動設定精準返回網址 (_next 參數，避免跳轉到 GitHub Pages 根目錄 404)
+        const nextUrlInput = document.getElementById("form-next-url");
+        if (nextUrlInput) {
+          const cleanBaseUrl = window.location.href.split("#")[0].split("?")[0];
+          nextUrlInput.value = cleanBaseUrl + "?submitted=true#section_7";
+        }
+
+        // 2. 檢查網址是否帶有送出成功狀態 (?submitted=true)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("submitted") === "true") {
+          const successAlert = document.getElementById("form-success-alert");
+          if (successAlert) {
+            successAlert.classList.remove("d-none");
+            setTimeout(function () {
+              const section7 = document.getElementById("section_7");
+              if (section7) {
+                section7.scrollIntoView({ behavior: "smooth" });
+              }
+            }, 250);
+          }
+          // 清除網址列中的 query 狀態，使重新整理時不會重複彈出
+          const cleanUrl = window.location.href.split("#")[0].split("?")[0];
+          window.history.replaceState({}, document.title, cleanUrl + "#section_7");
+        }
+
+        // 3. 提交表單時防重複點擊並顯示「傳送中...」狀態
+        const contactForm = document.querySelector(".contact-form");
+        const submitBtn = document.getElementById("contact-submit-btn");
+
+        if (contactForm && submitBtn) {
+          contactForm.addEventListener("submit", function () {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.75";
+            submitBtn.style.cursor = "not-allowed";
+            submitBtn.innerHTML =
+              '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="width: 1rem; height: 1rem; border-width: 2px; vertical-align: -0.15em;"></span>傳送中...';
+          });
+        }
+      });
+    </script>
   </body>
 </html>
