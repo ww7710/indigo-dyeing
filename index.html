@@ -724,409 +724,7 @@
         border: none !important;
         border-bottom: none !important;
       }
-          /* ==========================================================================
-         工坊介紹區段專屬樣式 (Sanxia Dye Workshop Section)
-         ========================================================================== */
-      #sanxia-dye-section {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        font-family: var(--body-font-family);
-        color: #333333;
-        overflow-x: hidden;
-        padding: 80px 0 100px 0;
-        box-sizing: border-box;
-      }
-
-      #sanxia-dye-section * {
-        box-sizing: border-box;
-      }
-
-      /* 主要內容限制寬度並置中 */
-      #sanxia-dye-section .section-container {
-        position: relative;
-        z-index: 2;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 5%;
-      }
-
-      /* ================= 上半部區塊 ================= */
-      #sanxia-dye-section .upper-grid {
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 60px;
-        margin-bottom: 140px;
-      }
-
-      /* 左上區塊：職人堅持與營運痛點 (滑入動態初始狀態) */
-      #sanxia-dye-section .left-story {
-        position: relative;
-        z-index: 2;
-        flex: 1;
-        max-width: 500px;
-        padding-top: 20px;
-        opacity: 0;
-        transform: translateX(-60px);
-        transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-                    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-        will-change: opacity, transform;
-      }
-
-      #sanxia-dye-section .main-title {
-        font-size: clamp(2rem, 3.2vw, 2.75rem);
-        font-weight: 900;
-        color: var(--theme-dark, #111111);
-        letter-spacing: 0.04em;
-        margin: 0 0 48px 0;
-        line-height: 1.25;
-      }
-
-      #sanxia-dye-section .sub-block {
-        margin-bottom: 42px;
-        padding-left: 24px;
-      }
-
-      #sanxia-dye-section .sub-title-blue {
-        font-size: clamp(1.35rem, 2vw, 1.65rem);
-        font-weight: 700;
-        color: var(--theme-purple, #7a9a76);
-        margin: 0 0 14px 0;
-        letter-spacing: 0.03em;
-      }
-
-      #sanxia-dye-section .body-text {
-        font-size: 1rem;
-        line-height: 1.75;
-        color: #3d3d3d;
-        margin: 0;
-        padding-left: 42px;
-        text-align: left;
-      }
-
-      /* 右上區塊：文史脈絡與創立故事 (滑入動態初始狀態，內部 .top-right-arc 隨之一同滑入) */
-      #sanxia-dye-section .right-history {
-        position: relative;
-        z-index: 2;
-        flex: 1;
-        max-width: 520px;
-        padding-top: 15px;
-        padding-left: 35px;
-        opacity: 0;
-        transform: translateX(60px);
-        transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-                    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-        will-change: opacity, transform;
-      }
-
-      /* 上半部左右兩欄滾動進入視窗後的就位狀態 */
-      #sanxia-dye-section .left-story.is-visible,
-      #sanxia-dye-section .right-history.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      /* 藍底圓弧背景，使用 100vw 向右延伸超出螢幕 */
-      #sanxia-dye-section .top-right-arc {
-        position: absolute;
-        top: -115px;
-        left: -25px;
-        width: 100vw;
-        min-width: 750px;
-        height: 640px;
-        background-color: var(--color-indigo-navy, #055c9d);
-        border-bottom-left-radius: 360px 420px;
-        border-top-left-radius: 220px 300px;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      #sanxia-dye-section .arc-main-title {
-        font-size: clamp(2rem, 3.2vw, 2.75rem);
-        font-weight: 900;
-        color: var(--white-color, #ffffff);
-        letter-spacing: 0.04em;
-        margin: 0 0 32px 0;
-        line-height: 1.25;
-      }
-
-      #sanxia-dye-section .right-history .sub-block {
-        padding-left: 0;
-        margin-bottom: 38px;
-      }
-
-      #sanxia-dye-section .right-history .body-text {
-        padding-left: 52px;
-        color: #2c3545;
-      }
-
-      /* ================= 下半部區塊 ================= */
-      #sanxia-dye-section .lower-section {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-      }
-
-      #sanxia-dye-section .center-title {
-        text-align: center;
-        font-size: clamp(2rem, 3.2vw, 2.75rem);
-        font-weight: 900;
-        color: var(--theme-dark, #111111);
-        letter-spacing: 0.05em;
-        margin: 0 0 60px 0;
-      }
-
-      #sanxia-dye-section .lower-grid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 50px;
-      }
-
-      /* 左下文字區 */
-      #sanxia-dye-section .left-service {
-        flex: 1;
-        max-width: 500px;
-        padding-left: 45px;
-      }
-
-      #sanxia-dye-section .left-service .sub-block {
-        padding-left: 0;
-        margin-bottom: 44px;
-      }
-
-      #sanxia-dye-section .left-service .body-text {
-        padding-left: 0;
-      }
-
-      /* ================= 右下五張輪播區 ================= */
-      #sanxia-dye-section .right-carousel-wrapper {
-        flex: 1;
-        max-width: 540px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* 卡片堆疊舞台 */
-      #sanxia-dye-section .carousel-stage {
-        position: relative;
-        width: 100%;
-        height: 290px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 16px;
-      }
-
-      /* 單張輪播卡片基礎樣式 */
-      #sanxia-dye-section .carousel-card {
-        position: absolute;
-        width: 240px;
-        height: 270px;
-        border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        background-color: #e2e8f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      #sanxia-dye-section .carousel-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      #sanxia-dye-section .carousel-card .placeholder-box {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 700;
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
-      }
-
-      /* 五張卡片的相對位置狀態 */
-      #sanxia-dye-section .carousel-card[data-pos="0"] {
-        transform: translateX(0) scale(1);
-        z-index: 5;
-        filter: brightness(1);
-      }
-
-      #sanxia-dye-section .carousel-card[data-pos="-1"] {
-        transform: translateX(-75px) scale(0.9);
-        z-index: 4;
-        filter: brightness(0.92);
-      }
-
-      #sanxia-dye-section .carousel-card[data-pos="1"] {
-        transform: translateX(75px) scale(0.9);
-        z-index: 4;
-        filter: brightness(0.92);
-      }
-
-      #sanxia-dye-section .carousel-card[data-pos="-2"] {
-        transform: translateX(-140px) scale(0.8);
-        z-index: 3;
-        filter: brightness(0.85);
-      }
-
-      #sanxia-dye-section .carousel-card[data-pos="2"] {
-        transform: translateX(140px) scale(0.8);
-        z-index: 3;
-        filter: brightness(0.85);
-      }
-
-      /* 說明文字樣式與重設 */
-      #sanxia-dye-section .carousel-caption {
-        position: static !important;
-        right: auto !important;
-        bottom: auto !important;
-        left: auto !important;
-        width: 100% !important;
-        display: block !important;
-        text-align: center !important;
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: #333333;
-        margin: 20px auto 5px auto !important;
-        padding: 0 !important;
-        min-height: 1.4em;
-        float: none !important;
-        transform: translateX(120px);
-      }
-
-      /* 輪播控制列 */
-      #sanxia-dye-section .carousel-controls {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-      }
-
-      #sanxia-dye-section .nav-btn {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 1px solid #d1d5db;
-        background-color: var(--white-color, #ffffff);
-        color: #4b5563;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        padding: 0;
-      }
-
-      #sanxia-dye-section .nav-btn:hover {
-        background-color: #f3f4f6;
-        border-color: #9ca3af;
-        color: #111827;
-      }
-
-      #sanxia-dye-section .dots-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      #sanxia-dye-section .dot {
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background-color: #d9d9d9;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        transition:
-          background-color 0.25s ease,
-          transform 0.25s ease;
-      }
-
-      #sanxia-dye-section .dot.active {
-        background-color: var(--color-indigo-navy, #055c9d);
-        transform: scale(1.1);
-      }
-
-      /* ================= RWD 響應式適配 ================= */
-      @media (max-width: 992px) {
-        #sanxia-dye-section .upper-grid,
-        #sanxia-dye-section .lower-grid {
-          flex-direction: column;
-          align-items: center;
-          gap: 60px;
-        }
-
-        #sanxia-dye-section .left-story,
-        #sanxia-dye-section .right-history,
-        #sanxia-dye-section .left-service,
-        #sanxia-dye-section .right-carousel-wrapper {
-          max-width: 100%;
-          width: 100%;
-          padding-left: 0;
-        }
-
-        #sanxia-dye-section .right-history {
-          padding: 40px 24px;
-        }
-
-        #sanxia-dye-section .top-right-arc {
-          top: 0;
-          left: -5vw;
-          width: 110vw;
-          height: 100%;
-          border-bottom-left-radius: 160px 140px;
-          border-top-left-radius: 160px 140px;
-        }
-
-        #sanxia-dye-section .sub-block,
-        #sanxia-dye-section .body-text,
-        #sanxia-dye-section .right-history .body-text {
-          padding-left: 0;
-        }
-
-        #sanxia-dye-section .upper-grid {
-          margin-bottom: 80px;
-        }
-
-        #sanxia-dye-section .carousel-caption {
-          transform: none;
-        }
-      }
-
-      @media (max-width: 576px) {
-        #sanxia-dye-section .carousel-card {
-          width: 190px;
-          height: 220px;
-        }
-        #sanxia-dye-section .carousel-card[data-pos="-1"] {
-          transform: translateX(-48px) scale(0.9);
-        }
-        #sanxia-dye-section .carousel-card[data-pos="1"] {
-          transform: translateX(48px) scale(0.9);
-        }
-        #sanxia-dye-section .carousel-card[data-pos="-2"] {
-          transform: translateX(-90px) scale(0.8);
-        }
-        #sanxia-dye-section .carousel-card[data-pos="2"] {
-          transform: translateX(90px) scale(0.8);
-        }
-      }
-    </style>
+          </style>
     <!--
 
 TemplateMo 575 Leadership Event
@@ -1397,283 +995,741 @@ https://templatemo.com/tm-575-leadership-event
       </section>
 
 
-            <!-- 工坊介紹區段開始 -->
-      <section id="sanxia-dye-section">
-        <div class="section-container">
-          <!-- 上半部：左右雙欄 -->
-          <div class="upper-grid">
-            <!-- 左上：職人堅持與營運痛點 -->
-            <div class="left-story">
-              <h2 class="main-title">職人堅持與營運痛點</h2>
+                  <!-- 工坊介紹區段開始 -->
+      <section id="sanxia-dye-section" class="workshop-section">
+        <style>
+          /* =====================================
+             三峽染工坊介紹｜獨立區段樣式
+          ===================================== */
+          .workshop-section {
+            --ws-blue: #055c9d;
+            --ws-beige: #d5bda0;
+            --ws-green: #7a9a76;
+            --ws-black: #1E2D3B;
+            --ws-gray: #52606D;
+            --ws-light: #f8f7f4;
 
-              <div class="sub-block">
-                <h3 class="sub-title-blue">教學導向的堅持</h3>
-                <p class="body-text">
-                  工坊透過教學式的手作體驗，堅持「不只是把布料泡泡染液、帶走一件方巾」，希望讓訪客真正理解背後的歷史與化學工藝底蘊。
+            width: 100%;
+            padding: clamp(45px, 6vw, 95px) clamp(20px, 4vw, 80px);
+            background: transparent !important;
+            background-color: transparent !important;
+            background-image: none !important;
+            color: var(--ws-black);
+            font-family: var(--body-font-family, "Noto Sans TC", "Microsoft JhengHei", sans-serif);
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+          }
+
+          .workshop-section * {
+            box-sizing: border-box;
+          }
+
+          /* 內容寬度自適應寬螢幕，隨螢幕延展，避免兩側過度留白 */
+          .ws-container {
+            width: 100%;
+            max-width: min(92vw, 1750px);
+            margin: 0 auto;
+            padding: 0 clamp(16px, 2.5vw, 40px);
+          }
+
+          @media (min-width: 1800px) {
+            .ws-container {
+              max-width: min(90vw, 2100px);
+            }
+          }
+
+          /* =====================================
+             上半部：左右雙欄
+          ===================================== */
+          .ws-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 5vw, 90px);
+            align-items: stretch;
+          }
+
+          /* 左側：職人堅持與營運痛點 */
+          .ws-left {
+            padding: 15px 0 25px;
+            min-width: 0;
+          }
+
+          .ws-main-title {
+            font-size: clamp(28px, 2.8vw, 44px);
+            line-height: 1.4;
+            font-weight: 900;
+            color: var(--ws-black);
+            margin: 0 0 clamp(24px, 2.5vw, 36px);
+            letter-spacing: 1px;
+          }
+
+          .ws-topic {
+            margin-bottom: clamp(28px, 3.5vw, 48px);
+            padding-left: clamp(12px, 2vw, 28px);
+          }
+
+          .ws-topic h3 {
+            font-size: clamp(21px, 1.8vw, 30px);
+            color: var(--ws-blue);
+            font-weight: 800;
+            margin: 0 0 12px;
+          }
+
+          .ws-topic p {
+            font-size: clamp(15px, 1.1vw, 18px);
+            line-height: 1.85;
+            color: var(--ws-gray);
+            margin: 0;
+            text-align: justify;
+          }
+
+          /* =====================================
+             右側：文史脈絡與創立故事
+          ===================================== */
+          .ws-history {
+            position: relative;
+            isolation: isolate;
+            padding: clamp(35px, 4vw, 65px);
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          .ws-history::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--ws-beige);
+            border-radius: 28px;
+            transform: rotate(-3.5deg);
+            z-index: -1;
+            box-shadow: 0 12px 35px rgba(213, 189, 160, 0.3);
+          }
+
+          .ws-history-title {
+            color: #ffffff;
+            font-size: clamp(25px, 2.4vw, 38px);
+            font-weight: 900;
+            text-align: center;
+            margin: 0 0 clamp(20px, 2.5vw, 32px);
+            line-height: 1.4;
+          }
+
+          .ws-history-block {
+            margin-bottom: 28px;
+          }
+
+          .ws-history-block:last-child {
+            margin-bottom: 0;
+          }
+
+          .ws-history-block h3 {
+            color: var(--ws-green);
+            font-size: clamp(20px, 1.7vw, 28px);
+            font-weight: 800;
+            margin: 0 0 12px;
+          }
+
+          .ws-history-block p {
+            color: #2b3844;
+            font-size: clamp(14px, 1.05vw, 17px);
+            line-height: 1.85;
+            margin: 0 0 0 clamp(10px, 1.5vw, 20px);
+            text-align: justify;
+          }
+
+          /* =====================================
+             下半部：服務與體驗
+          ===================================== */
+          .ws-bottom {
+            margin-top: clamp(60px, 7vw, 110px);
+          }
+
+          .ws-bottom-title {
+            text-align: center;
+            font-size: clamp(30px, 3vw, 44px);
+            font-weight: 900;
+            color: var(--ws-black);
+            margin: 0 0 clamp(35px, 4vw, 65px);
+          }
+
+          /* 服務介紹雙欄 */
+          .ws-service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(30px, 5vw, 95px);
+          }
+
+          .ws-service-card {
+            padding: 0 clamp(4px, 1vw, 16px);
+          }
+
+          .ws-service-card h3 {
+            color: var(--ws-blue);
+            font-size: clamp(22px, 2vw, 30px);
+            font-weight: 800;
+            margin: 0 0 15px;
+          }
+
+          .ws-service-card p {
+            color: var(--ws-gray);
+            font-size: clamp(15px, 1.1vw, 18px);
+            line-height: 1.9;
+            margin: 0;
+            text-align: justify;
+          }
+
+          /* =====================================
+             五張圖片輪播（寬螢幕自適應）
+          ===================================== */
+          .ws-carousel-area {
+            margin-top: clamp(45px, 6vw, 85px);
+            width: 100%;
+          }
+
+          .ws-carousel {
+            position: relative;
+            width: 100%;
+            max-width: min(88vw, 1380px);
+            height: clamp(300px, 30vw, 490px);
+            margin: 0 auto;
+          }
+
+          @media (min-width: 1800px) {
+            .ws-carousel {
+              max-width: 1560px;
+              height: 540px;
+            }
+          }
+
+          .ws-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+          }
+
+          /* 圖片卡片 */
+          .ws-slide {
+            position: absolute;
+            width: 36%;
+            height: 82%;
+            left: 32%;
+            top: 9%;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #e9e5df;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transition:
+              transform .55s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity .55s ease,
+              box-shadow .55s ease;
+            opacity: 0;
+            pointer-events: none;
+            cursor: pointer;
+          }
+
+          .ws-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+
+          /* 五張圖片排列 */
+          .ws-slide[data-position="0"] {
+            transform: translateX(-120%) scale(.83);
+            z-index: 1;
+            opacity: .85;
+            pointer-events: auto;
+          }
+
+          .ws-slide[data-position="1"] {
+            transform: translateX(-62%) scale(.93);
+            z-index: 2;
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .ws-slide[data-position="2"] {
+            transform: translateX(0) scale(1);
+            z-index: 5;
+            opacity: 1;
+            pointer-events: auto;
+            box-shadow: 0 16px 36px rgba(5, 92, 157, 0.22);
+          }
+
+          .ws-slide[data-position="3"] {
+            transform: translateX(62%) scale(.93);
+            z-index: 2;
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .ws-slide[data-position="4"] {
+            transform: translateX(120%) scale(.83);
+            z-index: 1;
+            opacity: .85;
+            pointer-events: auto;
+          }
+
+          /* 左右控制按鈕 */
+          .ws-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: clamp(42px, 3.5vw, 54px);
+            height: clamp(42px, 3.5vw, 54px);
+            border: 2px solid #dddddd;
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--ws-blue);
+            font-size: clamp(24px, 2vw, 32px);
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+          }
+
+          .ws-arrow:hover {
+            background: var(--ws-blue);
+            color: #ffffff;
+            border-color: var(--ws-blue);
+            transform: translateY(-50%) scale(1.08);
+          }
+
+          .ws-prev {
+            left: 0;
+          }
+
+          .ws-next {
+            right: 0;
+          }
+
+          /* 圖片說明 */
+          .ws-caption {
+            text-align: center;
+            margin: 22px auto 0;
+            color: var(--ws-black);
+            font-size: clamp(16px, 1.2vw, 19px);
+            font-weight: 600;
+            line-height: 1.7;
+            min-height: 32px;
+          }
+
+          /* 輪播圓點 */
+          .ws-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+          }
+
+          .ws-dot {
+            width: 12px;
+            height: 12px;
+            border: none;
+            padding: 0;
+            border-radius: 50%;
+            background: #d5d5d5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+
+          .ws-dot.active {
+            width: 32px;
+            border-radius: 10px;
+            background: var(--ws-blue);
+          }
+
+          /* =====================================
+             平板：改為上下排列
+          ===================================== */
+          @media (max-width: 900px) {
+            .ws-top {
+              grid-template-columns: 1fr;
+              gap: 35px;
+            }
+
+            .ws-left {
+              padding: 10px 5px;
+            }
+
+            .ws-history {
+              padding: 45px 7%;
+              min-height: 380px;
+            }
+
+            .ws-history::before {
+              transform: rotate(-2deg);
+            }
+
+            .ws-service-grid {
+              gap: 35px;
+            }
+
+            .ws-carousel {
+              max-width: 780px;
+              height: 320px;
+            }
+
+            .ws-slide {
+              width: 44%;
+              left: 28%;
+            }
+          }
+
+          /* =====================================
+             手機：單欄響應式
+          ===================================== */
+          @media (max-width: 550px) {
+            .workshop-section {
+              padding: 35px 16px 50px;
+            }
+
+            .ws-main-title {
+              font-size: 28px;
+              margin-bottom: 22px;
+            }
+
+            .ws-topic {
+              padding-left: 8px;
+              margin-bottom: 28px;
+            }
+
+            .ws-topic h3 {
+              font-size: 21px;
+            }
+
+            .ws-topic p {
+              font-size: 15px;
+            }
+
+            .ws-history {
+              padding: 35px 22px;
+              min-height: auto;
+            }
+
+            .ws-history-title {
+              font-size: 24px;
+              margin-bottom: 22px;
+            }
+
+            .ws-history-block h3 {
+              font-size: 21px;
+            }
+
+            .ws-history-block p {
+              font-size: 14px;
+              margin-left: 8px;
+            }
+
+            .ws-bottom {
+              margin-top: 50px;
+            }
+
+            .ws-bottom-title {
+              font-size: 28px;
+              margin-bottom: 26px;
+            }
+
+            .ws-service-grid {
+              grid-template-columns: 1fr;
+              gap: 28px;
+            }
+
+            .ws-service-card {
+              padding: 0 4px;
+            }
+
+            .ws-service-card h3 {
+              font-size: 22px;
+            }
+
+            .ws-service-card p {
+              font-size: 15px;
+            }
+
+            .ws-carousel-area {
+              margin-top: 36px;
+            }
+
+            .ws-carousel {
+              height: 250px;
+            }
+
+            .ws-slide {
+              width: 54%;
+              left: 23%;
+              height: 76%;
+              top: 12%;
+              border-radius: 16px;
+            }
+
+            .ws-slide[data-position="0"] {
+              transform: translateX(-82%) scale(.78);
+            }
+
+            .ws-slide[data-position="1"] {
+              transform: translateX(-46%) scale(.9);
+            }
+
+            .ws-slide[data-position="3"] {
+              transform: translateX(46%) scale(.9);
+            }
+
+            .ws-slide[data-position="4"] {
+              transform: translateX(82%) scale(.78);
+            }
+
+            .ws-arrow {
+              width: 36px;
+              height: 36px;
+              font-size: 20px;
+            }
+
+            .ws-caption {
+              font-size: 14.5px;
+            }
+          }
+
+          /* 尊重使用者的減少動態設定 */
+          @media (prefers-reduced-motion: reduce) {
+            .ws-slide,
+            .ws-arrow,
+            .ws-dot {
+              transition: none;
+            }
+          }
+        </style>
+
+        <div class="ws-container">
+          <!-- =================================
+               第一區：職人堅持與文史脈絡
+          ================================== -->
+          <div class="ws-top">
+            <!-- 左側：職人堅持與營運痛點 -->
+            <div class="ws-left">
+              <h2 class="ws-main-title">職人堅持與營運痛點</h2>
+
+              <div class="ws-topic">
+                <h3>教學導向的堅持</h3>
+                <p>
+                  工坊始終堅持「教學導向」，由在地資深工藝師親自帶領解說，拒絕走馬看花式的商業體驗。我們期待每一位來到三峽的訪客，「不只是把布料泡染液、帶走一件方巾」，而是能親手觸摸天然發酵染缸的溫度、觀察布料接觸空氣後「由黃綠轉為湛藍」的神奇氧化過程，真正理解老工藝背後的歷史脈絡與天然化學底蘊。
                 </p>
               </div>
 
-              <div class="sub-block">
-                <h3 class="sub-title-blue">數位轉型契機</h3>
-                <p class="body-text">
-                  面對年輕客群斷層與「一次性消費」困境，在訪談當中對本組的形象IP寄予期待，期望能透過數位互動降低年輕人接觸傳統工藝的門檻。
+              <div class="ws-topic">
+                <h3>數位轉型契機</h3>
+                <p>
+                  在實地訪談中我們發現，目前工坊平日散客門檻較高，多以親子與學校團體為主，不僅年輕客群斷層嚴重，遊客也常抱持「體驗過一次就夠了」的一次性消費心態。為打破這道落隘，工坊對本團隊設計的原創形象 IP「柯山菁（小染）」寄予厚望，期待透過可愛親民的二次元視覺、LINE 貼圖與故事電子書等數位互動，降低 Z 世代接觸傳統工藝的門檻，讓百年藍染重新走進年輕人的日常。
                 </p>
               </div>
             </div>
 
-            <!-- 右上：文史脈絡與創立故事 -->
-            <div class="right-history">
-              <!-- 藍底圓弧直接放在此區塊內作為背景，並向右超出螢幕 -->
-              <div class="top-right-arc" aria-hidden="true"></div>
+            <!-- 右側：文史脈絡與創立故事 -->
+            <div class="ws-history">
+              <h2 class="ws-history-title">文史脈絡與創立故事</h2>
 
-              <h2 class="arc-main-title">文史脈絡與創立故事</h2>
-
-              <div class="sub-block">
-                <h3 class="sub-title-blue">清代盛況</h3>
-                <p class="body-text">
-                  三峽民權街舊稱「三角湧街」，因山區盛產馬藍（大菁）且水利便利，清代幾乎家家戶戶參與染布，各坊皆有獨門配方。
+              <div class="ws-history-block">
+                <h3>清代盛況</h3>
+                <p>
+                  三峽民權街舊稱「三角湧街」，在清代曾是北台灣染布業最繁華的核心重鎮。當時因周邊山區氣候潮濕、盛產天然染料植物「馬藍（大菁）」，加上三峽溪水質純淨、水運集散極為便利，老街幾乎家家戶戶都投入染布產業，各家染坊皆擁有不同的獨門發酵配方，吸引各地商賈前來批貨，如今老街紅磚立面上仍可見雕刻著「染坊」字樣的歷史印記。
                 </p>
               </div>
 
-              <div class="sub-block">
-                <h3 class="sub-title-blue">式微與復育</h3>
-                <p class="body-text">
-                  日治時期受西服與化學染劑衝擊而中斷數十年，直到在地組織「三角湧文化協進會」為保存無形文化資產，輔導成立了「三峽染工坊（藍染展示中心）」。
+              <div class="ws-history-block">
+                <h3>式微與復育</h3>
+                <p>
+                  日治時期隨著西服興起和服文化流行，加上廉價、色彩穩定的化學合成染料大量引進，耗時費工的傳統植物藍染逐漸失去市場競爭力，技藝一度式微並中斷了數十年。為了不讓這項珍貴的無形文化資產就此失傳，在地組織「三角湧文化協進會」積極投入田野調查與技藝復育，並特別輔導成立了「三峽染工坊（藍染展示中心）」，讓百年湛藍再次於老街紅磚屋中重獲新生。
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- 下半部：服務與體驗 -->
-          <div class="lower-section">
-            <h2 class="center-title">服務與體驗</h2>
+          <!-- =================================
+               第二區：服務與體驗
+          ================================== -->
+          <div class="ws-bottom">
+            <h2 class="ws-bottom-title">服務與體驗</h2>
 
-            <div class="lower-grid">
-              <!-- 左下：文字介紹 -->
-              <div class="left-service">
-                <div class="sub-block">
-                  <h3 class="sub-title-blue">手作體驗</h3>
-                  <p class="body-text">
-                    體驗時長約 1~2
-                    小時，含簡介、技法教學與實作，，品項包含大方巾、帆布小提袋、精緻角巾等各類小物。
-                  </p>
-                </div>
-
-                <div class="sub-block">
-                  <h3 class="sub-title-blue">商品展售</h3>
-                  <p class="body-text">
-                    涵蓋棉/絲巾、側背包/束口袋、茶席布、髮夾與平安符等生活工藝品
-                  </p>
-                </div>
+            <div class="ws-service-grid">
+              <div class="ws-service-card">
+                <h3>手作體驗</h3>
+                <p>
+                  完整體驗時長約 1～2 小時，課程包含三峽藍染文化簡介、天然染液原理說明，以及綁染、夾染等防染技法實作教學。現場提供棉方巾、大帆布小提袋、精緻角巾等多樣素材選擇，無論是親子共學或朋友出遊，都能親手染出獨一無二的湛藍紀念品。
+                </p>
               </div>
 
-              <!-- 右下：五張堆疊輪播圖片區 -->
-              <div class="right-carousel-wrapper">
-                <div class="carousel-stage" id="sanxia-carousel-stage">
-                  <div
-                    class="carousel-card"
-                    data-index="0"
-                    data-caption="親切的專業老師指導"
-                  >
-                    <div class="placeholder-box"></div>
-                    <img
-                      src="images/teacher_card.png"
-                      alt="親切的專業老師指導"
-                    />
+              <div class="ws-service-card">
+                <h3>商品展售</h3>
+                <p>
+                  工坊展售區與線上商店同步陳列兼具傳統工藝底蘊與現代生活美學的手作織品，品項涵蓋天然染服飾、棉巾與絲巾、日常側背包與束口袋、質感茶席布，以及精緻的藍染髮夾、平安符等文創隨身飾品，讓天然植物染的溫潤色澤自然融入每一天的生活。
+                </p>
+              </div>
+            </div>
+
+            <!-- =================================
+                 第三區：五張圖片輪播
+            ================================== -->
+            <div class="ws-carousel-area">
+              <div class="ws-carousel">
+                <!-- 左箭頭 -->
+                <button class="ws-arrow ws-prev" type="button" aria-label="上一張">‹</button>
+
+                <!-- 五張圖片 -->
+                <div class="ws-track">
+                  <!-- 圖片一 -->
+                  <div class="ws-slide" data-index="0">
+                    <img src="images/teacher_card.png" onerror="this.onerror=null; this.src='images/workshop-01.jpg';" alt="三峽染工坊｜親切專業老師指導" />
                   </div>
 
-                  <div
-                    class="carousel-card"
-                    data-index="1"
-                    data-caption="多樣藍染花紋工具"
-                  >
-                    <div class="placeholder-box"></div>
-                    <img src="images/tools_card.png" alt="多樣藍染花紋工具" />
+                  <!-- 圖片二 -->
+                  <div class="ws-slide" data-index="1">
+                    <img src="images/tools_card.png" onerror="this.onerror=null; this.src='images/workshop-02.jpg';" alt="三峽染工坊｜多樣藍染花紋工具" />
                   </div>
 
-                  <div
-                    class="carousel-card"
-                    data-index="2"
-                    data-caption="各式精美商品展售"
-                  >
-                    <div class="placeholder-box"></div>
-                    <img
-                      src="images/products_card.png"
-                      alt="各式精美商品展售"
-                    />
+                  <!-- 圖片三 -->
+                  <div class="ws-slide" data-index="2">
+                    <img src="images/products_card.png" onerror="this.onerror=null; this.src='images/workshop-03.jpg';" alt="三峽染工坊｜各式精美商品展售" />
                   </div>
 
-                  <div
-                    class="carousel-card"
-                    data-index="3"
-                    data-caption="教學式體驗"
-                  >
-                    <div class="placeholder-box"></div>
-                    <img src="images/Handmade_card.png" alt="教學式體驗" />
+                  <!-- 圖片四 -->
+                  <div class="ws-slide" data-index="3">
+                    <img src="images/Handmade_card.png" onerror="this.onerror=null; this.src='images/workshop-04.jpg';" alt="三峽染工坊｜教學式手作體驗" />
                   </div>
 
-                  <div
-                    class="carousel-card"
-                    data-index="4"
-                    data-caption="藍染歷史與植物介紹"
-                  >
-                    <div class="placeholder-box"></div>
-                    <img
-                      src="images/Introduction_card.png"
-                      alt="藍染歷史與植物介紹"
-                    />
+                  <!-- 圖片五 -->
+                  <div class="ws-slide" data-index="4">
+                    <img src="images/Introduction_card.png" onerror="this.onerror=null; this.src='images/workshop-05.jpg';" alt="三峽染工坊｜藍染歷史與植物介紹" />
                   </div>
                 </div>
 
-                <!-- 動態說明文字（改用 div 避免被外部 p 標籤樣式干擾） -->
-                <div class="carousel-caption" id="sanxia-carousel-caption">
-                  說明文字
-                </div>
+                <!-- 右箭頭 -->
+                <button class="ws-arrow ws-next" type="button" aria-label="下一張">›</button>
+              </div>
 
-                <!-- 控制按鈕與圓點 -->
-                <div class="carousel-controls">
-                  <button
-                    type="button"
-                    class="nav-btn"
-                    id="sanxia-prev-btn"
-                    aria-label="上一張"
-                  >
-                    &lt;
-                  </button>
-                  <div class="dots-group" id="sanxia-dots-group">
-                    <button
-                      type="button"
-                      class="dot"
-                      data-target="0"
-                      aria-label="第 1 張"
-                    ></button>
-                    <button
-                      type="button"
-                      class="dot"
-                      data-target="1"
-                      aria-label="第 2 張"
-                    ></button>
-                    <button
-                      type="button"
-                      class="dot active"
-                      data-target="2"
-                      aria-label="第 3 張"
-                    ></button>
-                    <button
-                      type="button"
-                      class="dot"
-                      data-target="3"
-                      aria-label="第 4 張"
-                    ></button>
-                    <button
-                      type="button"
-                      class="dot"
-                      data-target="4"
-                      aria-label="第 5 張"
-                    ></button>
-                  </div>
-                  <button
-                    type="button"
-                    class="nav-btn"
-                    id="sanxia-next-btn"
-                    aria-label="下一張"
-                  >
-                    &gt;
-                  </button>
-                </div>
+              <!-- 圖片說明文字 -->
+              <p class="ws-caption">三峽染工坊｜各式精美商品展售</p>
+
+              <!-- 五個切換圓點 -->
+              <div class="ws-dots">
+                <button class="ws-dot" aria-label="第1張圖片"></button>
+                <button class="ws-dot" aria-label="第2張圖片"></button>
+                <button class="ws-dot active" aria-label="第3張圖片"></button>
+                <button class="ws-dot" aria-label="第4張圖片"></button>
+                <button class="ws-dot" aria-label="第5張圖片"></button>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <script>
-        (function () {
-          const section = document.getElementById("sanxia-dye-section");
-          if (!section) return;
+        <!-- =====================================
+             JavaScript：五張圖片輪播功能
+        ===================================== -->
+        <script>
+          (() => {
+            const section = document.getElementById("sanxia-dye-section");
+            if (!section) return;
 
-          // 上半部區塊 (.upper-grid) 滾動進入視窗滑入動畫
-          const upperGrid = section.querySelector(".upper-grid");
-          const leftStory = section.querySelector(".left-story");
-          const rightHistory = section.querySelector(".right-history");
+            const slides = [...section.querySelectorAll(".ws-slide")];
+            const dots = [...section.querySelectorAll(".ws-dot")];
+            const prev = section.querySelector(".ws-prev");
+            const next = section.querySelector(".ws-next");
+            const caption = section.querySelector(".ws-caption");
 
-          if (upperGrid && leftStory && rightHistory) {
-            if ("IntersectionObserver" in window) {
-              const upperObserver = new IntersectionObserver(
-                (entries, observer) => {
-                  entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                      leftStory.classList.add("is-visible");
-                      rightHistory.classList.add("is-visible");
-                      observer.unobserve(entry.target);
-                    }
-                  });
-                },
-                { threshold: 0.2 }
-              );
-              upperObserver.observe(upperGrid);
-            } else {
-              leftStory.classList.add("is-visible");
-              rightHistory.classList.add("is-visible");
-            }
-          }
+            const descriptions = [
+              "三峽染工坊｜親切專業老師指導",
+              "三峽染工坊｜多樣藍染花紋工具",
+              "三峽染工坊｜各式精美商品展售",
+              "三峽染工坊｜教學式手作體驗",
+              "三峽染工坊｜藍染歷史與植物介紹"
+            ];
 
-          const cards = Array.from(section.querySelectorAll(".carousel-card"));
-          const dots = Array.from(section.querySelectorAll(".dot"));
-          const captionEl = section.querySelector("#sanxia-carousel-caption");
-          const prevBtn = section.querySelector("#sanxia-prev-btn");
-          const nextBtn = section.querySelector("#sanxia-next-btn");
+            let current = 2;
 
-          const total = cards.length;
-          let activeIndex = 2;
+            function updateCarousel() {
+              slides.forEach((slide, index) => {
+                const position = (index - current + 5) % 5;
+                slide.dataset.position = position;
+              });
 
-          function updateCarousel() {
-            cards.forEach((card, idx) => {
-              let diff = idx - activeIndex;
-              if (diff > 2) diff -= total;
-              if (diff < -2) diff += total;
+              dots.forEach((dot, index) => {
+                dot.classList.toggle("active", index === current);
+              });
 
-              card.setAttribute("data-pos", diff);
-            });
-
-            dots.forEach((dot, idx) => {
-              dot.classList.toggle("active", idx === activeIndex);
-            });
-
-            const currentCaption =
-              cards[activeIndex].getAttribute("data-caption") || "";
-            captionEl.textContent = currentCaption;
-          }
-
-          prevBtn.addEventListener("click", () => {
-            activeIndex = (activeIndex - 1 + total) % total;
-            updateCarousel();
-          });
-
-          nextBtn.addEventListener("click", () => {
-            activeIndex = (activeIndex + 1) % total;
-            updateCarousel();
-          });
-
-          dots.forEach((dot) => {
-            dot.addEventListener("click", () => {
-              activeIndex = parseInt(dot.getAttribute("data-target"), 10);
-              updateCarousel();
-            });
-          });
-
-          cards.forEach((card, idx) => {
-            card.addEventListener("click", () => {
-              if (activeIndex !== idx) {
-                activeIndex = idx;
-                updateCarousel();
+              if (caption) {
+                caption.textContent = descriptions[current];
               }
-            });
-          });
+            }
 
-          updateCarousel();
-        })();
-      </script>
+            function nextSlide() {
+              current = (current + 1) % 5;
+              updateCarousel();
+            }
+
+            function prevSlide() {
+              current = (current - 1 + 5) % 5;
+              updateCarousel();
+            }
+
+            if (next) next.addEventListener("click", nextSlide);
+            if (prev) prev.addEventListener("click", prevSlide);
+
+            dots.forEach((dot, index) => {
+              dot.addEventListener("click", () => {
+                current = index;
+                updateCarousel();
+              });
+            });
+
+            // 支援點擊左右側預覽卡片直接切換到該張
+            slides.forEach((slide, index) => {
+              slide.addEventListener("click", () => {
+                if (current !== index) {
+                  current = index;
+                  updateCarousel();
+                }
+              });
+            });
+
+            // 支援觸控滑動
+            let startX = 0;
+            const carousel = section.querySelector(".ws-carousel");
+            if (carousel) {
+              carousel.addEventListener(
+                "touchstart",
+                (event) => {
+                  startX = event.changedTouches[0].clientX;
+                },
+                { passive: true }
+              );
+
+              carousel.addEventListener(
+                "touchend",
+                (event) => {
+                  const endX = event.changedTouches[0].clientX;
+                  const distance = endX - startX;
+                  if (Math.abs(distance) > 45) {
+                    if (distance < 0) {
+                      nextSlide();
+                    } else {
+                      prevSlide();
+                    }
+                  }
+                },
+                { passive: true }
+              );
+            }
+
+            updateCarousel();
+          })();
+        </script>
+      </section>
       <!-- 工坊介紹區段結束 -->
 
 
