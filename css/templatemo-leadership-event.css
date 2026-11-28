@@ -898,28 +898,51 @@ strong {
 }
 
 /*---------------------------------------
-  CUSTOM FORM               
+  CUSTOM FORM (意見與回饋表單)
 -----------------------------------------*/
-.custom-form .form-control {
-  background: var(--section-bg-color);
-  border: 0;
+.custom-form .form-control,
+.contact-form .form-control {
+  border: 1.5px solid #D5BDA0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background-color: #FAF8F5;
+  color: var(--color-dark-text, #1E2D3B);
+  font-size: 1rem;
   margin-bottom: 24px;
-  padding-top: 13px;
-  padding-bottom: 13px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.custom-form .form-control::placeholder,
+.contact-form .form-control::placeholder {
+  color: #8C827A;
+  opacity: 0.85;
+}
+
+.custom-form .form-control:focus,
+.contact-form .form-control:focus {
+  border-color: #055c9d;
+  background-color: #ffffff;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(5, 92, 157, 0.18);
 }
 
 .custom-form button[type="submit"] {
-  background: var(--primary-color);
+  background: var(--color-indigo-navy, #055c9d);
   border-radius: 100px;
   color: var(--white-color);
   font-weight: var(--font-weight-bold);
-  transition: all 0.3s;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin-bottom: 0;
 }
 
 .custom-form button[type="submit"]:hover,
 .custom-form button[type="submit"]:focus {
-  background: var(--navbar-bg-color);
+  background: var(--color-terracotta, #C77E63);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(199, 126, 99, 0.35);
 }
 
 /*---------------------------------------

@@ -105,6 +105,50 @@
         background-attachment: fixed !important;
       }
 
+      /* ==========================================================================
+         意見回饋區段 (Contact Form) 輸入框邊界優化
+         ========================================================================== */
+      .contact-form .form-control {
+        border: 1.5px solid #D5BDA0 !important;
+        border-radius: 8px !important;
+        padding: 12px 14px !important;
+        background-color: #FAF8F5 !important;
+        color: #1E2D3B !important;
+        font-size: 1rem;
+        margin-bottom: 24px;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      }
+
+      .contact-form .form-control::placeholder {
+        color: #8C827A !important;
+        opacity: 0.85;
+      }
+
+      .contact-form .form-control:focus {
+        border-color: #055c9d !important;
+        background-color: #ffffff !important;
+        outline: 0 !important;
+        box-shadow: 0 0 0 3px rgba(5, 92, 157, 0.18) !important;
+      }
+
+      .contact-form button[type="submit"] {
+        background: var(--color-indigo-navy, #055c9d) !important;
+        border-radius: 100px !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        padding: 14px 20px !important;
+        border: none !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .contact-form button[type="submit"]:hover,
+      .contact-form button[type="submit"]:focus {
+        background: var(--color-terracotta, #C77E63) !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 16px rgba(199, 126, 99, 0.35) !important;
+      }
+
       .titleA, .hero .titleA {
         color: var(--color-indigo-navy, #055c9d) !important;
         text-decoration: none;
@@ -2949,12 +2993,17 @@ https://templatemo.com/tm-575-leadership-event
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-12 mx-auto">
+              <!-- 修改收件信箱請直接更改下方 action 網址中的 Email：414328@clvsc.tyc.edu.tw -->
               <form
                 class="custom-form contact-form bg-white shadow-lg"
-                action="#"
-                method="post"
+                action="https://formsubmit.co/414328@clvsc.tyc.edu.tw"
+                method="POST"
                 role="form"
               >
+                <!-- FormSubmit 輔助設定 -->
+                <input type="hidden" name="_subject" value="三峽藍染網站 - 新的意見與回饋！" />
+                <input type="hidden" name="_template" value="table" />
+
                 <h2>收納意見與回饋！</h2>
 
                 <div class="row">
@@ -2964,8 +3013,8 @@ https://templatemo.com/tm-575-leadership-event
                       name="name"
                       id="name"
                       class="form-control"
-                      placeholder="Name"
-                      required=""
+                      placeholder="您的稱呼"
+                      required
                     />
                   </div>
 
@@ -2976,8 +3025,8 @@ https://templatemo.com/tm-575-leadership-event
                       id="email"
                       pattern="[^ @]*@[^ @]*"
                       class="form-control"
-                      placeholder="Email"
-                      required=""
+                      placeholder="電子信箱（僅用於一次答覆）"
+                      required
                     />
                   </div>
 
@@ -2987,7 +3036,8 @@ https://templatemo.com/tm-575-leadership-event
                       name="subject"
                       id="subject"
                       class="form-control"
-                      placeholder="Subject"
+                      placeholder="回饋主旨"
+                      required
                     />
                   </div>
 
@@ -2997,10 +3047,11 @@ https://templatemo.com/tm-575-leadership-event
                       rows="5"
                       id="message"
                       name="message"
-                      placeholder="Message"
+                      placeholder="請輸入您的建議或想對我們說的話..."
+                      required
                     ></textarea>
 
-                    <button type="submit" class="form-control">傳送</button>
+                    <button type="submit" class="form-control">傳送回饋</button>
                   </div>
                 </div>
               </form>
