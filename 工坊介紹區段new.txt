@@ -1,0 +1,808 @@
+
+<section class="workshop-section">
+
+<style>
+/* =====================================
+   三峽染工坊介紹｜獨立區段
+===================================== */
+
+.workshop-section {
+  --ws-blue: #055c9d;
+  --ws-beige: #d5bda0;
+  --ws-green: #7a9a76;
+  --ws-black: #222222;
+  --ws-gray: #666666;
+  --ws-light: #f8f7f4;
+
+  width: 100%;
+  padding: clamp(35px, 5vw, 75px) clamp(20px, 5vw, 75px);
+  background: #ffffff;
+  color: var(--ws-black);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.workshop-section * {
+  box-sizing: border-box;
+}
+
+/* 內容最大寬度 */
+.ws-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* =====================================
+   上半部：左右雙欄
+===================================== */
+
+.ws-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(25px, 4vw, 65px);
+  align-items: stretch;
+}
+
+/* 左側：職人堅持 */
+.ws-left {
+  padding: 15px 0 25px;
+  min-width: 0;
+}
+
+.ws-main-title {
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.45;
+  font-weight: 900;
+  color: var(--ws-black);
+  margin: 0 0 30px;
+  letter-spacing: 1px;
+}
+
+.ws-topic {
+  margin-bottom: clamp(28px, 3.5vw, 48px);
+  padding-left: clamp(12px, 2vw, 28px);
+}
+
+.ws-topic h3 {
+  font-size: clamp(21px, 2.1vw, 27px);
+  color: var(--ws-blue);
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.ws-topic p {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.85;
+  color: var(--ws-gray);
+  margin: 0;
+  text-align: justify;
+}
+
+/* =====================================
+   右側：文史脈絡
+===================================== */
+
+.ws-history {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(35px, 4vw, 55px);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ws-history::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ws-beige);
+  border-radius: 28px;
+  transform: rotate(-5deg);
+  z-index: -1;
+}
+
+.ws-history-title {
+  color: #ffffff;
+  font-size: clamp(25px, 2.8vw, 36px);
+  font-weight: 900;
+  text-align: center;
+  margin: 0 0 30px;
+  line-height: 1.4;
+}
+
+.ws-history-block {
+  margin-bottom: 28px;
+}
+
+.ws-history-block:last-child {
+  margin-bottom: 0;
+}
+
+.ws-history-block h3 {
+  color: var(--ws-green);
+  font-size: clamp(21px, 2vw, 26px);
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.ws-history-block p {
+  color: #555555;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.85;
+  margin: 0 0 0 20px;
+  text-align: justify;
+}
+
+/* =====================================
+   下半部：服務與體驗
+===================================== */
+
+.ws-bottom {
+  margin-top: clamp(55px, 7vw, 90px);
+}
+
+.ws-bottom-title {
+  text-align: center;
+  font-size: clamp(30px, 3vw, 39px);
+  font-weight: 900;
+  color: var(--ws-black);
+  margin: 0 0 clamp(35px, 4vw, 55px);
+}
+
+/* 服務介紹雙欄 */
+.ws-service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 5vw, 75px);
+}
+
+.ws-service-card {
+  padding: 0 10px;
+}
+
+.ws-service-card h3 {
+  color: var(--ws-blue);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 800;
+  margin: 0 0 15px;
+}
+
+.ws-service-card p {
+  color: var(--ws-gray);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.9;
+  margin: 0;
+  text-align: justify;
+}
+
+/* =====================================
+   五張圖片輪播
+===================================== */
+
+.ws-carousel-area {
+  margin-top: clamp(45px, 6vw, 75px);
+  width: 100%;
+}
+
+.ws-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  height: clamp(270px, 31vw, 390px);
+  margin: 0 auto;
+}
+
+.ws-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 圖片卡片 */
+.ws-slide {
+  position: absolute;
+  width: 38%;
+  height: 76%;
+  left: 31%;
+  top: 12%;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #e9e5df;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  transition:
+    transform .55s ease,
+    opacity .55s ease,
+    box-shadow .55s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ws-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 五張圖片排列 */
+.ws-slide[data-position="0"] {
+  transform: translateX(-125%) scale(.83);
+  z-index: 1;
+  opacity: .85;
+}
+
+.ws-slide[data-position="1"] {
+  transform: translateX(-65%) scale(.93);
+  z-index: 2;
+  opacity: 1;
+}
+
+.ws-slide[data-position="2"] {
+  transform: translateX(0) scale(1);
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+.ws-slide[data-position="3"] {
+  transform: translateX(65%) scale(.93);
+  z-index: 2;
+  opacity: 1;
+}
+
+.ws-slide[data-position="4"] {
+  transform: translateX(125%) scale(.83);
+  z-index: 1;
+  opacity: .85;
+}
+
+/* 左右控制按鈕 */
+.ws-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: 2px solid #dddddd;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ws-blue);
+  font-size: 27px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+
+.ws-arrow:hover {
+  background: var(--ws-blue);
+  color: #ffffff;
+  border-color: var(--ws-blue);
+}
+
+.ws-prev {
+  left: 0;
+}
+
+.ws-next {
+  right: 0;
+}
+
+/* 圖片說明 */
+.ws-caption {
+  text-align: center;
+  margin: 18px auto 0;
+  color: var(--ws-gray);
+  font-size: 17px;
+  line-height: 1.7;
+  min-height: 28px;
+}
+
+/* 輪播圓點 */
+.ws-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.ws-dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  background: #d5d5d5;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.ws-dot.active {
+  width: 26px;
+  border-radius: 10px;
+  background: var(--ws-blue);
+}
+
+/* =====================================
+   平板：改為上下排列
+===================================== */
+
+@media (max-width: 850px) {
+
+  .ws-top {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .ws-left {
+    padding: 10px 5px;
+  }
+
+  .ws-history {
+    padding: 40px 7%;
+    min-height: 400px;
+  }
+
+  .ws-history::before {
+    transform: rotate(-2deg);
+  }
+
+  .ws-service-grid {
+    gap: 30px;
+  }
+
+  .ws-carousel {
+    max-width: 750px;
+  }
+
+}
+
+/* =====================================
+   手機：單欄響應式
+===================================== */
+
+@media (max-width: 550px) {
+
+  .workshop-section {
+    padding: 35px 18px 50px;
+  }
+
+  .ws-main-title {
+    font-size: 29px;
+    margin-bottom: 25px;
+  }
+
+  .ws-topic {
+    padding-left: 8px;
+    margin-bottom: 30px;
+  }
+
+  .ws-topic h3 {
+    font-size: 22px;
+  }
+
+  .ws-topic p {
+    font-size: 15px;
+  }
+
+  .ws-history {
+    padding: 35px 25px;
+    min-height: auto;
+  }
+
+  .ws-history-title {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
+
+  .ws-history-block h3 {
+    font-size: 22px;
+  }
+
+  .ws-history-block p {
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  .ws-bottom {
+    margin-top: 55px;
+  }
+
+  .ws-bottom-title {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .ws-service-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .ws-service-card {
+    padding: 0 5px;
+  }
+
+  .ws-service-card h3 {
+    font-size: 23px;
+  }
+
+  .ws-service-card p {
+    font-size: 15px;
+  }
+
+  .ws-carousel-area {
+    margin-top: 40px;
+  }
+
+  .ws-carousel {
+    height: 260px;
+  }
+
+  .ws-slide {
+    width: 52%;
+    left: 24%;
+    height: 75%;
+    top: 12%;
+    border-radius: 17px;
+  }
+
+  .ws-slide[data-position="0"] {
+    transform: translateX(-85%) scale(.78);
+  }
+
+  .ws-slide[data-position="1"] {
+    transform: translateX(-48%) scale(.9);
+  }
+
+  .ws-slide[data-position="3"] {
+    transform: translateX(48%) scale(.9);
+  }
+
+  .ws-slide[data-position="4"] {
+    transform: translateX(85%) scale(.78);
+  }
+
+  .ws-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .ws-caption {
+    font-size: 15px;
+  }
+}
+
+/* 尊重使用者的減少動態設定 */
+@media (prefers-reduced-motion: reduce) {
+  .ws-slide,
+  .ws-arrow,
+  .ws-dot {
+    transition: none;
+  }
+}
+</style>
+
+
+<div class="ws-container">
+
+  <!-- =================================
+       第一區：職人堅持與文史脈絡
+  ================================== -->
+
+  <div class="ws-top">
+
+    <!-- 左側：職人堅持與營運痛點 -->
+    <div class="ws-left">
+
+      <h2 class="ws-main-title">
+        職人堅持與營運痛點
+      </h2>
+
+      <div class="ws-topic">
+
+        <h3>教學導向的堅持</h3>
+
+        <p>
+          工坊始終堅持「教學導向」，由在地資深工藝師親自帶領解說，拒絕走馬看花式的商業體驗。我們期待每一位來到三峽的訪客，「不只是把布料泡染液、帶走一件方巾」，而是能親手觸摸天然發酵染缸的溫度、觀察布料接觸空氣後「由黃綠轉為湛藍」的神奇氧化過程，真正理解老工藝背後的歷史脈絡與天然化學底蘊。
+        </p>
+
+      </div>
+
+      <div class="ws-topic">
+
+        <h3>數位轉型契機</h3>
+
+        <p>
+          在實地訪談中我們發現，目前工坊平日散客門檻較高，多以親子與學校團體為主，不僅年輕客群斷層嚴重，遊客也常抱持「體驗過一次就夠了」的一次性消費心態。為打破這道落隘，工坊對本團隊設計的原創形象 IP「柯山菁（小染）」寄予厚望，期待透過可愛親民的二次元視覺、LINE 貼圖與故事電子書等數位互動，降低 Z 世代接觸傳統工藝的門檻，讓百年藍染重新走進年輕人的日常。
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- 右側：文史脈絡與創立故事 -->
+    <div class="ws-history">
+
+      <h2 class="ws-history-title">
+        文史脈絡與創立故事
+      </h2>
+
+      <div class="ws-history-block">
+
+        <h3>清代盛況</h3>
+
+        <p>
+          三峽民權街舊稱「三角湧街」，在清代曾是北台灣染布業最繁華的核心重鎮。當時因周邊山區氣候潮濕、盛產天然染料植物「馬藍（大菁）」，加上三峽溪水質純淨、水運集散極為便利，老街幾乎家家戶戶都投入染布產業，各家染坊皆擁有不同的獨門發酵配方，吸引各地商賈前來批貨，如今老街紅磚立面上仍可見雕刻著「染坊」字樣的歷史印記。
+        </p>
+
+      </div>
+
+      <div class="ws-history-block">
+
+        <h3>式微與復育</h3>
+
+        <p>
+          日治時期隨著西服興起和服文化流行，加上廉價、色彩穩定的化學合成染料大量引進，耗時費工的傳統植物藍染逐漸失去市場競爭力，技藝一度式微並中斷了數十年。為了不讓這項珍貴的無形文化資產就此失傳，在地組織「三角湧文化協進會」積極投入田野調查與技藝復育，並特別輔導成立了「三峽染工坊（藍染展示中心）」，讓百年湛藍再次於老街紅磚屋中重獲新生。
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =================================
+       第二區：服務與體驗
+  ================================== -->
+
+  <div class="ws-bottom">
+
+    <h2 class="ws-bottom-title">
+      服務與體驗
+    </h2>
+
+    <div class="ws-service-grid">
+
+      <div class="ws-service-card">
+
+        <h3>手作體驗</h3>
+
+        <p>
+          完整體驗時長約 1～2 小時，課程包含三峽藍染文化簡介、天然染液原理說明，以及綁染、夾染等防染技法實作教學。現場提供棉方巾、大帆布小提袋、精緻角巾等多樣素材選擇，無論是親子共學或朋友出遊，都能親手染出獨一無二的湛藍紀念品。
+        </p>
+
+      </div>
+
+      <div class="ws-service-card">
+
+        <h3>商品展售</h3>
+
+        <p>
+          工坊展售區與線上商店同步陳列兼具傳統工藝底蘊與現代生活美學的手作織品，品項涵蓋天然染服飾、棉巾與絲巾、日常側背包與束口袋、質感茶席布，以及精緻的藍染髮夾、平安符等文創隨身飾品，讓天然植物染的溫潤色澤自然融入每一天的生活。
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================
+         第三區：五張圖片輪播
+    ================================== -->
+
+    <div class="ws-carousel-area">
+
+      <div class="ws-carousel">
+
+        <!-- 左箭頭 -->
+        <button class="ws-arrow ws-prev"
+                type="button"
+                aria-label="上一張">
+          ‹
+        </button>
+
+        <!-- 五張圖片 -->
+        <div class="ws-track">
+
+          <!-- 圖片一 -->
+          <div class="ws-slide">
+            <img src="images/workshop-01.jpg"
+                 alt="三峽染工坊照片一">
+          </div>
+
+          <!-- 圖片二 -->
+          <div class="ws-slide">
+            <img src="images/workshop-02.jpg"
+                 alt="三峽染工坊照片二">
+          </div>
+
+          <!-- 圖片三 -->
+          <div class="ws-slide">
+            <img src="images/workshop-03.jpg"
+                 alt="三峽染工坊照片三">
+          </div>
+
+          <!-- 圖片四 -->
+          <div class="ws-slide">
+            <img src="images/workshop-04.jpg"
+                 alt="三峽染工坊照片四">
+          </div>
+
+          <!-- 圖片五 -->
+          <div class="ws-slide">
+            <img src="images/workshop-05.jpg"
+                 alt="三峽染工坊照片五">
+          </div>
+
+        </div>
+
+        <!-- 右箭頭 -->
+        <button class="ws-arrow ws-next"
+                type="button"
+                aria-label="下一張">
+          ›
+        </button>
+
+      </div>
+
+      <!-- 圖片說明文字 -->
+      <p class="ws-caption">
+        三峽染工坊｜藍染文化與手作體驗
+      </p>
+
+      <!-- 五個切換圓點 -->
+      <div class="ws-dots">
+
+        <button class="ws-dot active"
+                aria-label="第1張圖片"></button>
+
+        <button class="ws-dot"
+                aria-label="第2張圖片"></button>
+
+        <button class="ws-dot"
+                aria-label="第3張圖片"></button>
+
+        <button class="ws-dot"
+                aria-label="第4張圖片"></button>
+
+        <button class="ws-dot"
+                aria-label="第5張圖片"></button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================
+     JavaScript：五張圖片輪播功能
+===================================== -->
+
+<script>
+(() => {
+
+  const section = document.currentScript.closest(
+    '.workshop-section'
+  );
+
+  if (!section) return;
+
+  const slides = [
+    ...section.querySelectorAll('.ws-slide')
+  ];
+
+  const dots = [
+    ...section.querySelectorAll('.ws-dot')
+  ];
+
+  const prev = section.querySelector('.ws-prev');
+  const next = section.querySelector('.ws-next');
+  const caption = section.querySelector('.ws-caption');
+
+  const descriptions = [
+    '三峽染工坊｜藍染文化與手作體驗',
+    '三峽染工坊｜傳統染布工藝',
+    '三峽染工坊｜藍染手作成果',
+    '三峽染工坊｜天然植物染色',
+    '三峽染工坊｜特色商品展售'
+  ];
+
+  let current = 2;
+
+  function updateCarousel() {
+
+    slides.forEach((slide, index) => {
+
+      const position = (index - current + 5) % 5;
+
+      slide.dataset.position = position;
+
+    });
+
+    dots.forEach((dot, index) => {
+
+      dot.classList.toggle(
+        'active',
+        index === current
+      );
+
+    });
+
+    caption.textContent = descriptions[current];
+
+  }
+
+  function nextSlide() {
+
+    current = (current + 1) % 5;
+    updateCarousel();
+
+  }
+
+  function prevSlide() {
+
+    current = (current - 1 + 5) % 5;
+    updateCarousel();
+
+  }
+
+  next.addEventListener('click', nextSlide);
+  prev.addEventListener('click', prevSlide);
+
+  dots.forEach((dot, index) => {
+
+    dot.addEventListener('click', () => {
+
+      current = index;
+      updateCarousel();
+
+    });
+
+  });
+
+  // 支援觸控滑動
+  let startX = 0;
+
+  const carousel = section.querySelector('.ws-carousel');
+
+  carousel.addEventListener('touchstart', (event) => {
+
+    startX = event.changedTouches[0].clientX;
+
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (event) => {
+
+    const endX = event.changedTouches[0].clientX;
+    const distance = endX - startX;
+
+    if (Math.abs(distance) > 45) {
+
+      if (distance < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+
+    }
+
+  }, { passive: true });
+
+  updateCarousel();
+
+})();
+</script>
+
+</section>
